@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Booking - UJS Travel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "travellora-blue": "#305492",
+              "travellora-dark": "#2C3E50",
+              "travellora-gray": "#7F8C8D",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-sans bg-gray-50">
+    <!-- Navigation Header (sama seperti halaman utama) -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="flex items-center">
+                <a href="index.html" class="flex items-center">
+                  <img
+                    src="img/logo.png"
+                    alt="Logo UJS Travel"
+                    class="w-10 h-10 object-contain"
+                  />
+                  <span class="text-xl font-bold text-travellora-dark ml-2">
+                    UJS TRAVEL
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="index.html"
+                class="text-travellora-gray hover:text-travellora-dark transition-colors"
+                >Beranda</a
+              >
+              <a
+                href="index.html#layanan"
+                class="text-travellora-gray hover:text-travellora-dark transition-colors"
+                >Layanan</a
+              >
+              <a
+                href="index.html#jadwal"
+                class="text-travellora-gray hover:text-travellora-dark transition-colors"
+                >Jadwal</a
+              >
+              <a
+                href="index.html#tentangkami"
+                class="text-travellora-gray hover:text-travellora-dark transition-colors"
+                >Tentang</a
+              >
+              <a
+                href="index.html#contact"
+                class="text-travellora-gray hover:text-travellora-dark transition-colors"
+                >Kontak</a
+              >
+              <a
+                href="Form.html"
+                class="bg-travellora-blue text-white px-4 py-2 rounded-xl font-medium hover:bg-blue-600 transition-colors"
+                >Pesan Sekarang</a
+              >
+            </div>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button
+              type="button"
+              class="text-travellora-gray hover:text-travellora-dark focus:outline-none focus:text-travellora-dark"
+              onclick="toggleMobileMenu()"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a
+            href="index.html"
+            class="block px-3 py-2 text-travellora-blue font-medium"
+            >Beranda</a
+          >
+          <a
+            href="index.html#layanan"
+            class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark"
+            >Layanan</a
+          >
+          <a
+            href="index.html#jadwal"
+            class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark"
+            >Jadwal</a
+          >
+          <a
+            href="index.html#tentangkami"
+            class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark"
+            >Tentang</a
+          >
+          <a
+            href="index.html#contact"
+            class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark"
+            >Kontak</a
+          >
+          <a
+            href="booking.html"
+            class="block px-3 py-2 bg-travellora-blue text-white rounded-md mx-2"
+            >Booking Sekarang</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="min-h-screen py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+          <h1 class="text-3xl sm:text-4xl font-bold text-travellora-dark mb-4">
+            Form Booking UJS Travel
+          </h1>
+          <p class="text-xl text-travellora-gray max-w-2xl mx-auto">
+            Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan
+            terpercaya.
+          </p>
+        </div>
+
+        <!-- Booking Form -->
+        <form
+          id="bookingForm"
+          class="bg-white rounded-2xl shadow-lg p-6 sm:p-8"
+          onsubmit="submitBooking(event)"
+        >
+          <!-- Bagian A: Pilih Jenis Layanan -->
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">
+              A. PILIH JENIS LAYANAN
+            </h2>
+            <div class="mb-4">
+              <label
+                for="jenisLayanan"
+                class="block text-gray-700 font-medium mb-2"
+              >
+                Jenis Layanan <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="jenisLayanan"
+                name="jenisLayanan"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                required
+              >
+                <option value="">Pilih Jenis Layanan</option>
+                <option value="Travel Reguler">Travel Reguler</option>
+                <option value="Carter Drop">Carter Drop</option>
+                <option value="Carter Full Day">Carter Full Day</option>
+                <option value="City Tour">City Tour</option>
+                <option value="Open Trip">Open Trip</option>
+                <option value="Kirim Paket">Kirim Paket</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Bagian B: Pilih Rute Perjalanan -->
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">
+              B. PILIH RUTE PERJALANAN
+            </h2>
+            <div class="mb-4">
+              <label
+                for="rutePerjalanan"
+                class="block text-gray-700 font-medium mb-2"
+              >
+                Rute Perjalanan <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="rutePerjalanan"
+                name="rutePerjalanan"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                required
+                onchange="toggleBandaraFields()"
+              >
+                <option value="">Pilih Rute Perjalanan</option>
+                <option value="Malang → Juanda">Malang → Juanda</option>
+                <option value="Juanda → Malang">Juanda → Malang</option>
+                <option value="Malang → Surabaya">Malang → Surabaya</option>
+                <option value="Surabaya → Malang">Surabaya → Malang</option>
+                <option value="Malang → Perak">Malang → Perak</option>
+                <option value="Perak → Malang">Perak → Malang</option>
+                <option value="Malang → Sidoarjo">Malang → Sidoarjo</option>
+                <option value="Sidoarjo → Malang">Sidoarjo → Malang</option>
+                <option value="Malang → Batu">Malang → Batu</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Bagian C: Tanggal & Waktu -->
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">
+              C. TANGGAL & WAKTU
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="tanggalKeberangkatan"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Tanggal Keberangkatan <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="tanggalKeberangkatan"
+                  name="tanggalKeberangkatan"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="jamKeberangkatan"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Jam Keberangkatan (Opsional)
+                </label>
+                <input
+                  type="time"
+                  id="jamKeberangkatan"
+                  name="jamKeberangkatan"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian D: Data Penumpang -->
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">
+              D. DATA PENUMPANG
+            </h2>
+            <div class="space-y-6">
+              <!-- Nama Lengkap -->
+              <div>
+                <label
+                  for="namaLengkap"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Nama Lengkap <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="namaLengkap"
+                  name="namaLengkap"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  placeholder="Masukkan nama lengkap"
+                  required
+                />
+              </div>
+
+              <!-- Nomor WhatsApp -->
+              <div>
+                <label
+                  for="nomorWhatsApp"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Nomor WhatsApp <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="nomorWhatsApp"
+                  name="nomorWhatsApp"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  placeholder="Contoh: 6281234567890"
+                  required
+                />
+              </div>
+
+              <!-- Alamat Penjemputan -->
+              <div>
+                <label
+                  for="alamatPenjemputan"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Alamat Penjemputan <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="alamatPenjemputan"
+                  name="alamatPenjemputan"
+                  rows="3"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  placeholder="Detail alamat penjemputan"
+                  required
+                ></textarea>
+              </div>
+
+              <!-- Alamat Tujuan -->
+              <div>
+                <label
+                  for="alamatTujuan"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Alamat Tujuan <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="alamatTujuan"
+                  name="alamatTujuan"
+                  rows="3"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  placeholder="Detail alamat tujuan"
+                  required
+                ></textarea>
+              </div>
+
+              <!-- Jumlah Penumpang -->
+              <div>
+                <label
+                  for="jumlahPenumpang"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Jumlah Penumpang <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="jumlahPenumpang"
+                  name="jumlahPenumpang"
+                  min="1"
+                  max="10"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian E: Khusus Bandara (Conditional Field) -->
+          <div id="bandaraFields" class="mb-10 hidden">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">
+              E. KHUSUS BANDARA
+            </h2>
+            <div class="space-y-6 bg-blue-50 p-6 rounded-lg">
+              <!-- Maskapai -->
+              <div>
+                <label
+                  for="maskapai"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Maskapai
+                </label>
+                <input
+                  type="text"
+                  id="maskapai"
+                  name="maskapai"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  placeholder="Nama maskapai penerbangan"
+                />
+              </div>
+
+              <!-- Kode Penerbangan -->
+              <div>
+                <label
+                  for="kodePenerbangan"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Kode Penerbangan
+                </label>
+                <input
+                  type="text"
+                  id="kodePenerbangan"
+                  name="kodePenerbangan"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                  placeholder="Contoh: GA123"
+                />
+              </div>
+
+              <!-- Jam Landing Pesawat -->
+              <div>
+                <label
+                  for="jamLanding"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  Jam Landing Pesawat
+                </label>
+                <input
+                  type="time"
+                  id="jamLanding"
+                  name="jamLanding"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian G: Barang Bawaan -->
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">
+              G. BARANG BAWAAN
+            </h2>
+            <div class="mb-4">
+              <select
+                id="barangBawaan"
+                name="barangBawaan"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travellora-blue focus:border-travellora-blue transition-colors"
+              >
+                <option value="">Pilih Barang Bawaan</option>
+                <option value="1 koper + 1 ransel">1 koper + 1 ransel</option>
+                <option value="Lebih dari 1 koper (konfirmasi admin)">
+                  Lebih dari 1 koper (konfirmasi admin)
+                </option>
+                <option value="Tanpa bagasi besar">Tanpa bagasi besar</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Bagian H: Metode Pembayaran -->
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">
+              H. METODE PEMBAYARAN
+            </h2>
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <input
+                  type="radio"
+                  id="transfer"
+                  name="metodePembayaran"
+                  value="Transfer"
+                  class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300"
+                  checked
+                />
+                <label
+                  for="transfer"
+                  class="ml-3 block text-gray-700 font-medium"
+                >
+                  Transfer
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="radio"
+                  id="cash"
+                  name="metodePembayaran"
+                  value="Cash ke Driver"
+                  class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300"
+                />
+                <label for="cash" class="ml-3 block text-gray-700 font-medium">
+                  Cash ke Driver
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Catatan dan Ketentuan -->
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-travellora-dark mb-4">CATATAN</h2>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-yellow-400"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-yellow-700">
+                    <strong>Ketentuan Reservasi:</strong><br />
+                    • Pembatalan kurang dari 6 jam dikenakan charge full<br />
+                    • Maksimal bagasi 1 koper + 1 tas ransel<br />
+                    • Tidak menerima hewan peliharaan<br />
+                    • Tidak menerima durian
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkbox Persetujuan -->
+          <div class="mb-10">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  id="persetujuan"
+                  name="persetujuan"
+                  type="checkbox"
+                  class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300 rounded"
+                  required
+                />
+              </div>
+              <div class="ml-3">
+                <label for="persetujuan" class="text-gray-700 font-medium">
+                  Saya menyetujui syarat & ketentuan yang berlaku
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button
+              type="submit"
+              class="bg-travellora-blue hover:bg-blue-600 text-white font-bold py-4 px-12 rounded-full transition-colors duration-300 text-lg"
+            >
+              Pesan Travel Kamu Sekarang
+            </button>
+          </div>
+        </form>
+
+        <!-- Info Tambahan -->
+        <div class="mt-12 text-center">
+          <p class="text-gray-600">
+            Butuh bantuan? Hubungi kami di
+            <a
+              href="https://wa.me/6282316290290"
+              class="text-travellora-blue hover:underline font-medium"
+              target="_blank"
+            >
+              +62 823-1629-0290
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-travellora-blue text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-lg mb-4">
+          &copy; 2024. Travel Ujs. All Rights Reserved
+        </p>
+        <p class="text-blue-100">Design By FWD</p>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+      <a
+        href="https://wa.me/6282316290290"
+        target="_blank"
+        class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 group"
+      >
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+          />
+        </svg>
+        <span
+          class="hidden group-hover:inline-block text-sm font-medium whitespace-nowrap"
+          >Contact Admin In Whatsapp</span
+        >
+      </a>
+    </div>
+
+    <script>
+      // Fungsi untuk toggle mobile menu
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenu.classList.toggle("hidden");
+      }
+
+      // Fungsi untuk menampilkan/menyembunyikan field bandara
+      function toggleBandaraFields() {
+        const ruteSelect = document.getElementById("rutePerjalanan");
+        const bandaraFields = document.getElementById("bandaraFields");
+        const selectedValue = ruteSelect.value;
+
+        // Cek apakah rute mengandung "Juanda"
+        if (
+          selectedValue.includes("Juanda") ||
+          selectedValue.includes("Bandara")
+        ) {
+          bandaraFields.classList.remove("hidden");
+          // Set required untuk field bandara
+          document.getElementById("maskapai").required = true;
+          document.getElementById("kodePenerbangan").required = true;
+          document.getElementById("jamLanding").required = true;
+        } else {
+          bandaraFields.classList.add("hidden");
+          // Hapus required untuk field bandara
+          document.getElementById("maskapai").required = false;
+          document.getElementById("kodePenerbangan").required = false;
+          document.getElementById("jamLanding").required = false;
+        }
+      }
+
+      // Fungsi untuk submit form dan redirect ke WhatsApp
+      function submitBooking(event) {
+        event.preventDefault();
+
+        // Ambil nilai dari form
+        const formData = {
+          jenisLayanan: document.getElementById("jenisLayanan").value,
+          rutePerjalanan: document.getElementById("rutePerjalanan").value,
+          tanggalKeberangkatan: document.getElementById(
+            "tanggalKeberangkatan"
+          ).value,
+          jamKeberangkatan: document.getElementById("jamKeberangkatan").value,
+          namaLengkap: document.getElementById("namaLengkap").value,
+          nomorWhatsApp: document.getElementById("nomorWhatsApp").value,
+          alamatPenjemputan: document.getElementById("alamatPenjemputan").value,
+          alamatTujuan: document.getElementById("alamatTujuan").value,
+          jumlahPenumpang: document.getElementById("jumlahPenumpang").value,
+          barangBawaan: document.getElementById("barangBawaan").value,
+          metodePembayaran: document.querySelector(
+            'input[name="metodePembayaran"]:checked'
+          ).value,
+        };
+
+        // Tambahkan data bandara jika ada
+        if (document.getElementById("bandaraFields").classList.contains("hidden") === false) {
+          formData.maskapai = document.getElementById("maskapai").value;
+          formData.kodePenerbangan = document.getElementById("kodePenerbangan").value;
+          formData.jamLanding = document.getElementById("jamLanding").value;
+        }
+
+        // Format tanggal untuk ditampilkan
+        const formattedDate = new Date(
+          formData.tanggalKeberangkatan
+        ).toLocaleDateString("id-ID", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+
+        // Buat pesan untuk WhatsApp
+        let message = `*FORM BOOKING UJS TRAVEL*%0A%0A`;
+        message += `*Jenis Layanan:* ${formData.jenisLayanan}%0A`;
+        message += `*Rute Perjalanan:* ${formData.rutePerjalanan}%0A`;
+        message += `*Tanggal Keberangkatan:* ${formattedDate}%0A`;
+        
+        if (formData.jamKeberangkatan) {
+          message += `*Jam Keberangkatan:* ${formData.jamKeberangkatan}%0A`;
+        }
+        
+        message += `%0A*DATA PENUMPANG*%0A`;
+        message += `Nama: ${formData.namaLengkap}%0A`;
+        message += `WhatsApp: ${formData.nomorWhatsApp}%0A`;
+        message += `Alamat Penjemputan: ${formData.alamatPenjemputan}%0A`;
+        message += `Alamat Tujuan: ${formData.alamatTujuan}%0A`;
+        message += `Jumlah Penumpang: ${formData.jumlahPenumpang}%0A`;
+        
+        if (formData.maskapai) {
+          message += `%0A*DATA PENERBANGAN*%0A`;
+          message += `Maskapai: ${formData.maskapai}%0A`;
+          message += `Kode Penerbangan: ${formData.kodePenerbangan}%0A`;
+          message += `Jam Landing: ${formData.jamLanding}%0A`;
+        }
+        
+        message += `%0A*DATA TAMBAHAN*%0A`;
+        message += `Barang Bawaan: ${formData.barangBawaan}%0A`;
+        message += `Metode Pembayaran: ${formData.metodePembayaran}%0A`;
+        
+        message += `%0A---%0A`;
+        message += `*Form ini dikirim melalui website UJS Travel*`;
+
+        // Redirect ke WhatsApp dengan pesan
+        const phoneNumber = "6282316290290"; // Nomor WhatsApp UJS Travel
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+        
+        window.open(whatsappUrl, "_blank");
+      }
+
+      // Set tanggal minimum untuk input tanggal (hari ini)
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("tanggalKeberangkatan").min = today;
+
+      // Inisialisasi toggle bandara fields
+      toggleBandaraFields();
+    </script>
+  </body>
+</html>
