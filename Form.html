@@ -1,885 +1,867 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Booking - UJS Travel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "travellora-blue": "#305492",
-              "travellora-dark": "#2C3E50",
-              "travellora-gray": "#7F8C8D",
-              "travellora-light": "#F8F9FA",
-            },
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Booking - UJS Travel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "travellora-blue": "#305492",
+            "travellora-dark": "#2C3E50",
+            "travellora-gray": "#7F8C8D",
+            "travellora-light": "#F8F9FA",
+          },
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
           },
         },
-      };
-    </script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      .form-section {
-        transition: all 0.3s ease;
-      }
-      .bank-logo {
-        width: 60px;
-        height: 30px;
-        object-fit: contain;
-      }
-      input:focus, select:focus, textarea:focus {
-        outline: none;
-        border-color: #305492;
-        box-shadow: 0 0 0 3px rgba(48, 84, 146, 0.1);
-      }
-    </style>
-  </head>
-  <body class="font-sans bg-gray-50">
-    <!-- Navigation Header -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-          <!-- Logo -->
-          <div class="flex items-center">
-            <a href="index.html" class="flex items-center">
-              <!-- Logo UJS Travel -->
-              <img 
-                src="img/logo.png" 
-                alt="Logo UJS Travel" 
-                class="w-12 h-12 object-contain mr-3"
-              />
-              <div>
-                <div class="text-xl font-bold text-travellora-dark">UJS TRAVEL</div>
-                <div class="text-xs text-travellora-gray font-medium">Malang - Juanda - Surabaya</div>
-              </div>
-            </a>
-          </div>
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .form-section {
+      transition: all 0.3s ease;
+    }
 
-          <!-- Desktop Navigation -->
-          <div class="hidden md:flex items-center space-x-6">
-            <a href="index.html" class="text-travellora-gray hover:text-travellora-blue font-medium transition-colors">
-              Beranda
-            </a>
-                       <!-- Dropdown Layanan -->
-            <div class="relative group">
-              <button
-                class="text-travellora-gray hover:text-travellora-dark transition-colors flex items-center focus:outline-none">
-                Layanan
-                <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor"
-                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
+    .bank-logo {
+      width: 60px;
+      height: 30px;
+      object-fit: contain;
+    }
 
-              <!-- Dropdown Menu -->
-              <div
-                class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100">
-                <!-- Di bagian Desktop Navigation dropdown (index.html) -->
-                <div
-                  class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100">
-                  <div class="py-1">
-                    <a href="reguler.html"
-                      class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Reguler</a>
-                    <a href="carter-drop.html"
-                      class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Carter
-                      Drop</a>
-                    <a href="city-tour.html"
-                      class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">City
-                      Tour</a>
-                    <a href="kirim-paket.html"
-                      class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Kirim
-                      Paket</a>
-                  </div>
-                </div>
-                
-                <!-- Di bagian Mobile Navigation dropdown (index.html) -->
-                <div id="mobile-layanan-menu" class="mt-1 ml-4 hidden space-y-1">
-                  <a href="reguler.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
-                    Reguler
-                  </a>
-                  <a href="carter-drop.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
-                    Carter Drop
-                  </a>
-                  <a href="city-tour.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
-                    City Tour
-                  </a>
-                  <a href="kirim-paket.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
-                    Kirim Paket
-                  </a>
-                </div>
-              </div>
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #305492;
+      box-shadow: 0 0 0 3px rgba(48, 84, 146, 0.1);
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-gray-50">
+  <!-- Navigation Header -->
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="index.html" class="flex items-center">
+            <!-- Logo UJS Travel -->
+            <img src="img/logo.png" alt="Logo UJS Travel" class="w-12 h-12 object-contain mr-3" />
+            <div>
+              <div class="text-xl font-bold text-travellora-dark">UJS TRAVEL</div>
+              <div class="text-xs text-travellora-gray font-medium">Malang - Juanda - Surabaya</div>
             </div>
-
-            <a href="#jadwal" class="text-travellora-gray hover:text-travellora-dark transition-colors">Jadwal</a>
-            <a href="#tentangkami" class="text-travellora-gray hover:text-travellora-dark transition-colors">Tentang</a>
-            <a href="#contact" class="text-travellora-gray hover:text-travellora-dark transition-colors">Kontak</a>
-            <a href="Form.html" class="bg-travellora-blue text-white px-5 py-2.5 rounded-lg font-medium  border-2 border-travellora-blue hover:bg-white hover:text-travellora-blue hover:border-travellora-blue transition-colors duration-300">
-              Pesan Sekarang</a>
-          </div>
-
-          <!-- Mobile menu button -->
-          <div class="md:hidden">
-            <button type="button" onclick="toggleMobileMenu()" class="text-gray-600 hover:text-travellora-dark">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Navigation -->
-      <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
-        <div class="px-4 py-3 space-y-1">
-          <a href="index.html" class="block px-3 py-2 text-travellora-blue font-medium">Beranda</a>
-          <a href="index.html#layanan" class="block px-3 py-2 text-gray-600 hover:text-travellora-dark">Layanan</a>
-          <a href="index.html#jadwal" class="block px-3 py-2 text-gray-600 hover:text-travellora-dark">Jadwal</a>
-          <a href="Form.html" class="block px-3 py-2 bg-travellora-blue text-white rounded-lg text-center mt-2">Pesan Sekarang</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="py-10">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="text-center mb-10">
-          <!-- Logo di Header Form -->
-          <div class="flex justify-center mb-4">
-            <img 
-              src="img/logo.png" 
-              alt="Logo UJS Travel" 
-              class="w-20 h-20 object-contain"
-            />
-          </div>
-          <h1 class="text-3xl sm:text-4xl font-bold text-travellora-dark mb-3">
-            Form Booking UJS Travel
-          </h1>
-          <p class="text-lg text-travellora-gray">
-            Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan terpercaya.
-          </p>
-        </div>
-
-        <!-- Booking Form -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
-          <!-- Form Header -->
-          <div class="bg-travellora-blue p-6 text-white">
-            <h2 class="text-xl font-bold">Formulir Reservasi Travel</h2>
-            <p class="text-blue-100 mt-1">Isi data dengan benar dan lengkap</p>
-          </div>
-
-          <!-- Form Content -->
-          <form id="bookingForm" class="p-6 sm:p-8" onsubmit="submitBooking(event)">
-            <!-- Section A: Pilih Jenis Layanan -->
-            <div class="mb-8">
-              <div class="flex items-center mb-4">
-                <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                  <span class="font-bold">A</span>
-                </div>
-                <h3 class="text-lg font-bold text-travellora-dark">
-                  Pilih Jenis Layanan
-                </h3>
-              </div>
-              <div class="mb-4">
-                <label for="jenisLayanan" class="block text-gray-700 font-medium mb-2">
-                  Jenis Layanan <span class="text-red-500">*</span>
-                </label>
-                <select
-                  id="jenisLayanan"
-                  name="jenisLayanan"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  required
-                >
-                  <option value="">Pilih Jenis Layanan</option>
-                  <option value="Travel Reguler">Travel Reguler</option>
-                  <option value="Carter Drop">Carter Drop</option>
-                  <option value="Carter Full Day">Carter Full Day</option>
-                  <option value="City Tour">City Tour</option>
-                  <option value="Open Trip">Open Trip</option>
-                  <option value="Kirim Paket">Kirim Paket</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Section B: Pilih Rute Perjalanan -->
-            <div class="mb-8">
-              <div class="flex items-center mb-4">
-                <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                  <span class="font-bold">B</span>
-                </div>
-                <h3 class="text-lg font-bold text-travellora-dark">
-                  Pilih Rute Perjalanan
-                </h3>
-              </div>
-              <div class="mb-4">
-                <label for="rutePerjalanan" class="block text-gray-700 font-medium mb-2">
-                  Rute Perjalanan <span class="text-red-500">*</span>
-                </label>
-                <select
-                  id="rutePerjalanan"
-                  name="rutePerjalanan"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  required
-                  onchange="toggleBandaraFields()"
-                >
-                  <option value="">Pilih Rute Perjalanan</option>
-                  <option value="Malang → Juanda">Malang → Juanda</option>
-                  <option value="Juanda → Malang">Juanda → Malang</option>
-                  <option value="Malang → Surabaya">Malang → Surabaya</option>
-                  <option value="Surabaya → Malang">Surabaya → Malang</option>
-                  <option value="Malang → Perak">Malang → Perak</option>
-                  <option value="Perak → Malang">Perak → Malang</option>
-                  <option value="Malang → Sidoarjo">Malang → Sidoarjo</option>
-                  <option value="Sidoarjo → Malang">Sidoarjo → Malang</option>
-                  <option value="Malang → Batu">Malang → Batu</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Section C: Tanggal & Waktu -->
-            <div class="mb-8">
-              <div class="flex items-center mb-4">
-                <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                  <span class="font-bold">C</span>
-                </div>
-                <h3 class="text-lg font-bold text-travellora-dark">
-                  Tanggal & Waktu
-                </h3>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label for="tanggalKeberangkatan" class="block text-gray-700 font-medium mb-2">
-                    Tanggal Keberangkatan <span class="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    id="tanggalKeberangkatan"
-                    name="tanggalKeberangkatan"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                    required
-                  />
-                </div>
-                <div>
-                  <label for="jamKeberangkatan" class="block text-gray-700 font-medium mb-2">
-                    Jam Keberangkatan (Opsional)
-                  </label>
-                  <input
-                    type="time"
-                    id="jamKeberangkatan"
-                    name="jamKeberangkatan"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Section D: Data Penumpang -->
-            <div class="mb-8">
-              <div class="flex items-center mb-4">
-                <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                  <span class="font-bold">D</span>
-                </div>
-                <h3 class="text-lg font-bold text-travellora-dark">
-                  Data Penumpang
-                </h3>
-              </div>
-              <div class="space-y-4">
-                <!-- Nama Lengkap -->
-                <div>
-                  <label for="namaLengkap" class="block text-gray-700 font-medium mb-2">
-                    Nama Lengkap <span class="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="namaLengkap"
-                    name="namaLengkap"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                    placeholder="Masukkan nama lengkap"
-                    required
-                  />
-                </div>
-
-                <!-- Nomor WhatsApp -->
-                <div>
-                  <label for="nomorWhatsApp" class="block text-gray-700 font-medium mb-2">
-                    Nomor WhatsApp <span class="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="nomorWhatsApp"
-                    name="nomorWhatsApp"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                    placeholder="Contoh: 6281234567890"
-                    required
-                  />
-                </div>
-
-                <!-- Alamat Penjemputan -->
-                <div>
-                  <label for="alamatPenjemputan" class="block text-gray-700 font-medium mb-2">
-                    Alamat Penjemputan <span class="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="alamatPenjemputan"
-                    name="alamatPenjemputan"
-                    rows="3"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors resize-none"
-                    placeholder="Detail alamat penjemputan"
-                    required
-                  ></textarea>
-                </div>
-
-                <!-- Alamat Tujuan -->
-                <div>
-                  <label for="alamatTujuan" class="block text-gray-700 font-medium mb-2">
-                    Alamat Tujuan <span class="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="alamatTujuan"
-                    name="alamatTujuan"
-                    rows="3"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors resize-none"
-                    placeholder="Detail alamat tujuan"
-                    required
-                  ></textarea>
-                </div>
-
-                <!-- Jumlah Penumpang -->
-                <div>
-                  <label for="jumlahPenumpang" class="block text-gray-700 font-medium mb-2">
-                    Jumlah Penumpang <span class="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="number"
-                    id="jumlahPenumpang"
-                    name="jumlahPenumpang"
-                    min="1"
-                    max="10"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Section E: Khusus Bandara (Conditional Field) -->
-            <div id="bandaraFields" class="mb-8 hidden">
-              <div class="flex items-center mb-4">
-                <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                  <span class="font-bold">E</span>
-                </div>
-                <h3 class="text-lg font-bold text-travellora-dark">
-                  Khusus Bandara
-                </h3>
-              </div>
-              <div class="space-y-4 bg-blue-50 p-4 rounded-lg">
-                <!-- Maskapai -->
-                <div>
-                  <label for="maskapai" class="block text-gray-700 font-medium mb-2">
-                    Maskapai
-                  </label>
-                  <input
-                    type="text"
-                    id="maskapai"
-                    name="maskapai"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                    placeholder="Nama maskapai penerbangan"
-                  />
-                </div>
-
-                <!-- Kode Penerbangan -->
-                <div>
-                  <label for="kodePenerbangan" class="block text-gray-700 font-medium mb-2">
-                    Kode Penerbangan
-                  </label>
-                  <input
-                    type="text"
-                    id="kodePenerbangan"
-                    name="kodePenerbangan"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                    placeholder="Contoh: GA123"
-                  />
-                </div>
-
-                <!-- Jam Landing Pesawat -->
-                <div>
-                  <label for="jamLanding" class="block text-gray-700 font-medium mb-2">
-                    Jam Landing Pesawat
-                  </label>
-                  <input
-                    type="time"
-                    id="jamLanding"
-                    name="jamLanding"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Section G: Barang Bawaan -->
-            <div class="mb-8">
-              <div class="flex items-center mb-4">
-                <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                  <span class="font-bold">G</span>
-                </div>
-                <h3 class="text-lg font-bold text-travellora-dark">
-                  Barang Bawaan
-                </h3>
-              </div>
-              <div class="mb-4">
-                <select
-                  id="barangBawaan"
-                  name="barangBawaan"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                >
-                  <option value="">Pilih Barang Bawaan</option>
-                  <option value="1 koper + 1 ransel">1 koper + 1 ransel</option>
-                  <option value="Lebih dari 1 koper (konfirmasi admin)">
-                    Lebih dari 1 koper (konfirmasi admin)
-                  </option>
-                  <option value="Tanpa bagasi besar">Tanpa bagasi besar</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Section H: Metode Pembayaran -->
-            <div class="mb-8">
-              <div class="flex items-center mb-4">
-                <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                  <span class="font-bold">H</span>
-                </div>
-                <h3 class="text-lg font-bold text-travellora-dark">
-                  Metode Pembayaran
-                </h3>
-              </div>
-              
-              <!-- Pilihan Metode Pembayaran -->
-              <div class="mb-4">
-                <div class="space-y-3">
-                  <div class="flex items-center">
-                    <input
-                      type="radio"
-                      id="transfer"
-                      name="metodePembayaran"
-                      value="Transfer"
-                      class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300"
-                      checked
-                      onclick="toggleBankSelection()"
-                    />
-                    <label for="transfer" class="ml-3 block text-gray-700 font-medium">
-                      Transfer Bank
-                    </label>
-                  </div>
-                  <div class="flex items-center">
-                    <input
-                      type="radio"
-                      id="cash"
-                      name="metodePembayaran"
-                      value="Cash ke Driver"
-                      class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300"
-                      onclick="toggleBankSelection()"
-                    />
-                    <label for="cash" class="ml-3 block text-gray-700 font-medium">
-                      Cash ke Driver
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Pilihan Bank (hanya muncul jika pilih Transfer) -->
-              <div id="bankSelection" class="mt-4 p-4 bg-gray-50 rounded-lg">
-                <label class="block text-gray-700 font-medium mb-3">
-                  Pilih Bank Transfer
-                </label>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  <!-- BCA -->
-                  <div>
-                    <input type="radio" id="bca" name="bank" value="BCA" class="hidden peer">
-                    <label for="bca" class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                      <div class="mb-2">
-                        <!-- Logo BCA -->
-                        <div class="w-20 h-10 flex items-center justify-center">
-                          <img src="/img/BCA.svg" 
-                               alt="Logo BCA" 
-                               class="bank-logo w-full h-full object-contain">
-                        </div>
-                      </div>
-                      <div class="text-xs font-medium text-center">BCA</div>
-                    </label>
-                  </div>
-                  
-                  <!-- BNI -->
-                  <div>
-                    <input type="radio" id="bni" name="bank" value="BNI" class="hidden peer">
-                    <label for="bni" class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                      <div class="mb-2">
-                        <!-- Logo BNI -->
-                        <div class="w-20 h-10 flex items-center justify-center">
-                          <img src="/img/bni.svg" 
-                               alt="Logo BNI" 
-                               class="bank-logo w-full h-full object-contain">
-                        </div>
-                      </div>
-                      <div class="text-xs font-medium text-center">BNI</div>
-                    </label>
-                  </div>
-                  
-                  <!-- BRI -->
-                  <div>
-                    <input type="radio" id="bri" name="bank" value="BRI" class="hidden peer">
-                    <label for="bri" class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                      <div class="mb-2">
-                        <!-- Logo BRI -->
-                        <div class="w-20 h-10 flex items-center justify-center">
-                          <img src="/img/BRI.svg" 
-                               alt="Logo BRI" 
-                               class="bank-logo w-full h-full object-contain">
-                        </div>
-                      </div>
-                      <div class="text-xs font-medium text-center">BRI</div>
-                    </label>
-                  </div>
-                  
-                  <!-- Mandiri -->
-                  <div>
-                    <input type="radio" id="mandiri" name="bank" value="Mandiri" class="hidden peer">
-                    <label for="mandiri" class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                      <div class="mb-2">
-                        <!-- Logo Mandiri -->
-                        <div class="w-20 h-10 flex items-center justify-center">
-                          <img src="/img/mandiri.svg"
-                               alt="Logo Mandiri" 
-                               class="bank-logo w-full h-full object-contain">
-                        </div>
-                      </div>
-                      <div class="text-xs font-medium text-center">Mandiri</div>
-                    </label>
-                  </div>
-                  
-                  <!-- CIMB Niaga -->
-                  <div>
-                    <input type="radio" id="cimb" name="bank" value="CIMB Niaga" class="hidden peer">
-                    <label for="cimb" class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                      <div class="mb-2">
-                        <!-- Logo CIMB Niaga -->
-                        <div class="w-20 h-10 flex items-center justify-center">
-                          <img src="/img/CIMB.svg" 
-                               alt="Logo CIMB Niaga" 
-                               class="bank-logo w-full h-full object-contain">
-                        </div>
-                      </div>
-                      <div class="text-xs font-medium text-center">CIMB Niaga</div>
-                    </label>
-                  </div>
-                  
-                  <!-- DANA -->
-                  <div>
-                    <input type="radio" id="dana" name="bank" value="DANA" class="hidden peer">
-                    <label for="dana" class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                      <div class="mb-2">
-                        <!-- Logo DANA -->
-                        <div class="w-20 h-10 flex items-center justify-center">
-                          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" 
-                               alt="Logo DANA" 
-                               class="bank-log w-full h-full object-contain">
-                        </div>
-                      </div>
-                      <div class="text-xs font-medium text-center">DANA</div>
-                    </label>
-                  </div>
-                </div>
-                
-                <!-- Bank Lainnya -->
-                <div class="mt-4">
-                  <label for="bankLainnya" class="block text-gray-700 font-medium mb-2">
-                    Atau Bank Lainnya
-                  </label>
-                  <input
-                    type="text"
-                    id="bankLainnya"
-                    name="bankLainnya"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                    placeholder="Tulis nama bank lainnya"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Catatan dan Ketentuan -->
-            <div class="mb-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-              <div class="flex">
-                <div class="flex-shrink-0">
-                  <svg class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                  </svg>
-                </div>
-                <div class="ml-3">
-                  <p class="text-sm text-gray-700">
-                    <strong>Ketentuan Reservasi:</strong><br/>
-                    • Pembatalan kurang dari 6 jam dikenakan charge full<br/>
-                    • Maksimal bagasi 1 koper + 1 tas ransel<br/>
-                    • Tidak menerima hewan peliharaan<br/>
-                    • Tidak menerima durian
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Checkbox Persetujuan -->
-            <div class="mb-8">
-              <div class="flex items-start">
-                <div class="flex items-center h-5">
-                  <input
-                    id="persetujuan"
-                    name="persetujuan"
-                    type="checkbox"
-                    class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300 rounded"
-                    required
-                  />
-                </div>
-                <div class="ml-3">
-                  <label for="persetujuan" class="text-gray-700 font-medium">
-                    Saya menyetujui syarat & ketentuan yang berlaku
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="text-center">
-              <button
-                type="submit"
-                class="bg-travellora-blue hover:bg-blue-600 text-white font-bold py-4 px-12 rounded-lg transition-colors duration-300 text-lg w-full md:w-auto"
-              >
-                <span class="flex items-center justify-center">
-                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                  </svg>
-                  Pesan via WhatsApp
-                </span>
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Info Tambahan -->
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center">
-          <div class="flex justify-center mb-4">
-            <!-- Logo UJS Travel di footer form -->
-            <img 
-              src="img/logo.png" 
-              alt="Logo UJS Travel" 
-              class="w-16 h-16 object-contain"
-            />
-          </div>
-          <h3 class="text-lg font-bold text-travellora-dark mb-3">Butuh Bantuan?</h3>
-          <p class="text-gray-600 mb-4">
-            Tim customer service kami siap membantu Anda melalui WhatsApp.
-          </p>
-          <a
-            href="https://wa.me/6282316290290"
-            target="_blank"
-            class="inline-block bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-          >
-            Hubungi Admin (+62 823-1629-0290)
           </a>
         </div>
-      </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="bg-travellora-dark text-white py-12 mt-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <div class="flex justify-center mb-6">
-            <!-- Logo UJS Travel di footer -->
-            <img 
-              src="img/logo.png" 
-              alt="Logo UJS Travel" 
-              class="w-20 h-20 object-contain"
-            />
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="index.html" class="text-travellora-gray hover:text-travellora-blue font-medium transition-colors">
+            Beranda
+          </a>
+          <!-- Dropdown Layanan -->
+          <div class="relative group">
+            <button
+              class="text-travellora-gray hover:text-travellora-dark transition-colors flex items-center focus:outline-none">
+              Layanan
+              <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100">
+              <!-- Di bagian Desktop Navigation dropdown (index.html) -->
+              <div
+                class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100">
+                <div class="py-1">
+                  <a href="reguler.html"
+                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Reguler</a>
+                  <a href="carter-drop.html"
+                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Carter
+                    Drop</a>
+                  <a href="city-tour.html"
+                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">City
+                    Tour</a>
+                  <a href="kirim-paket.html"
+                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Kirim
+                    Paket</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-4">UJS TRAVEL</h3>
-          <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
-            Melayani perjalanan Malang - Juanda - Surabaya dengan profesionalisme, keamanan, dan kenyamanan.
-          </p>
-          <div class="border-t border-gray-700 pt-8">
-            <p class="text-gray-400">
-              &copy; 2024. Travel Ujs. All Rights Reserved | Design By FWD
-            </p>
-          </div>
+
+          <a href="#jadwal" class="text-travellora-gray hover:text-travellora-dark transition-colors">Jadwal</a>
+          <a href="#tentangkami" class="text-travellora-gray hover:text-travellora-dark transition-colors">Tentang</a>
+          <a href="#contact" class="text-travellora-gray hover:text-travellora-dark transition-colors">Kontak</a>
+          <a href="Form.html"
+            class="bg-travellora-blue text-white px-5 py-2.5 rounded-lg font-medium  border-2 border-travellora-blue hover:bg-white hover:text-travellora-blue hover:border-travellora-blue transition-colors duration-300">
+            Pesan Sekarang</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button type="button"
+            class="text-travellora-gray hover:text-travellora-dark focus:outline-none focus:text-travellora-dark"
+            onclick="toggleMobileMenu()">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <div class="fixed bottom-6 right-6 z-50">
-      <a
-        href="https://wa.me/6282316290290"
-        target="_blank"
-        class="bg-green-500 hover:bg-green-600 text-white px-5 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
-      >
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-        </svg>
-      </a>
     </div>
 
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="index.html" class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark">
+          Beranda
+        </a>
+
+        <!-- Dropdown Layanan untuk Mobile -->
+        <div class="px-3 py-2">
+          <button onclick="toggleMobileLayanan()"
+            class="flex items-center justify-between w-full text-left text-travellora-gray font-medium hover:text-travellora-dark focus:outline-none">
+            <span>Layanan</span>
+            <svg id="mobile-layanan-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+              </path>
+            </svg>
+          </button>
+
+          <!-- Submenu Layanan -->
+          <div id="mobile-layanan-menu" class="mt-1 ml-4 hidden space-y-1">
+            <a href="reguler.html" class="block px-3 py-2 text-sm text-travellora-gray font-medium">
+              Reguler
+            </a>
+            <a href="carter-drop.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
+              Carter Drop
+            </a>
+            <a href="city-tour.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
+              City Tour
+            </a>
+            <a href="kirim-paket.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
+              Kirim Paket
+            </a>
+          </div>
+        </div>
+
+        <a href="index.html#jadwal" class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark">
+          Jadwal
+        </a>
+        <a href="index.html#tentangkami" class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark">
+          Tentang
+        </a>
+        <a href="index.html#contact" class="block px-3 py-2 text-travellora-gray hover:text-travellora-dark">
+          Kontak
+        </a>
+        <a href="Form.html" class="block px-3 py-2 bg-travellora-blue text-white rounded-lg text-center mt-2">Pesan
+          Sekarang</a>
+      </div>
+    </div>
+
+    <!-- JavaScript untuk toggle dropdown mobile -->
     <script>
-      // Fungsi untuk toggle mobile menu
-      function toggleMobileMenu() {
-        const mobileMenu = document.getElementById("mobile-menu");
-        mobileMenu.classList.toggle("hidden");
-      }
+      function toggleMobileLayanan() {
+        const menu = document.getElementById('mobile-layanan-menu');
+        const icon = document.getElementById('mobile-layanan-icon');
 
-      // Fungsi untuk menampilkan/menyembunyikan field bandara
-      function toggleBandaraFields() {
-        const ruteSelect = document.getElementById("rutePerjalanan");
-        const bandaraFields = document.getElementById("bandaraFields");
-        const selectedValue = ruteSelect.value;
-
-        // Cek apakah rute mengandung "Juanda"
-        if (selectedValue.includes("Juanda")) {
-          bandaraFields.classList.remove("hidden");
+        if (menu.classList.contains('hidden')) {
+          menu.classList.remove('hidden');
+          icon.classList.add('rotate-180');
         } else {
-          bandaraFields.classList.add("hidden");
+          menu.classList.add('hidden');
+          icon.classList.remove('rotate-180');
         }
       }
-
-      // Fungsi untuk menampilkan/menyembunyikan pilihan bank
-      function toggleBankSelection() {
-        const transferRadio = document.getElementById("transfer");
-        const bankSelection = document.getElementById("bankSelection");
-        
-        if (transferRadio.checked) {
-          bankSelection.classList.remove("hidden");
-        } else {
-          bankSelection.classList.add("hidden");
-        }
-      }
-
-      // Fungsi untuk submit form dan redirect ke WhatsApp
-      function submitBooking(event) {
-        event.preventDefault();
-
-        // Validasi form
-        if (!document.getElementById("persetujuan").checked) {
-          alert("Harap setujui syarat dan ketentuan terlebih dahulu.");
-          return;
-        }
-
-        // Ambil nilai dari form
-        const formData = {
-          jenisLayanan: document.getElementById("jenisLayanan").value,
-          rutePerjalanan: document.getElementById("rutePerjalanan").value,
-          tanggalKeberangkatan: document.getElementById("tanggalKeberangkatan").value,
-          jamKeberangkatan: document.getElementById("jamKeberangkatan").value,
-          namaLengkap: document.getElementById("namaLengkap").value,
-          nomorWhatsApp: document.getElementById("nomorWhatsApp").value,
-          alamatPenjemputan: document.getElementById("alamatPenjemputan").value,
-          alamatTujuan: document.getElementById("alamatTujuan").value,
-          jumlahPenumpang: document.getElementById("jumlahPenumpang").value,
-          barangBawaan: document.getElementById("barangBawaan").value,
-          metodePembayaran: document.querySelector('input[name="metodePembayaran"]:checked').value,
-        };
-
-        // Tambahkan pilihan bank jika transfer
-        if (formData.metodePembayaran === "Transfer") {
-          const selectedBank = document.querySelector('input[name="bank"]:checked');
-          const bankLainnya = document.getElementById("bankLainnya").value;
-          
-          if (selectedBank) {
-            formData.bank = selectedBank.value;
-          } else if (bankLainnya) {
-            formData.bank = bankLainnya;
-          } else {
-            formData.bank = "Bank belum dipilih";
-          }
-        }
-
-        // Tambahkan data bandara jika ada
-        if (!document.getElementById("bandaraFields").classList.contains("hidden")) {
-          formData.maskapai = document.getElementById("maskapai").value;
-          formData.kodePenerbangan = document.getElementById("kodePenerbangan").value;
-          formData.jamLanding = document.getElementById("jamLanding").value;
-        }
-
-        // Format tanggal untuk ditampilkan
-        const formattedDate = new Date(formData.tanggalKeberangkatan).toLocaleDateString("id-ID", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
-
-        // Buat pesan untuk WhatsApp
-        let message = `*FORM BOOKING UJS TRAVEL*%0A%0A`;
-        message += `*Jenis Layanan:* ${formData.jenisLayanan}%0A`;
-        message += `*Rute Perjalanan:* ${formData.rutePerjalanan}%0A`;
-        message += `*Tanggal Keberangkatan:* ${formattedDate}%0A`;
-        
-        if (formData.jamKeberangkatan) {
-          message += `*Jam Keberangkatan:* ${formData.jamKeberangkatan}%0A`;
-        }
-        
-        message += `%0A*DATA PENUMPANG*%0A`;
-        message += `Nama: ${formData.namaLengkap}%0A`;
-        message += `WhatsApp: ${formData.nomorWhatsApp}%0A`;
-        message += `Alamat Penjemputan: ${formData.alamatPenjemputan}%0A`;
-        message += `Alamat Tujuan: ${formData.alamatTujuan}%0A`;
-        message += `Jumlah Penumpang: ${formData.jumlahPenumpang}%0A`;
-        
-        if (formData.maskapai) {
-          message += `%0A*DATA PENERBANGAN*%0A`;
-          message += `Maskapai: ${formData.maskapai || "-"}%0A`;
-          message += `Kode Penerbangan: ${formData.kodePenerbangan || "-"}%0A`;
-          message += `Jam Landing: ${formData.jamLanding || "-"}%0A`;
-        }
-        
-        message += `%0A*DATA TAMBAHAN*%0A`;
-        message += `Barang Bawaan: ${formData.barangBawaan || "-"}%0A`;
-        message += `Metode Pembayaran: ${formData.metodePembayaran}%0A`;
-        
-        if (formData.metodePembayaran === "Transfer" && formData.bank) {
-          message += `Bank: ${formData.bank}%0A`;
-        }
-        
-        message += `%0A---%0A`;
-        message += `*Form ini dikirim melalui website UJS Travel*`;
-
-        // Redirect ke WhatsApp dengan pesan
-        const phoneNumber = "6282316290290";
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-        
-        // Tampilkan loading
-        const submitBtn = document.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span class="flex items-center justify-center"><svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Mengirim...</span>';
-        submitBtn.disabled = true;
-        
-        // Tunggu 1.5 detik kemudian redirect
-        setTimeout(() => {
-          window.open(whatsappUrl, "_blank");
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-        }, 1500);
-      }
-
-      // Set tanggal minimum untuk input tanggal (hari ini)
-      const today = new Date().toISOString().split("T")[0];
-      document.getElementById("tanggalKeberangkatan").min = today;
-
-      // Inisialisasi toggle bandara fields dan bank selection
-      toggleBandaraFields();
-      toggleBankSelection();
     </script>
-  </body>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="py-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-10">
+        <!-- Logo di Header Form -->
+        <div class="flex justify-center mb-4">
+          <img src="img/logo.png" alt="Logo UJS Travel" class="w-20 h-20 object-contain" />
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold text-travellora-dark mb-3">
+          Form Booking UJS Travel
+        </h1>
+        <p class="text-lg text-travellora-gray">
+          Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan terpercaya.
+        </p>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+        <!-- Form Header -->
+        <div class="bg-travellora-blue p-6 text-white">
+          <h2 class="text-xl font-bold">Formulir Reservasi Travel</h2>
+          <p class="text-blue-100 mt-1">Isi data dengan benar dan lengkap</p>
+        </div>
+
+        <!-- Form Content -->
+        <form id="bookingForm" class="p-6 sm:p-8" onsubmit="submitBooking(event)">
+          <!-- Section A: Pilih Jenis Layanan -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">A</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Pilih Jenis Layanan
+              </h3>
+            </div>
+            <div class="mb-4">
+              <label for="jenisLayanan" class="block text-gray-700 font-medium mb-2">
+                Jenis Layanan <span class="text-red-500">*</span>
+              </label>
+              <select id="jenisLayanan" name="jenisLayanan"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                required>
+                <option value="">Pilih Jenis Layanan</option>
+                <option value="Travel Reguler">Travel Reguler</option>
+                <option value="Carter Drop">Carter Drop</option>
+                <option value="Carter Full Day">Carter Full Day</option>
+                <option value="City Tour">City Tour</option>
+                <option value="Open Trip">Open Trip</option>
+                <option value="Kirim Paket">Kirim Paket</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section B: Pilih Rute Perjalanan -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">B</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Pilih Rute Perjalanan
+              </h3>
+            </div>
+            <div class="mb-4">
+              <label for="rutePerjalanan" class="block text-gray-700 font-medium mb-2">
+                Rute Perjalanan <span class="text-red-500">*</span>
+              </label>
+              <select id="rutePerjalanan" name="rutePerjalanan"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                required onchange="toggleBandaraFields()">
+                <option value="">Pilih Rute Perjalanan</option>
+                <option value="Malang → Juanda">Malang → Juanda</option>
+                <option value="Juanda → Malang">Juanda → Malang</option>
+                <option value="Malang → Surabaya">Malang → Surabaya</option>
+                <option value="Surabaya → Malang">Surabaya → Malang</option>
+                <option value="Malang → Perak">Malang → Perak</option>
+                <option value="Perak → Malang">Perak → Malang</option>
+                <option value="Malang → Sidoarjo">Malang → Sidoarjo</option>
+                <option value="Sidoarjo → Malang">Sidoarjo → Malang</option>
+                <option value="Malang → Batu">Malang → Batu</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section C: Tanggal & Waktu -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">C</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Tanggal & Waktu
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="tanggalKeberangkatan" class="block text-gray-700 font-medium mb-2">
+                  Tanggal Keberangkatan <span class="text-red-500">*</span>
+                </label>
+                <input type="date" id="tanggalKeberangkatan" name="tanggalKeberangkatan"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  required />
+              </div>
+              <div>
+                <label for="jamKeberangkatan" class="block text-gray-700 font-medium mb-2">
+                  Jam Keberangkatan (Opsional)
+                </label>
+                <input type="time" id="jamKeberangkatan" name="jamKeberangkatan"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section D: Data Penumpang -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">D</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Data Penumpang
+              </h3>
+            </div>
+            <div class="space-y-4">
+              <!-- Nama Lengkap -->
+              <div>
+                <label for="namaLengkap" class="block text-gray-700 font-medium mb-2">
+                  Nama Lengkap <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="namaLengkap" name="namaLengkap"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  placeholder="Masukkan nama lengkap" required />
+              </div>
+
+              <!-- Nomor WhatsApp -->
+              <div>
+                <label for="nomorWhatsApp" class="block text-gray-700 font-medium mb-2">
+                  Nomor WhatsApp <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" id="nomorWhatsApp" name="nomorWhatsApp"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  placeholder="Contoh: 6281234567890" required />
+              </div>
+
+              <!-- Alamat Penjemputan -->
+              <div>
+                <label for="alamatPenjemputan" class="block text-gray-700 font-medium mb-2">
+                  Alamat Penjemputan <span class="text-red-500">*</span>
+                </label>
+                <textarea id="alamatPenjemputan" name="alamatPenjemputan" rows="3"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors resize-none"
+                  placeholder="Detail alamat penjemputan" required></textarea>
+              </div>
+
+              <!-- Alamat Tujuan -->
+              <div>
+                <label for="alamatTujuan" class="block text-gray-700 font-medium mb-2">
+                  Alamat Tujuan <span class="text-red-500">*</span>
+                </label>
+                <textarea id="alamatTujuan" name="alamatTujuan" rows="3"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors resize-none"
+                  placeholder="Detail alamat tujuan" required></textarea>
+              </div>
+
+              <!-- Jumlah Penumpang -->
+              <div>
+                <label for="jumlahPenumpang" class="block text-gray-700 font-medium mb-2">
+                  Jumlah Penumpang <span class="text-red-500">*</span>
+                </label>
+                <input type="number" id="jumlahPenumpang" name="jumlahPenumpang" min="1" max="10"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  required />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section E: Khusus Bandara (Conditional Field) -->
+          <div id="bandaraFields" class="mb-8 hidden">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">E</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Khusus Bandara
+              </h3>
+            </div>
+            <div class="space-y-4 bg-blue-50 p-4 rounded-lg">
+              <!-- Maskapai -->
+              <div>
+                <label for="maskapai" class="block text-gray-700 font-medium mb-2">
+                  Maskapai
+                </label>
+                <input type="text" id="maskapai" name="maskapai"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  placeholder="Nama maskapai penerbangan" />
+              </div>
+
+              <!-- Kode Penerbangan -->
+              <div>
+                <label for="kodePenerbangan" class="block text-gray-700 font-medium mb-2">
+                  Kode Penerbangan
+                </label>
+                <input type="text" id="kodePenerbangan" name="kodePenerbangan"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  placeholder="Contoh: GA123" />
+              </div>
+
+              <!-- Jam Landing Pesawat -->
+              <div>
+                <label for="jamLanding" class="block text-gray-700 font-medium mb-2">
+                  Jam Landing Pesawat
+                </label>
+                <input type="time" id="jamLanding" name="jamLanding"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section G: Barang Bawaan -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">G</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Barang Bawaan
+              </h3>
+            </div>
+            <div class="mb-4">
+              <select id="barangBawaan" name="barangBawaan"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors">
+                <option value="">Pilih Barang Bawaan</option>
+                <option value="1 koper + 1 ransel">1 koper + 1 ransel</option>
+                <option value="Lebih dari 1 koper (konfirmasi admin)">
+                  Lebih dari 1 koper (konfirmasi admin)
+                </option>
+                <option value="Tanpa bagasi besar">Tanpa bagasi besar</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section H: Metode Pembayaran -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">H</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Metode Pembayaran
+              </h3>
+            </div>
+
+            <!-- Pilihan Metode Pembayaran -->
+            <div class="mb-4">
+              <div class="space-y-3">
+                <div class="flex items-center">
+                  <input type="radio" id="transfer" name="metodePembayaran" value="Transfer"
+                    class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300" checked
+                    onclick="toggleBankSelection()" />
+                  <label for="transfer" class="ml-3 block text-gray-700 font-medium">
+                    Transfer Bank
+                  </label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="cash" name="metodePembayaran" value="Cash ke Driver"
+                    class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300"
+                    onclick="toggleBankSelection()" />
+                  <label for="cash" class="ml-3 block text-gray-700 font-medium">
+                    Cash ke Driver
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pilihan Bank (hanya muncul jika pilih Transfer) -->
+            <div id="bankSelection" class="mt-4 p-4 bg-gray-50 rounded-lg">
+              <label class="block text-gray-700 font-medium mb-3">
+                Pilih Bank Transfer
+              </label>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- BCA -->
+                <div>
+                  <input type="radio" id="bca" name="bank" value="BCA" class="hidden peer">
+                  <label for="bca"
+                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
+                    <div class="mb-2">
+                      <!-- Logo BCA -->
+                      <div class="w-20 h-10 flex items-center justify-center">
+                        <img src="/img/BCA.svg" alt="Logo BCA" class="bank-logo w-full h-full object-contain">
+                      </div>
+                    </div>
+                    <div class="text-xs font-medium text-center">BCA</div>
+                  </label>
+                </div>
+
+                <!-- BNI -->
+                <div>
+                  <input type="radio" id="bni" name="bank" value="BNI" class="hidden peer">
+                  <label for="bni"
+                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
+                    <div class="mb-2">
+                      <!-- Logo BNI -->
+                      <div class="w-20 h-10 flex items-center justify-center">
+                        <img src="/img/bni.svg" alt="Logo BNI" class="bank-logo w-full h-full object-contain">
+                      </div>
+                    </div>
+                    <div class="text-xs font-medium text-center">BNI</div>
+                  </label>
+                </div>
+
+                <!-- BRI -->
+                <div>
+                  <input type="radio" id="bri" name="bank" value="BRI" class="hidden peer">
+                  <label for="bri"
+                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
+                    <div class="mb-2">
+                      <!-- Logo BRI -->
+                      <div class="w-20 h-10 flex items-center justify-center">
+                        <img src="/img/BRI.svg" alt="Logo BRI" class="bank-logo w-full h-full object-contain">
+                      </div>
+                    </div>
+                    <div class="text-xs font-medium text-center">BRI</div>
+                  </label>
+                </div>
+
+                <!-- Mandiri -->
+                <div>
+                  <input type="radio" id="mandiri" name="bank" value="Mandiri" class="hidden peer">
+                  <label for="mandiri"
+                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
+                    <div class="mb-2">
+                      <!-- Logo Mandiri -->
+                      <div class="w-20 h-10 flex items-center justify-center">
+                        <img src="/img/mandiri.svg" alt="Logo Mandiri" class="bank-logo w-full h-full object-contain">
+                      </div>
+                    </div>
+                    <div class="text-xs font-medium text-center">Mandiri</div>
+                  </label>
+                </div>
+
+                <!-- CIMB Niaga -->
+                <div>
+                  <input type="radio" id="cimb" name="bank" value="CIMB Niaga" class="hidden peer">
+                  <label for="cimb"
+                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
+                    <div class="mb-2">
+                      <!-- Logo CIMB Niaga -->
+                      <div class="w-20 h-10 flex items-center justify-center">
+                        <img src="/img/CIMB.svg" alt="Logo CIMB Niaga" class="bank-logo w-full h-full object-contain">
+                      </div>
+                    </div>
+                    <div class="text-xs font-medium text-center">CIMB Niaga</div>
+                  </label>
+                </div>
+
+                <!-- DANA -->
+                <div>
+                  <input type="radio" id="dana" name="bank" value="DANA" class="hidden peer">
+                  <label for="dana"
+                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
+                    <div class="mb-2">
+                      <!-- Logo DANA -->
+                      <div class="w-20 h-10 flex items-center justify-center">
+                        <img
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png"
+                          alt="Logo DANA" class="bank-log w-full h-full object-contain">
+                      </div>
+                    </div>
+                    <div class="text-xs font-medium text-center">DANA</div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Bank Lainnya -->
+              <div class="mt-4">
+                <label for="bankLainnya" class="block text-gray-700 font-medium mb-2">
+                  Atau Bank Lainnya
+                </label>
+                <input type="text" id="bankLainnya" name="bankLainnya"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  placeholder="Tulis nama bank lainnya" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Catatan dan Ketentuan -->
+          <div class="mb-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm text-gray-700">
+                  <strong>Ketentuan Reservasi:</strong><br />
+                  • Pembatalan kurang dari 6 jam dikenakan charge full<br />
+                  • Maksimal bagasi 1 koper + 1 tas ransel<br />
+                  • Tidak menerima hewan peliharaan<br />
+                  • Tidak menerima durian
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkbox Persetujuan -->
+          <div class="mb-8">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input id="persetujuan" name="persetujuan" type="checkbox"
+                  class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300 rounded" required />
+              </div>
+              <div class="ml-3">
+                <label for="persetujuan" class="text-gray-700 font-medium">
+                  Saya menyetujui syarat & ketentuan yang berlaku
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit"
+              class="bg-travellora-blue hover:bg-blue-600 text-white font-bold py-4 px-12 rounded-lg transition-colors duration-300 text-lg w-full md:w-auto">
+              <span class="flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                </svg>
+                Pesan via WhatsApp
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Info Tambahan -->
+      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+        <div class="flex justify-center mb-4">
+          <!-- Logo UJS Travel di footer form -->
+          <img src="img/logo.png" alt="Logo UJS Travel" class="w-16 h-16 object-contain" />
+        </div>
+        <h3 class="text-lg font-bold text-travellora-dark mb-3">Butuh Bantuan?</h3>
+        <p class="text-gray-600 mb-4">
+          Tim customer service kami siap membantu Anda melalui WhatsApp.
+        </p>
+        <a href="https://wa.me/6282316290290" target="_blank"
+          class="inline-block bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+          Hubungi Admin (+62 823-1629-0290)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-travellora-dark text-white py-12 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <div class="flex justify-center mb-6">
+          <!-- Logo UJS Travel di footer -->
+          <img src="img/logo.png" alt="Logo UJS Travel" class="w-20 h-20 object-contain" />
+        </div>
+        <h3 class="text-xl font-bold mb-4">UJS TRAVEL</h3>
+        <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
+          Melayani perjalanan Malang - Juanda - Surabaya dengan profesionalisme, keamanan, dan kenyamanan.
+        </p>
+        <div class="border-t border-gray-700 pt-8">
+          <p class="text-gray-400">
+            &copy; 2024. Travel Ujs. All Rights Reserved | Design By FWD
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="https://wa.me/6282316290290" target="_blank"
+      class="bg-green-500 hover:bg-green-600 text-white px-5 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    // Fungsi untuk toggle mobile menu
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenu.classList.toggle("hidden");
+    }
+
+    // Fungsi untuk menampilkan/menyembunyikan field bandara
+    function toggleBandaraFields() {
+      const ruteSelect = document.getElementById("rutePerjalanan");
+      const bandaraFields = document.getElementById("bandaraFields");
+      const selectedValue = ruteSelect.value;
+
+      // Cek apakah rute mengandung "Juanda"
+      if (selectedValue.includes("Juanda")) {
+        bandaraFields.classList.remove("hidden");
+      } else {
+        bandaraFields.classList.add("hidden");
+      }
+    }
+
+    // Fungsi untuk menampilkan/menyembunyikan pilihan bank
+    function toggleBankSelection() {
+      const transferRadio = document.getElementById("transfer");
+      const bankSelection = document.getElementById("bankSelection");
+
+      if (transferRadio.checked) {
+        bankSelection.classList.remove("hidden");
+      } else {
+        bankSelection.classList.add("hidden");
+      }
+    }
+
+    // Fungsi untuk submit form dan redirect ke WhatsApp
+    function submitBooking(event) {
+      event.preventDefault();
+
+      // Validasi form
+      if (!document.getElementById("persetujuan").checked) {
+        alert("Harap setujui syarat dan ketentuan terlebih dahulu.");
+        return;
+      }
+
+      // Ambil nilai dari form
+      const formData = {
+        jenisLayanan: document.getElementById("jenisLayanan").value,
+        rutePerjalanan: document.getElementById("rutePerjalanan").value,
+        tanggalKeberangkatan: document.getElementById("tanggalKeberangkatan").value,
+        jamKeberangkatan: document.getElementById("jamKeberangkatan").value,
+        namaLengkap: document.getElementById("namaLengkap").value,
+        nomorWhatsApp: document.getElementById("nomorWhatsApp").value,
+        alamatPenjemputan: document.getElementById("alamatPenjemputan").value,
+        alamatTujuan: document.getElementById("alamatTujuan").value,
+        jumlahPenumpang: document.getElementById("jumlahPenumpang").value,
+        barangBawaan: document.getElementById("barangBawaan").value,
+        metodePembayaran: document.querySelector('input[name="metodePembayaran"]:checked').value,
+      };
+
+      // Tambahkan pilihan bank jika transfer
+      if (formData.metodePembayaran === "Transfer") {
+        const selectedBank = document.querySelector('input[name="bank"]:checked');
+        const bankLainnya = document.getElementById("bankLainnya").value;
+
+        if (selectedBank) {
+          formData.bank = selectedBank.value;
+        } else if (bankLainnya) {
+          formData.bank = bankLainnya;
+        } else {
+          formData.bank = "Bank belum dipilih";
+        }
+      }
+
+      // Tambahkan data bandara jika ada
+      if (!document.getElementById("bandaraFields").classList.contains("hidden")) {
+        formData.maskapai = document.getElementById("maskapai").value;
+        formData.kodePenerbangan = document.getElementById("kodePenerbangan").value;
+        formData.jamLanding = document.getElementById("jamLanding").value;
+      }
+
+      // Format tanggal untuk ditampilkan
+      const formattedDate = new Date(formData.tanggalKeberangkatan).toLocaleDateString("id-ID", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
+      // Buat pesan untuk WhatsApp
+      let message = `*FORM BOOKING UJS TRAVEL*%0A%0A`;
+      message += `*Jenis Layanan:* ${formData.jenisLayanan}%0A`;
+      message += `*Rute Perjalanan:* ${formData.rutePerjalanan}%0A`;
+      message += `*Tanggal Keberangkatan:* ${formattedDate}%0A`;
+
+      if (formData.jamKeberangkatan) {
+        message += `*Jam Keberangkatan:* ${formData.jamKeberangkatan}%0A`;
+      }
+
+      message += `%0A*DATA PENUMPANG*%0A`;
+      message += `Nama: ${formData.namaLengkap}%0A`;
+      message += `WhatsApp: ${formData.nomorWhatsApp}%0A`;
+      message += `Alamat Penjemputan: ${formData.alamatPenjemputan}%0A`;
+      message += `Alamat Tujuan: ${formData.alamatTujuan}%0A`;
+      message += `Jumlah Penumpang: ${formData.jumlahPenumpang}%0A`;
+
+      if (formData.maskapai) {
+        message += `%0A*DATA PENERBANGAN*%0A`;
+        message += `Maskapai: ${formData.maskapai || "-"}%0A`;
+        message += `Kode Penerbangan: ${formData.kodePenerbangan || "-"}%0A`;
+        message += `Jam Landing: ${formData.jamLanding || "-"}%0A`;
+      }
+
+      message += `%0A*DATA TAMBAHAN*%0A`;
+      message += `Barang Bawaan: ${formData.barangBawaan || "-"}%0A`;
+      message += `Metode Pembayaran: ${formData.metodePembayaran}%0A`;
+
+      if (formData.metodePembayaran === "Transfer" && formData.bank) {
+        message += `Bank: ${formData.bank}%0A`;
+      }
+
+      message += `%0A---%0A`;
+      message += `*Form ini dikirim melalui website UJS Travel*`;
+
+      // Redirect ke WhatsApp dengan pesan
+      const phoneNumber = "6282316290290";
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+      // Tampilkan loading
+      const submitBtn = document.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="flex items-center justify-center"><svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Mengirim...</span>';
+      submitBtn.disabled = true;
+
+      // Tunggu 1.5 detik kemudian redirect
+      setTimeout(() => {
+        window.open(whatsappUrl, "_blank");
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 1500);
+    }
+
+    // Set tanggal minimum untuk input tanggal (hari ini)
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("tanggalKeberangkatan").min = today;
+
+    // Inisialisasi toggle bandara fields dan bank selection
+    toggleBandaraFields();
+    toggleBankSelection();
+  </script>
+
+  <script>
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenu.classList.toggle("hidden");
+    }
+
+    function toggleMobileLayanan() {
+      const menu = document.getElementById('mobile-layanan-menu');
+      const icon = document.getElementById('mobile-layanan-icon');
+
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        menu.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>
