@@ -82,22 +82,18 @@
             <!-- Dropdown Menu -->
             <div
               class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100">
-              <!-- Di bagian Desktop Navigation dropdown (index.html) -->
-              <div
-                class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100">
-                <div class="py-1">
-                  <a href="reguler.html"
-                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Reguler</a>
-                  <a href="carter-drop.html"
-                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Carter
-                    Drop</a>
-                  <a href="city-tour.html"
-                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">City
-                    Tour</a>
-                  <a href="kirim-paket.html"
-                    class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Kirim
-                    Paket</a>
-                </div>
+              <div class="py-1">
+                <a href="reguler.html"
+                  class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Reguler</a>
+                <a href="carter-drop.html"
+                  class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Carter
+                  Drop</a>
+                <a href="city-tour.html"
+                  class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">City
+                  Tour</a>
+                <a href="kirim-paket.html"
+                  class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Kirim
+                  Paket</a>
               </div>
             </div>
           </div>
@@ -172,22 +168,6 @@
           Sekarang</a>
       </div>
     </div>
-
-    <!-- JavaScript untuk toggle dropdown mobile -->
-    <script>
-      function toggleMobileLayanan() {
-        const menu = document.getElementById('mobile-layanan-menu');
-        const icon = document.getElementById('mobile-layanan-icon');
-
-        if (menu.classList.contains('hidden')) {
-          menu.classList.remove('hidden');
-          icon.classList.add('rotate-180');
-        } else {
-          menu.classList.add('hidden');
-          icon.classList.remove('rotate-180');
-        }
-      }
-    </script>
   </nav>
 
   <!-- Main Content -->
@@ -195,7 +175,6 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center mb-10">
-        <!-- Logo di Header Form -->
         <div class="flex justify-center mb-4">
           <img src="img/logo.png" alt="Logo UJS Travel" class="w-20 h-20 object-contain" />
         </div>
@@ -205,6 +184,21 @@
         <p class="text-lg text-travellora-gray">
           Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan terpercaya.
         </p>
+      </div>
+
+      <!-- Price Display -->
+      <div id="priceDisplay" class="bg-white rounded-xl shadow-lg p-6 mb-6 hidden">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-lg font-bold text-travellora-dark" id="priceTitle">Total Harga</h3>
+            <p class="text-gray-600" id="priceDescription">Pilih layanan dan rute untuk melihat harga</p>
+            <p class="text-sm text-gray-500 mt-1" id="priceNote"></p>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold text-travellora-blue" id="totalPrice">Rp 0</div>
+            <div class="text-sm text-gray-500" id="pricePerPerson"></div>
+          </div>
+        </div>
       </div>
 
       <!-- Booking Form -->
@@ -233,20 +227,19 @@
               </label>
               <select id="jenisLayanan" name="jenisLayanan"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                required>
+                required onchange="toggleCityTourFields(); calculatePrice(); toggleMaxPenumpang()">
                 <option value="">Pilih Jenis Layanan</option>
                 <option value="Travel Reguler">Travel Reguler</option>
                 <option value="Carter Drop">Carter Drop</option>
                 <option value="Carter Full Day">Carter Full Day</option>
                 <option value="City Tour">City Tour</option>
-                <option value="Open Trip">Open Trip</option>
                 <option value="Kirim Paket">Kirim Paket</option>
               </select>
             </div>
           </div>
 
-          <!-- Section B: Pilih Rute Perjalanan -->
-          <div class="mb-8">
+          <!-- Section B: Pilih Rute Perjalanan (BUKAN untuk City Tour) -->
+          <div id="sectionBRute" class="mb-8">
             <div class="flex items-center mb-4">
               <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
                 <span class="font-bold">B</span>
@@ -261,7 +254,7 @@
               </label>
               <select id="rutePerjalanan" name="rutePerjalanan"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                required onchange="toggleBandaraFields()">
+                required onchange="toggleBandaraFields(); calculatePrice()">
                 <option value="">Pilih Rute Perjalanan</option>
                 <option value="Malang → Juanda">Malang → Juanda</option>
                 <option value="Juanda → Malang">Juanda → Malang</option>
@@ -269,9 +262,9 @@
                 <option value="Surabaya → Malang">Surabaya → Malang</option>
                 <option value="Malang → Perak">Malang → Perak</option>
                 <option value="Perak → Malang">Perak → Malang</option>
-                <option value="Malang → Sidoarjo">Malang → Sidoarjo</option>
-                <option value="Sidoarjo → Malang">Sidoarjo → Malang</option>
                 <option value="Malang → Batu">Malang → Batu</option>
+                <option value="Batu → Malang">Batu → Malang</option>
+                <!-- Sidoarjo dihapus sesuai permintaan -->
               </select>
             </div>
           </div>
@@ -293,7 +286,7 @@
                 </label>
                 <input type="date" id="tanggalKeberangkatan" name="tanggalKeberangkatan"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  required />
+                  required onchange="calculatePrice()" />
               </div>
               <div>
                 <label for="jamKeberangkatan" class="block text-gray-700 font-medium mb-2">
@@ -363,7 +356,10 @@
                 </label>
                 <input type="number" id="jumlahPenumpang" name="jumlahPenumpang" min="1" max="10"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  required />
+                  required onchange="calculatePrice()" />
+                <p class="text-xs text-gray-500 mt-1" id="penumpangNote">
+                  Maksimal 10 penumpang untuk Travel Reguler
+                </p>
               </div>
             </div>
           </div>
@@ -410,11 +406,55 @@
             </div>
           </div>
 
+          <!-- Section F: Khusus City Tour (Conditional Field) -->
+          <div id="cityTourFields" class="mb-8 hidden">
+            <div class="flex items-center mb-4">
+              <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
+                <span class="font-bold">B</span>
+              </div>
+              <h3 class="text-lg font-bold text-travellora-dark">
+                Pilih Destinasi City Tour
+              </h3>
+            </div>
+            <div class="space-y-4 bg-green-50 p-4 rounded-lg">
+              <!-- Destinasi Tour -->
+              <div>
+                <label for="destinasiTour" class="block text-gray-700 font-medium mb-2">
+                  Destinasi Tour <span class="text-red-500">*</span>
+                </label>
+                <select id="destinasiTour" name="destinasiTour"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
+                  onchange="calculatePrice()">
+                  <option value="">Pilih Destinasi City Tour</option>
+                  <option value="Transportasi Wisuda">Transportasi Wisuda - Rp 500.000</option>
+                  <option value="Tour Malang - Batu">Tour Malang - Batu - Rp 500.000</option>
+                  <option value="Tour Malang - Pantai">Tour Malang - Pantai - Rp 600.000</option>
+                  <option value="Tour Malang - Bromo">Tour Malang - Bromo - Rp 600.000</option>
+                  <option value="Tour Kota Malang - Surabaya">Tour Kota Malang - Surabaya - Rp 650.000</option>
+                  <option value="Custom Destination">Custom Destination (request)</option>
+                </select>
+                <p class="text-xs text-gray-500 mt-1">
+                  *Harga untuk 1 mobil (maksimal 5 penumpang)
+                </p>
+              </div>
+
+              <!-- Rencana Perjalanan -->
+              <div>
+                <label for="rencanaPerjalanan" class="block text-gray-700 font-medium mb-2">
+                  Rencana Perjalanan (Opsional)
+                </label>
+                <textarea id="rencanaPerjalanan" name="rencanaPerjalanan" rows="3"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors resize-none"
+                  placeholder="Deskripsikan rencana perjalanan Anda, destinasi yang ingin dikunjungi, dll."></textarea>
+              </div>
+            </div>
+          </div>
+
           <!-- Section G: Barang Bawaan -->
           <div class="mb-8">
             <div class="flex items-center mb-4">
               <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                <span class="font-bold">G</span>
+                <span class="font-bold">C</span>
               </div>
               <h3 class="text-lg font-bold text-travellora-dark">
                 Barang Bawaan
@@ -437,7 +477,7 @@
           <div class="mb-8">
             <div class="flex items-center mb-4">
               <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                <span class="font-bold">H</span>
+                <span class="font-bold">D</span>
               </div>
               <h3 class="text-lg font-bold text-travellora-dark">
                 Metode Pembayaran
@@ -478,7 +518,6 @@
                   <label for="bca"
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
-                      <!-- Logo BCA -->
                       <div class="w-20 h-10 flex items-center justify-center">
                         <img src="/img/BCA.svg" alt="Logo BCA" class="bank-logo w-full h-full object-contain">
                       </div>
@@ -493,7 +532,6 @@
                   <label for="bni"
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
-                      <!-- Logo BNI -->
                       <div class="w-20 h-10 flex items-center justify-center">
                         <img src="/img/bni.svg" alt="Logo BNI" class="bank-logo w-full h-full object-contain">
                       </div>
@@ -508,7 +546,6 @@
                   <label for="bri"
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
-                      <!-- Logo BRI -->
                       <div class="w-20 h-10 flex items-center justify-center">
                         <img src="/img/BRI.svg" alt="Logo BRI" class="bank-logo w-full h-full object-contain">
                       </div>
@@ -523,7 +560,6 @@
                   <label for="mandiri"
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
-                      <!-- Logo Mandiri -->
                       <div class="w-20 h-10 flex items-center justify-center">
                         <img src="/img/mandiri.svg" alt="Logo Mandiri" class="bank-logo w-full h-full object-contain">
                       </div>
@@ -538,7 +574,6 @@
                   <label for="cimb"
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
-                      <!-- Logo CIMB Niaga -->
                       <div class="w-20 h-10 flex items-center justify-center">
                         <img src="/img/CIMB.svg" alt="Logo CIMB Niaga" class="bank-logo w-full h-full object-contain">
                       </div>
@@ -553,7 +588,6 @@
                   <label for="dana"
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
-                      <!-- Logo DANA -->
                       <div class="w-20 h-10 flex items-center justify-center">
                         <img
                           src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png"
@@ -593,7 +627,9 @@
                   • Pembatalan kurang dari 6 jam dikenakan charge full<br />
                   • Maksimal bagasi 1 koper + 1 tas ransel<br />
                   • Tidak menerima hewan peliharaan<br />
-                  • Tidak menerima durian
+                  • Tidak menerima durian<br />
+                  • <strong>Carter Drop/Full Day:</strong> harga mobil, bukan per orang (maks 5 penumpang)<br />
+                  • <strong>City Tour:</strong> harga mulai Rp 500.000 untuk 1 mobil (sesuai pilihan destinasi)
                 </p>
               </div>
             </div>
@@ -633,7 +669,6 @@
       <!-- Info Tambahan -->
       <div class="bg-white rounded-xl shadow-lg p-6 text-center">
         <div class="flex justify-center mb-4">
-          <!-- Logo UJS Travel di footer form -->
           <img src="img/logo.png" alt="Logo UJS Travel" class="w-16 h-16 object-contain" />
         </div>
         <h3 class="text-lg font-bold text-travellora-dark mb-3">Butuh Bantuan?</h3>
@@ -653,7 +688,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <div class="flex justify-center mb-6">
-          <!-- Logo UJS Travel di footer -->
           <img src="img/logo.png" alt="Logo UJS Travel" class="w-20 h-20 object-contain" />
         </div>
         <h3 class="text-xl font-bold mb-4">UJS TRAVEL</h3>
@@ -681,6 +715,293 @@
   </div>
 
   <script>
+    // Data harga untuk setiap layanan dan rute
+    const hargaData = {
+      "Travel Reguler": {
+        "Malang → Juanda": 150000,
+        "Juanda → Malang": 150000,
+        "Malang → Surabaya": 100000,
+        "Surabaya → Malang": 100000,
+        "Malang → Perak": 120000,
+        "Perak → Malang": 120000,
+        "Malang → Batu": 80000,
+        "Batu → Malang": 80000,
+        "type": "per_orang",
+        "max_penumpang": 10
+      },
+      "Carter Drop": {
+        "Malang → Juanda": 550000,
+        "Juanda → Malang": 550000,
+        "Malang → Surabaya": 500000,
+        "Surabaya → Malang": 500000,
+        "Malang → Perak": 500000,
+        "Perak → Malang": 500000,
+        "Malang → Batu": 400000,
+        "Batu → Malang": 400000,
+        "type": "mobil",
+        "max_penumpang": 5
+      },
+      "Carter Full Day": {
+        "Malang → Juanda": 800000,
+        "Juanda → Malang": 800000,
+        "Malang → Surabaya": 700000,
+        "Surabaya → Malang": 700000,
+        "Malang → Perak": 650000,
+        "Perak → Malang": 650000,
+        "Malang → Batu": 600000,
+        "Batu → Malang": 600000,
+        "type": "mobil",
+        "max_penumpang": 5
+      },
+      "City Tour": {
+        // Destinasi City Tour sesuai dengan gambar
+        "Transportasi Wisuda": 500000,
+        "Tour Malang - Batu": 500000,
+        "Tour Malang - Pantai": 600000,
+        "Tour Malang - Bromo": 600000,
+        "Tour Kota Malang - Surabaya": 650000,
+        "Custom Destination": 600000,
+        "type": "mobil_custom",
+        "max_penumpang": 5,
+        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
+      },
+      "Kirim Paket": {
+        "Malang → Juanda": 50000,
+        "Juanda → Malang": 50000,
+        "Malang → Surabaya": 40000,
+        "Surabaya → Malang": 40000,
+        "Malang → Perak": 45000,
+        "Perak → Malang": 45000,
+        "Malang → Batu": 35000,
+        "Batu → Malang": 35000,
+        "type": "per_item",
+        "max_penumpang": 1
+      },
+    };
+
+    // Fungsi untuk menampilkan/menyembunyikan field City Tour dan mengatur urutan section
+    function toggleCityTourFields() {
+      const jenisLayanan = document.getElementById("jenisLayanan").value;
+      const cityTourFields = document.getElementById("cityTourFields");
+      const sectionBRute = document.getElementById("sectionBRute");
+      const bandaraFields = document.getElementById("bandaraFields");
+      
+      // Reset semua fields bandara
+      document.getElementById("maskapai").value = "";
+      document.getElementById("kodePenerbangan").value = "";
+      document.getElementById("jamLanding").value = "";
+      
+      if (jenisLayanan === "City Tour") {
+        // Tampilkan field City Tour (Section B untuk City Tour)
+        cityTourFields.classList.remove("hidden");
+        
+        // Sembunyikan Section B (Rute Perjalanan biasa)
+        sectionBRute.classList.add("hidden");
+        
+        // Sembunyikan field bandara
+        bandaraFields.classList.add("hidden");
+        
+        // Atur placeholder untuk alamat tujuan
+        document.getElementById("alamatTujuan").placeholder = "Area/wilayah tujuan tour (contoh: Kota Malang, Batu, Bromo, dll.)";
+        
+        // Reset rute perjalanan
+        document.getElementById("rutePerjalanan").value = "";
+      } else {
+        // Sembunyikan field City Tour
+        cityTourFields.classList.add("hidden");
+        
+        // Tampilkan Section B (Rute Perjalanan biasa)
+        sectionBRute.classList.remove("hidden");
+        
+        // Kembalikan placeholder alamat tujuan
+        document.getElementById("alamatTujuan").placeholder = "Detail alamat tujuan";
+        
+        // Reset destinasi tour
+        document.getElementById("destinasiTour").value = "";
+        document.getElementById("rencanaPerjalanan").value = "";
+      }
+      
+      // Update penomoran section setelah City Tour
+      updateSectionNumbers(jenisLayanan);
+      
+      // Hitung harga
+      calculatePrice();
+    }
+
+    // Fungsi untuk mengupdate nomor section setelah City Tour
+    function updateSectionNumbers(jenisLayanan) {
+      // Section setelah City Tour akan diubah nomornya
+      const sections = document.querySelectorAll('.mb-8');
+      
+      let currentLetter = 'B'.charCodeAt(0); // Mulai dari B
+      
+      sections.forEach((section, index) => {
+        const letterDiv = section.querySelector('.w-8.h-8.bg-travellora-blue');
+        if (letterDiv) {
+          // Skip section A (jenis layanan)
+          if (index === 0) {
+            letterDiv.querySelector('span').textContent = 'A';
+          } else {
+            // Untuk layanan selain City Tour
+            if (jenisLayanan !== "City Tour") {
+              letterDiv.querySelector('span').textContent = String.fromCharCode(currentLetter);
+              currentLetter++;
+            } else {
+              // Untuk City Tour, section B adalah destinasi tour
+              if (section.id === "cityTourFields") {
+                letterDiv.querySelector('span').textContent = 'B';
+              } else {
+                // Section setelahnya dimulai dari C
+                letterDiv.querySelector('span').textContent = String.fromCharCode('C'.charCodeAt(0) + (index - 2));
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Fungsi untuk mengubah maksimal penumpang berdasarkan layanan
+    function toggleMaxPenumpang() {
+      const jenisLayanan = document.getElementById("jenisLayanan").value;
+      const jumlahPenumpangInput = document.getElementById("jumlahPenumpang");
+      const penumpangNote = document.getElementById("penumpangNote");
+      
+      if (jenisLayanan && hargaData[jenisLayanan]) {
+        const maxPenumpang = hargaData[jenisLayanan].max_penumpang || 10;
+        jumlahPenumpangInput.max = maxPenumpang;
+        
+        // Update catatan
+        if (jenisLayanan === "City Tour") {
+          penumpangNote.textContent = `Maksimal ${maxPenumpang} penumpang untuk City Tour`;
+        } else if (hargaData[jenisLayanan].type === "mobil" || hargaData[jenisLayanan].type === "mobil_custom") {
+          penumpangNote.textContent = `Maksimal ${maxPenumpang} penumpang untuk ${jenisLayanan} (harga mobil)`;
+        } else if (hargaData[jenisLayanan].type === "per_item") {
+          penumpangNote.textContent = "Jumlah paket";
+        } else {
+          penumpangNote.textContent = `Maksimal ${maxPenumpang} penumpang untuk ${jenisLayanan}`;
+        }
+        
+        // Jika nilai saat ini melebihi maksimum, atur ke maksimum
+        if (parseInt(jumlahPenumpangInput.value) > maxPenumpang) {
+          jumlahPenumpangInput.value = maxPenumpang;
+        }
+      }
+    }
+
+    // Fungsi untuk menghitung harga
+    function calculatePrice() {
+      const jenisLayanan = document.getElementById("jenisLayanan").value;
+      const rutePerjalanan = document.getElementById("rutePerjalanan").value;
+      const jumlahPenumpang = parseInt(document.getElementById("jumlahPenumpang").value) || 1;
+      const destinasiTour = document.getElementById("destinasiTour")?.value || "";
+      const priceDisplay = document.getElementById("priceDisplay");
+      const totalPriceElement = document.getElementById("totalPrice");
+      const priceDescription = document.getElementById("priceDescription");
+      const pricePerPerson = document.getElementById("pricePerPerson");
+      const priceNote = document.getElementById("priceNote");
+      const priceTitle = document.getElementById("priceTitle");
+
+      if (!jenisLayanan) {
+        priceDisplay.classList.add("hidden");
+        return;
+      }
+
+      // Ambil harga dasar
+      const serviceData = hargaData[jenisLayanan];
+      let basePrice = 0;
+      let pricingType = "per_orang";
+      let maxPenumpang = 10;
+      let selectedDestination = "";
+
+      if (serviceData) {
+        pricingType = serviceData.type || "per_orang";
+        maxPenumpang = serviceData.max_penumpang || 10;
+        
+        if (jenisLayanan === "City Tour") {
+          // Untuk City Tour, ambil harga berdasarkan destinasi yang dipilih
+          selectedDestination = destinasiTour;
+          // Hapus teks harga dari nilai untuk mendapatkan kunci yang benar
+          if (destinasiTour) {
+            const destinationKey = destinasiTour.split(" - ")[0];
+            basePrice = serviceData[destinasiTour] || serviceData[destinationKey] || 600000;
+          } else {
+            basePrice = 600000; // Harga default jika belum pilih destinasi
+          }
+        } else {
+          basePrice = serviceData[rutePerjalanan] || 0;
+        }
+      }
+
+      // Tampilkan informasi harga
+      priceDisplay.classList.remove("hidden");
+
+      // Tentukan cara kalkulasi berdasarkan tipe harga
+      if (jenisLayanan === "City Tour") {
+        // Untuk City Tour - harga berdasarkan destinasi
+        const total = basePrice;
+        const formattedPrice = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+        }).format(total);
+        
+        const displayDestination = selectedDestination || "Pilih destinasi di atas";
+        
+        totalPriceElement.textContent = formattedPrice;
+        priceDescription.textContent = `${jenisLayanan} - ${displayDestination}`;
+        pricePerPerson.textContent = `Harga untuk 1 mobil (maks ${maxPenumpang} penumpang)`;
+        priceNote.textContent = `✓ Harga sudah termasuk mobil + driver ✓ Cocok untuk wisata keluarga/grup ✓ Destinasi sesuai pilihan`;
+        priceTitle.textContent = "Harga City Tour";
+      } else if (pricingType === "mobil" || pricingType === "mobil_custom") {
+        // Untuk Carter Drop & Carter Full Day - harga mobil
+        const total = basePrice;
+        const formattedPrice = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+        }).format(total);
+
+        totalPriceElement.textContent = formattedPrice;
+        priceDescription.textContent = `${jenisLayanan} - ${rutePerjalanan}`;
+        pricePerPerson.textContent = `Harga untuk 1 mobil (maks ${maxPenumpang} penumpang)`;
+        priceNote.textContent = `✓ Harga mobil (bukan per orang) ✓ Cocok untuk keluarga/rombongan ✓ Maksimal ${maxPenumpang} penumpang`;
+        priceTitle.textContent = "Harga Carter Mobil";
+      } else if (pricingType === "per_item") {
+        // Untuk Kirim Paket - per item
+        const total = basePrice;
+        const formattedPrice = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+        }).format(total);
+
+        totalPriceElement.textContent = formattedPrice;
+        priceDescription.textContent = `${jenisLayanan} - ${rutePerjalanan}`;
+        pricePerPerson.textContent = `Harga per paket`;
+        priceNote.textContent = "✓ Harga untuk 1 paket ✓ Ukuran standar (konfirmasi untuk ukuran besar)";
+        priceTitle.textContent = "Harga Kirim Paket";
+      } else {
+        // Untuk Travel Reguler - per orang
+        const total = basePrice * jumlahPenumpang;
+        const formattedPrice = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+        }).format(total);
+
+        const formattedBasePrice = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+        }).format(basePrice);
+
+        totalPriceElement.textContent = formattedPrice;
+        priceDescription.textContent = `${jenisLayanan} - ${rutePerjalanan}`;
+        pricePerPerson.textContent = `@${formattedBasePrice} × ${jumlahPenumpang} penumpang`;
+        priceTitle.textContent = "Total Harga";
+      }
+    }
+
     // Fungsi untuk toggle mobile menu
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById("mobile-menu");
@@ -693,7 +1014,6 @@
       const bandaraFields = document.getElementById("bandaraFields");
       const selectedValue = ruteSelect.value;
 
-      // Cek apakah rute mengandung "Juanda"
       if (selectedValue.includes("Juanda")) {
         bandaraFields.classList.remove("hidden");
       } else {
@@ -726,7 +1046,6 @@
       // Ambil nilai dari form
       const formData = {
         jenisLayanan: document.getElementById("jenisLayanan").value,
-        rutePerjalanan: document.getElementById("rutePerjalanan").value,
         tanggalKeberangkatan: document.getElementById("tanggalKeberangkatan").value,
         jamKeberangkatan: document.getElementById("jamKeberangkatan").value,
         namaLengkap: document.getElementById("namaLengkap").value,
@@ -737,6 +1056,87 @@
         barangBawaan: document.getElementById("barangBawaan").value,
         metodePembayaran: document.querySelector('input[name="metodePembayaran"]:checked').value,
       };
+
+      // Tambahkan rute perjalanan atau destinasi tour
+      if (formData.jenisLayanan === "City Tour") {
+        formData.destinasiTour = document.getElementById("destinasiTour").value;
+        formData.rencanaPerjalanan = document.getElementById("rencanaPerjalanan").value;
+        formData.rutePerjalanan = "City Tour";
+        
+        // Validasi destinasi tour untuk City Tour
+        if (!formData.destinasiTour) {
+          alert("Harap pilih destinasi City Tour.");
+          return;
+        }
+      } else {
+        formData.rutePerjalanan = document.getElementById("rutePerjalanan").value;
+        
+        // Validasi rute perjalanan untuk layanan lain
+        if (!formData.rutePerjalanan) {
+          alert("Harap pilih rute perjalanan.");
+          return;
+        }
+      }
+
+      // Hitung harga berdasarkan tipe layanan
+      const serviceData = hargaData[formData.jenisLayanan];
+      let basePrice = 0;
+      let pricingType = "per_orang";
+      let maxPenumpang = 10;
+      let destinationForPrice = "";
+
+      if (serviceData) {
+        pricingType = serviceData.type || "per_orang";
+        maxPenumpang = serviceData.max_penumpang || 10;
+        
+        if (formData.jenisLayanan === "City Tour") {
+          // Untuk City Tour, ambil harga berdasarkan destinasi
+          destinationForPrice = formData.destinasiTour;
+          // Hapus teks harga dari nilai untuk mendapatkan kunci yang benar
+          if (destinationForPrice) {
+            const destinationKey = destinationForPrice.split(" - ")[0];
+            basePrice = serviceData[destinationForPrice] || serviceData[destinationKey] || 600000;
+          } else {
+            basePrice = 600000;
+          }
+        } else {
+          basePrice = serviceData[formData.rutePerjalanan] || 0;
+        }
+      }
+
+      const jumlahPenumpang = parseInt(formData.jumlahPenumpang) || 1;
+
+      // Validasi jumlah penumpang
+      if ((pricingType === "mobil" || pricingType === "mobil_custom") && jumlahPenumpang > maxPenumpang) {
+        alert(`Jumlah penumpang maksimal untuk ${formData.jenisLayanan} adalah ${maxPenumpang} orang.`);
+        return;
+      }
+
+      let totalHarga = 0;
+      let hargaDisplay = "";
+
+      if (formData.jenisLayanan === "City Tour") {
+        // City Tour - harga berdasarkan destinasi
+        totalHarga = basePrice;
+        hargaDisplay = `Harga City Tour: Rp ${totalHarga.toLocaleString("id-ID")} (${destinationForPrice}, maks ${maxPenumpang} penumpang)`;
+      } else if (pricingType === "mobil" || pricingType === "mobil_custom") {
+        // Carter Drop/Full Day - harga mobil
+        totalHarga = basePrice;
+        hargaDisplay = `Harga Mobil: Rp ${totalHarga.toLocaleString("id-ID")} (maks ${maxPenumpang} penumpang)`;
+      } else if (pricingType === "per_item") {
+        // Kirim Paket - per item
+        totalHarga = basePrice;
+        hargaDisplay = `Harga per Paket: Rp ${totalHarga.toLocaleString("id-ID")}`;
+      } else {
+        // Travel Reguler - per orang
+        totalHarga = basePrice * jumlahPenumpang;
+        hargaDisplay = `Harga per orang: Rp ${basePrice.toLocaleString("id-ID")} × ${jumlahPenumpang} penumpang`;
+      }
+
+      formData.totalHarga = totalHarga;
+      formData.hargaDisplay = hargaDisplay;
+      formData.pricingType = pricingType;
+      formData.maxPenumpang = maxPenumpang;
 
       // Tambahkan pilihan bank jika transfer
       if (formData.metodePembayaran === "Transfer") {
@@ -770,7 +1170,14 @@
       // Buat pesan untuk WhatsApp
       let message = `*FORM BOOKING UJS TRAVEL*%0A%0A`;
       message += `*Jenis Layanan:* ${formData.jenisLayanan}%0A`;
-      message += `*Rute Perjalanan:* ${formData.rutePerjalanan}%0A`;
+      
+      if (formData.jenisLayanan === "City Tour") {
+        message += `*Destinasi Tour:* ${formData.destinasiTour || "-"}%0A`;
+        message += `*Rute:* City Tour%0A`;
+      } else {
+        message += `*Rute Perjalanan:* ${formData.rutePerjalanan}%0A`;
+      }
+      
       message += `*Tanggal Keberangkatan:* ${formattedDate}%0A`;
 
       if (formData.jamKeberangkatan) {
@@ -782,10 +1189,28 @@
       message += `WhatsApp: ${formData.nomorWhatsApp}%0A`;
       message += `Alamat Penjemputan: ${formData.alamatPenjemputan}%0A`;
       message += `Alamat Tujuan: ${formData.alamatTujuan}%0A`;
-      message += `Jumlah Penumpang: ${formData.jumlahPenumpang}%0A`;
+      message += `Jumlah Penumpang: ${formData.jumlahPenumpang} orang%0A`;
+
+      message += `%0A*RINCIAN HARGA*%0A`;
+      if (formData.jenisLayanan === "City Tour") {
+        message += `*Harga City Tour:* Rp ${formData.totalHarga.toLocaleString("id-ID")}%0A`;
+        message += `(Untuk maksimal ${formData.maxPenumpang} penumpang)%0A`;
+        if (formData.rencanaPerjalanan) {
+          message += `*Rencana Perjalanan:* ${formData.rencanaPerjalanan}%0A`;
+        }
+      } else if (formData.pricingType === "mobil" || formData.pricingType === "mobil_custom") {
+        message += `*Harga 1 Mobil:* Rp ${formData.totalHarga.toLocaleString("id-ID")}%0A`;
+        message += `(Untuk maksimal ${formData.maxPenumpang} penumpang)%0A`;
+      } else if (formData.pricingType === "per_item") {
+        message += `*Harga Kirim Paket:* Rp ${formData.totalHarga.toLocaleString("id-ID")}%0A`;
+      } else {
+        message += `${formData.hargaDisplay}%0A`;
+        message += `*TOTAL HARGA: Rp ${formData.totalHarga.toLocaleString("id-ID")}*%0A`;
+      }
+      message += `%0A`;
 
       if (formData.maskapai) {
-        message += `%0A*DATA PENERBANGAN*%0A`;
+        message += `*DATA PENERBANGAN*%0A`;
         message += `Maskapai: ${formData.maskapai || "-"}%0A`;
         message += `Kode Penerbangan: ${formData.kodePenerbangan || "-"}%0A`;
         message += `Jam Landing: ${formData.jamLanding || "-"}%0A`;
@@ -824,12 +1249,21 @@
     const today = new Date().toISOString().split("T")[0];
     document.getElementById("tanggalKeberangkatan").min = today;
 
-    // Inisialisasi toggle bandara fields dan bank selection
+    // Inisialisasi toggle
+    toggleCityTourFields();
     toggleBandaraFields();
     toggleBankSelection();
-  </script>
 
-  <script>
+    // Tambahkan event listener
+    document.getElementById("jumlahPenumpang").addEventListener("input", calculatePrice);
+    document.getElementById("jenisLayanan").addEventListener("change", toggleCityTourFields);
+    document.getElementById("jenisLayanan").addEventListener("change", toggleMaxPenumpang);
+    document.getElementById("destinasiTour").addEventListener("change", calculatePrice);
+    document.getElementById("rutePerjalanan").addEventListener("change", calculatePrice);
+
+    // Inisialisasi maksimal penumpang
+    toggleMaxPenumpang();
+
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById("mobile-menu");
       mobileMenu.classList.toggle("hidden");
@@ -843,7 +1277,7 @@
         menu.classList.remove('hidden');
         icon.classList.add('rotate-180');
       } else {
-        menu.classList.add('hidden');
+        menu.classList.add('hidden'); 
         icon.classList.remove('rotate-180');
       }
     }
