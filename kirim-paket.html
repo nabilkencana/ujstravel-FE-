@@ -25,6 +25,70 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
+    <style>
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+        }
+
+        .fade-bottom {
+            transform: translateY(50px);
+        }
+
+        .fade-bottom.active {
+            transform: translateY(0);
+        }
+
+        .fade-left {
+            transform: translateX(-50px);
+        }
+
+        .fade-left.active {
+            transform: translateX(0);
+        }
+
+        .fade-right {
+            transform: translateX(50px);
+        }
+
+        .fade-right.active {
+            transform: translateX(0);
+        }
+
+        .hero-fade-in {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+    </style>
 </head>
 
 <body class="font-sans bg-gray-50">
@@ -166,11 +230,11 @@
         class="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-r from-travellora-blue to-blue-700">
         <div class="absolute inset-0 bg-black bg-opacity-20"></div>
 
-        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto hero-fade-in">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight hero-fade-in delay-100">
                 Layanan Kirim Paket Express
             </h1>
-            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto hero-fade-in delay-200">
                 Pengiriman cepat & aman sampai tujuan dengan tracking via admin
             </p>
 
@@ -186,7 +250,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Left Content -->
-                <div>
+                <div class="reveal fade-left">
                     <h2 class="text-3xl font-bold text-travellora-dark mb-6">
                         Keunggulan Layanan Kirim Paket
                     </h2>
@@ -260,7 +324,7 @@
                 </div>
 
                 <!-- Right Content -->
-                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg">
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg reveal fade-right">
                     <h3 class="text-2xl font-bold text-travellora-dark mb-6 text-center">
                         Tarif Kirim Paket
                     </h3>
@@ -439,6 +503,23 @@
                 icon.classList.remove('rotate-180');
             }
         }
+
+        // Intersection Observer for Reveal Animations
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            threshold: 0.15
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
     </script>
 </body>
 
