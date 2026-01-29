@@ -43,6 +43,23 @@
       border-color: #305492;
       box-shadow: 0 0 0 3px rgba(48, 84, 146, 0.1);
     }
+
+    /* Animasi untuk price display */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    #priceDisplay {
+      animation: fadeIn 0.5s ease-in-out;
+      border: 2px solid #305492;
+    }
   </style>
 </head>
 
@@ -186,20 +203,6 @@
         </p>
       </div>
 
-      <!-- Price Display -->
-      <div id="priceDisplay" class="bg-white rounded-xl shadow-lg p-6 mb-6 hidden">
-        <div class="flex justify-between items-center">
-          <div>
-            <h3 class="text-lg font-bold text-travellora-dark" id="priceTitle">Total Harga</h3>
-            <p class="text-gray-600" id="priceDescription">Pilih layanan dan rute untuk melihat harga</p>
-            <p class="text-sm text-gray-500 mt-1" id="priceNote"></p>
-          </div>
-          <div class="text-right">
-            <div class="text-2xl font-bold text-travellora-blue" id="totalPrice">Rp 0</div>
-            <div class="text-sm text-gray-500" id="pricePerPerson"></div>
-          </div>
-        </div>
-      </div>
 
       <!-- Booking Form -->
       <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
@@ -227,7 +230,7 @@
               </label>
               <select id="jenisLayanan" name="jenisLayanan"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                required onchange="toggleCityTourFields(); calculatePrice(); toggleMaxPenumpang()">
+                required onchange="toggleCityTourFields(); calculatePrice(); toggleMaxPenumpang();">
                 <option value="">Pilih Jenis Layanan</option>
                 <option value="Travel Reguler">Travel Reguler</option>
                 <option value="Carter Drop">Carter Drop</option>
@@ -254,7 +257,7 @@
               </label>
               <select id="rutePerjalanan" name="rutePerjalanan"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                required onchange="toggleBandaraFields(); calculatePrice()">
+                required onchange="toggleBandaraFields(); calculatePrice();">
                 <option value="">Pilih Rute Perjalanan</option>
                 <option value="Malang → Juanda">Malang → Juanda</option>
                 <option value="Juanda → Malang">Juanda → Malang</option>
@@ -490,7 +493,7 @@
                 <div class="flex items-center">
                   <input type="radio" id="transfer" name="metodePembayaran" value="Transfer"
                     class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300" checked
-                    onclick="toggleBankSelection()" />
+                    onchange="toggleBankSelection(); updatePaymentNote();" />
                   <label for="transfer" class="ml-3 block text-gray-700 font-medium">
                     Transfer Bank
                   </label>
@@ -498,7 +501,7 @@
                 <div class="flex items-center">
                   <input type="radio" id="cash" name="metodePembayaran" value="Cash ke Driver"
                     class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300"
-                    onclick="toggleBankSelection()" />
+                    onchange="toggleBankSelection(); updatePaymentNote();" />
                   <label for="cash" class="ml-3 block text-gray-700 font-medium">
                     Cash ke Driver
                   </label>
@@ -609,6 +612,23 @@
                   placeholder="Tulis nama bank lainnya" />
               </div>
             </div>
+          </div>
+
+          <!-- Price Display - AKAN DITAMPILKAN UNTUK SEMUA METODE PEMBAYARAN -->
+          <div id="priceDisplay" class="bg-white rounded-xl shadow-lg p-6 mb-6 border-2 border-travellora-blue hidden">
+            <div class="flex justify-between items-center">
+              <div>
+                <h3 class="text-lg font-bold text-travellora-dark" id="priceTitle">Total Harga</h3>
+                <p class="text-gray-600" id="priceDescription">Pilih layanan dan rute untuk melihat harga</p>
+                <p class="text-sm text-gray-500 mt-1" id="priceNote"></p>
+              </div>
+              <div class="text-right">
+                <div class="text-2xl font-bold text-travellora-blue" id="totalPrice">Rp 0</div>
+                <div class="text-sm text-gray-500" id="pricePerPerson"></div>
+              </div>
+            </div>
+            <!-- Payment Note akan ditambahkan di sini -->
+            <div id="paymentNote" class="mt-4 p-3 bg-blue-50 rounded-lg text-sm text-blue-700 hidden"></div>
           </div>
 
           <!-- Catatan dan Ketentuan -->
@@ -900,6 +920,7 @@
       const pricePerPerson = document.getElementById("pricePerPerson");
       const priceNote = document.getElementById("priceNote");
       const priceTitle = document.getElementById("priceTitle");
+      const paymentNote = document.getElementById("paymentNote");
 
       if (!jenisLayanan) {
         priceDisplay.classList.add("hidden");
@@ -932,7 +953,7 @@
         }
       }
 
-      // Tampilkan informasi harga
+      // Tampilkan price display SELALU jika jenis layanan dipilih
       priceDisplay.classList.remove("hidden");
 
       // Tentukan cara kalkulasi berdasarkan tipe harga
@@ -964,7 +985,6 @@
         totalPriceElement.textContent = formattedPrice;
         priceDescription.textContent = `${jenisLayanan} - ${rutePerjalanan}`;
         pricePerPerson.textContent = `Harga untuk 1 mobil (maks ${maxPenumpang} penumpang)`;
-        priceNote.textContent = `✓ Harga mobil (bukan per orang) ✓ Cocok untuk keluarga/rombongan ✓ Maksimal ${maxPenumpang} penumpang`;
         priceTitle.textContent = "Harga Carter Mobil";
       } else if (pricingType === "per_item") {
         // Untuk Kirim Paket - per item
@@ -1000,6 +1020,48 @@
         pricePerPerson.textContent = `@${formattedBasePrice} × ${jumlahPenumpang} penumpang`;
         priceTitle.textContent = "Total Harga";
       }
+
+      // Update catatan pembayaran
+      updatePaymentNote();
+    }
+
+    // Fungsi untuk update catatan pembayaran berdasarkan metode yang dipilih
+    function updatePaymentNote() {
+      const paymentNote = document.getElementById("paymentNote");
+      const metodePembayaran = document.querySelector('input[name="metodePembayaran"]:checked');
+      
+      if (!metodePembayaran) {
+        paymentNote.classList.add("hidden");
+        return;
+      }
+
+      if (metodePembayaran.value === "Cash ke Driver") {
+        paymentNote.classList.remove("hidden");
+        paymentNote.innerHTML = `
+          <div class="flex items-start">
+            <svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <strong>Pembayaran Cash ke Driver:</strong> Bayar langsung ke driver saat penjemputan dengan uang tunai sesuai total harga di atas.
+            </div>
+          </div>
+        `;
+      } else if (metodePembayaran.value === "Transfer") {
+        paymentNote.classList.remove("hidden");
+        paymentNote.innerHTML = `
+          <div class="flex items-start">
+            <svg class="w-5 h-5 mr-2 text-blue-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <strong>Pembayaran Transfer:</strong> Silakan transfer sesuai total harga di atas ke rekening yang akan dikirim admin via WhatsApp.
+            </div>
+          </div>
+        `;
+      } else {
+        paymentNote.classList.add("hidden");
+      }
     }
 
     // Fungsi untuk toggle mobile menu
@@ -1031,6 +1093,9 @@
       } else {
         bankSelection.classList.add("hidden");
       }
+      
+      // Update catatan pembayaran
+      updatePaymentNote();
     }
 
     // Fungsi untuk submit form dan redirect ke WhatsApp
@@ -1222,6 +1287,9 @@
 
       if (formData.metodePembayaran === "Transfer" && formData.bank) {
         message += `Bank: ${formData.bank}%0A`;
+        message += `*Silakan transfer ke rekening yang akan dikirim admin*%0A`;
+      } else if (formData.metodePembayaran === "Cash ke Driver") {
+        message += `*Bayar langsung ke driver saat penjemputan: Rp ${formData.totalHarga.toLocaleString("id-ID")}*%0A`;
       }
 
       message += `%0A---%0A`;
@@ -1254,15 +1322,26 @@
     toggleBandaraFields();
     toggleBankSelection();
 
-    // Tambahkan event listener
+    // Tambahkan event listener untuk semua elemen yang mempengaruhi harga
     document.getElementById("jumlahPenumpang").addEventListener("input", calculatePrice);
     document.getElementById("jenisLayanan").addEventListener("change", toggleCityTourFields);
     document.getElementById("jenisLayanan").addEventListener("change", toggleMaxPenumpang);
     document.getElementById("destinasiTour").addEventListener("change", calculatePrice);
     document.getElementById("rutePerjalanan").addEventListener("change", calculatePrice);
+    
+    // Event listener untuk metode pembayaran
+    document.querySelectorAll('input[name="metodePembayaran"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        toggleBankSelection();
+        updatePaymentNote();
+      });
+    });
 
     // Inisialisasi maksimal penumpang
     toggleMaxPenumpang();
+
+    // Hitung harga saat pertama kali load
+    calculatePrice();
 
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById("mobile-menu");
