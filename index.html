@@ -70,16 +70,28 @@
         opacity: 0;
         transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .delay-100 { animation-delay: 0.1s; }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-    .delay-400 { animation-delay: 0.4s; }
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-400 {
+      animation-delay: 0.4s;
+    }
   </style>
 </head>
 
@@ -251,7 +263,8 @@
         </div>
       </div>
 
-      <p class="text-lg sm:text-xl text-gray-100 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md hero-fade-in delay-200">
+      <p
+        class="text-lg sm:text-xl text-gray-100 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md hero-fade-in delay-200">
         "Terpercaya sejak 2011, melayani Travel Malang - Juanda - Surabaya - Perak -Sidoarjo"
       </p>
 
@@ -467,328 +480,329 @@
       }
     }
   </style>
-<!-- Services Section -->
-<section id="layanan" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 reveal fade-bottom">
-      <h2 class="text-3xl sm:text-4xl font-bold text-travellora-dark mb-4">
-        Layanan Kami
-      </h2>
-      <p class="text-xl text-travellora-gray max-w-2xl mx-auto">
-        Berbagai pilihan layanan transportasi untuk memenuhi kebutuhan perjalanan Anda
-      </p>
+
+  <!-- Services Section -->
+  <section id="layanan" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal fade-bottom">
+        <h2 class="text-3xl sm:text-4xl font-bold text-travellora-dark mb-4">
+          Layanan Kami
+        </h2>
+        <p class="text-xl text-travellora-gray max-w-2xl mx-auto">
+          Berbagai pilihan layanan transportasi untuk memenuhi kebutuhan perjalanan Anda
+        </p>
+      </div>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service 1 - Reguler -->
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 reveal fade-bottom">
+          <!-- Badge -->
+          <div class="absolute top-4 left-4 z-10">
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
+              Paling Populer
+            </span>
+          </div>
+  
+          <!-- Header with Image -->
+          <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-8">
+            <div class="flex items-center justify-center gap-4 mb-4">
+              <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md">
+                <!-- Ganti ikon dengan gambar -->
+                <img src="img/reguler.jpeg" alt="Reguler Travel" class="w-full h-full object-contain">
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Reguler</h3>
+                <p class="text-gray-600">Travel bersama penumpang lain</p>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Content -->
+          <div class="p-8">
+            <!-- Price -->
+            <div class="mb-6">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-bold text-gray-900">Rp150.000</span>
+                <span class="text-gray-500">/orang</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Mulai dari</p>
+            </div>
+  
+            <!-- Capacity -->
+            <div class="mb-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center gap-2">
+                  <!-- Tetap pakai SVG -->
+                  <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span class="font-medium text-gray-700">Kapasitas:</span>
+                </div>
+                <span class="text-gray-900 font-semibold">Max 4 penumpang</span>
+              </div>
+            </div>
+  
+            <!-- Features -->
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <!-- Tetap pakai SVG -->
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Keberangkatan setiap hari</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Tol menyesuaikan jumlah penumpang</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Door to door service</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Free snack & air mineral</span>
+              </div>
+            </div>
+  
+            <!-- Button -->
+            <a href="Form.html"
+              class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl text-center transition duration-200">
+              Pesan Travel Reguler
+            </a>
+          </div>
+        </div>
+  
+        <!-- Service 2 - Carter Drop -->
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 reveal fade-bottom">
+          <!-- Badge -->
+          <div class="absolute top-4 left-4 z-10">
+            <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
+              Private
+            </span>
+          </div>
+  
+          <!-- Header with Image -->
+          <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-8">
+            <div class="flex items-center justify-center gap-4 mb-4">
+              <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md">
+                <!-- Ganti ikon dengan gambar -->
+                <img src="img/drop.jpeg" alt="Carter Drop" class="w-full h-full object-contain">
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Carter Drop</h3>
+                <p class="text-gray-600">Satu mobil khusus untuk Anda</p>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Content -->
+          <div class="p-8">
+            <!-- Price -->
+            <div class="mb-6">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-bold text-gray-900">Rp500.000</span>
+                <span class="text-gray-500">/mobil</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Mulai dari</p>
+            </div>
+  
+            <!-- Capacity -->
+            <div class="mb-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span class="font-medium text-gray-700">Kapasitas:</span>
+                </div>
+                <span class="text-gray-900 font-semibold">Up to 5 orang</span>
+              </div>
+            </div>
+  
+            <!-- Features -->
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Full armada private</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Flexible waktu keberangkatan</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Include BBM, tol dan parkir</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Door to door service</span>
+              </div>
+            </div>
+  
+            <!-- Button -->
+            <a href="Form.html"
+              class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl text-center transition duration-200">
+              Pesan Carter Drop
+            </a>
+          </div>
+        </div>
+  
+        <!-- Service 3 - Carter -->
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 reveal fade-bottom">
+          <!-- Badge -->
+          <div class="absolute top-4 left-4 z-10">
+            <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">
+              Wisata
+            </span>
+          </div>
+  
+          <!-- Header with Image -->
+          <div class="bg-gradient-to-r from-amber-50 to-amber-100 p-8">
+            <div class="flex items-center justify-center gap-4 mb-4">
+              <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md">
+                <!-- Ganti ikon dengan gambar -->
+                <img src="img/city.jpeg" alt="Carter" class="w-full h-full object-contain">
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900">Carter</h3>
+                <p class="text-gray-600">Sewa mobil dengan driver</p>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Content -->
+          <div class="p-8">
+            <!-- Price -->
+            <div class="mb-6">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-bold text-gray-900">Rp500.000</span>
+                <span class="text-gray-500">/paket</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Minimal 12 jam</p>
+            </div>
+  
+            <!-- Capacity -->
+            <div class="mb-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span class="font-medium text-gray-700">Area:</span>
+                </div>
+                <span class="text-gray-900 font-semibold">Malang & Batu</span>
+              </div>
+            </div>
+  
+            <!-- Features -->
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Include BBM</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Include driver & mobil</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Bebas pilih destinasi</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700">Cocok wisata keluarga & wisuda</span>
+              </div>
+            </div>
+  
+            <!-- Button -->
+            <a href="Form.html"
+              class="block w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-xl text-center transition duration-200">
+              Pesan Carter
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Service 1 - Reguler -->
-      <div
-        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 reveal fade-bottom">
-        <!-- Badge -->
-        <div class="absolute top-4 left-4 z-10">
-          <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-            Paling Populer
-          </span>
-        </div>
-
-        <!-- Header with Image -->
-        <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-8">
-          <div class="flex items-center justify-center gap-4 mb-4">
-            <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md">
-              <!-- Ganti ikon dengan gambar -->
-              <img src="img/reguler.jpeg" alt="Reguler Travel" class="w-full h-full object-contain">
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900">Reguler</h3>
-              <p class="text-gray-600">Travel bersama penumpang lain</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div class="p-8">
-          <!-- Price -->
-          <div class="mb-6">
-            <div class="flex items-baseline gap-2">
-              <span class="text-3xl font-bold text-gray-900">Rp150.000</span>
-              <span class="text-gray-500">/orang</span>
-            </div>
-            <p class="text-sm text-gray-500 mt-1">Mulai dari</p>
-          </div>
-
-          <!-- Capacity -->
-          <div class="mb-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="flex items-center gap-2">
-                <!-- Tetap pakai SVG -->
-                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <span class="font-medium text-gray-700">Kapasitas:</span>
-              </div>
-              <span class="text-gray-900 font-semibold">Max 4 penumpang</span>
-            </div>
-          </div>
-
-          <!-- Features -->
-          <div class="space-y-4 mb-8">
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <!-- Tetap pakai SVG -->
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Keberangkatan setiap hari</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Tol menyesuaikan jumlah penumpang</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Door to door service</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Free snack & air mineral</span>
-            </div>
-          </div>
-
-          <!-- Button -->
-          <a href="Form.html"
-            class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl text-center transition duration-200">
-            Pesan Travel Reguler
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 2 - Carter Drop -->
-      <div
-        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 reveal fade-bottom">
-        <!-- Badge -->
-        <div class="absolute top-4 left-4 z-10">
-          <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-            Private
-          </span>
-        </div>
-
-        <!-- Header with Image -->
-        <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-8">
-          <div class="flex items-center justify-center gap-4 mb-4">
-            <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md">
-              <!-- Ganti ikon dengan gambar -->
-              <img src="img/drop.jpeg" alt="Carter Drop" class="w-full h-full object-contain">
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900">Carter Drop</h3>
-              <p class="text-gray-600">Satu mobil khusus untuk Anda</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div class="p-8">
-          <!-- Price -->
-          <div class="mb-6">
-            <div class="flex items-baseline gap-2">
-              <span class="text-3xl font-bold text-gray-900">Rp500.000</span>
-              <span class="text-gray-500">/mobil</span>
-            </div>
-            <p class="text-sm text-gray-500 mt-1">Harga flat</p>
-          </div>
-
-          <!-- Capacity -->
-          <div class="mb-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <span class="font-medium text-gray-700">Kapasitas:</span>
-              </div>
-              <span class="text-gray-900 font-semibold">Up to 5 orang</span>
-            </div>
-          </div>
-
-          <!-- Features -->
-          <div class="space-y-4 mb-8">
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Full armada private</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Flexible waktu keberangkatan</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Include BBM dan tol</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Door to door service</span>
-            </div>
-          </div>
-
-          <!-- Button -->
-          <a href="Form.html"
-            class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl text-center transition duration-200">
-            Pesan Carter Drop
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 3 - City Tour -->
-      <div
-        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 reveal fade-bottom">
-        <!-- Badge -->
-        <div class="absolute top-4 left-4 z-10">
-          <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">
-            Wisata
-          </span>
-        </div>
-
-        <!-- Header with Image -->
-        <div class="bg-gradient-to-r from-amber-50 to-amber-100 p-8">
-          <div class="flex items-center justify-center gap-4 mb-4">
-            <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md">
-              <!-- Ganti ikon dengan gambar -->
-              <img src="img/city.jpeg" alt="City Tour" class="w-full h-full object-contain">
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900">City Tour</h3>
-              <p class="text-gray-600">Jelajah kota dengan nyaman</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div class="p-8">
-          <!-- Price -->
-          <div class="mb-6">
-            <div class="flex items-baseline gap-2">
-              <span class="text-3xl font-bold text-gray-900">Rp500.000</span>
-              <span class="text-gray-500">/paket</span>
-            </div>
-            <p class="text-sm text-gray-500 mt-1">Minimal 6 jam</p>
-          </div>
-
-          <!-- Capacity -->
-          <div class="mb-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span class="font-medium text-gray-700">Area:</span>
-              </div>
-              <span class="text-gray-900 font-semibold">Malang & Batu</span>
-            </div>
-          </div>
-
-          <!-- Features -->
-          <div class="space-y-4 mb-8">
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Include BBM</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Driver berpengalaman</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Bebas pilih destinasi</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 flex-shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
-              <span class="text-gray-700">Cocok wisata keluarga & wisuda</span>
-            </div>
-          </div>
-
-          <!-- Button -->
-          <a href="Form.html"
-            class="block w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-xl text-center transition duration-200">
-            Pesan City Tour
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Schedule Section -->
   <section id="jadwal" class="py-20 bg-gray-50">
