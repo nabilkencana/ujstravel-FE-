@@ -197,7 +197,7 @@
               Reguler
             </a>
             <a href="carter-drop.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
-              Carter Drop
+              Travel Drop
             </a>
             <a href="city-tour.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
               City Tour
@@ -597,7 +597,7 @@
           </div>
         </div>
 
-        <!-- Service 2 - Carter Drop -->
+        <!-- Service 2 - Travel Drop -->
         <div
           class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 reveal fade-bottom">
           <!-- Badge -->
@@ -612,10 +612,10 @@
             <div class="flex items-center justify-center gap-4 mb-4">
               <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md">
                 <!-- Ganti ikon dengan gambar -->
-                <img src="img/drop.jpeg" alt="Carter Drop" class="w-full h-full object-contain">
+                <img src="img/drop.jpeg" alt="Travel Drop" class="w-full h-full object-contain">
               </div>
               <div>
-                <h3 class="text-2xl font-bold text-gray-900">Carter Drop</h3>
+                <h3 class="text-2xl font-bold text-gray-900">Travel Drop</h3>
                 <p class="text-gray-600">Satu mobil khusus untuk Anda</p>
               </div>
             </div>
@@ -693,7 +693,7 @@
             <!-- Button -->
             <a href="Form.html"
               class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl text-center transition duration-200">
-              Pesan Carter Drop
+              Pesan Travel Drop
             </a>
           </div>
         </div>
@@ -804,355 +804,330 @@
     </div>
   </section>
 
-  <!-- Schedule Section -->
-  <section id="jadwal" class="py-20 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 reveal fade-bottom">
-        <h2 class="text-3xl sm:text-4xl font-bold text-travellora-dark mb-4">
-          Cek Jadwal & Harga Tiket
-        </h2>
-        <p class="text-xl text-travellora-gray">
-          Pilih rute perjalanan Anda untuk melihat jadwal keberangkatan dan harga tiket terbaru
-        </p>
+ <!-- Schedule Section -->
+<section id="jadwal" class="py-20 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal fade-bottom">
+      <h2 class="text-3xl sm:text-4xl font-bold text-travellora-dark mb-4">
+        Cek Jadwal & Harga Tiket
+      </h2>
+      <p class="text-xl text-travellora-gray">
+        Pilih rute perjalanan Anda untuk melihat jadwal keberangkatan dan harga tiket terbaru
+      </p>
+    </div>
+
+    <!-- Cek Tiket Box -->
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 reveal fade-bottom">
+      <div class="bg-travellora-blue p-6 text-white text-center font-bold">
+        <h3 class="text-2xl">Cek Tiket Kamu</h3>
       </div>
 
-      <!-- Cek Tiket Box -->
-      <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 reveal fade-bottom">
-        <div class="bg-travellora-blue p-6 text-white text-center font-bold">
-          <h3 class="text-2xl">Cek Tiket Kamu</h3>
-        </div>
-
-        <div class="p-8">
-          <div class="max-w-md mx-auto mb-10">
-            <label for="route-select" class="block text-gray-700 font-bold mb-4 text-lg text-center">Pilih Rute
-              Perjalanan</label>
-            <div class="relative">
-              <select id="route-select" onchange="updateTicketInfo()"
-                class="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:border-travellora-blue focus:ring-0 transition-all text-lg appearance-none cursor-pointer bg-white">
-                <option value="">-- Silakan Pilih Rute --</option>
-                <optgroup label="Dari Malang / Batu">
-                  <option value="malang-juanda">Malang → Juanda / Surabaya</option>
-                  <option value="malang-perak">Malang → Perak</option>
-                  <option value="batu-juanda">Batu → Juanda / Surabaya</option>
-                  <option value="batu-perak">Batu → Perak</option>
-                  <option value="malang-batu">Malang → Batu</option>
-                </optgroup>
-                <optgroup label="Menuju Malang / Batu">
-                  <option value="juanda-malang">Juanda → Malang</option>
-                  <option value="surabaya-malang">Surabaya → Malang</option>
-                  <option value="perak-malang">Perak → Malang</option>
-                  <option value="batu-malang">Batu → Malang</option>
-                </optgroup>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
-                <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.707 6.586 4.293 8l5 5z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <!-- Result Area (Hidden by default) -->
-          <div id="ticket-result" class="hidden space-y-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <!-- Schedule -->
-              <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100">
-                <h4 class="font-bold text-travellora-dark text-xl mb-6 flex items-center">
-                  <div
-                    class="w-10 h-10 bg-travellora-blue text-white rounded-lg flex items-center justify-center mr-3 shadow-md">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                  </div>
-                  Durasi
-                </h4>
-                <div id="schedule-list" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  <!-- Times will be injected here -->
-                </div>
-                <div class="mt-6 p-4 bg-white rounded-xl border border-blue-100">
-                  <p class="text-sm text-gray-600 flex items-start">
-                    <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Jadwal armada keluar dari Pool / Garasi. Estimasi perjalanan 1.5 - 2 jam.</span>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Price -->
-              <div class="bg-green-50 rounded-2xl p-6 border border-green-100">
-                <h4 class="font-bold text-travellora-dark text-xl mb-6 flex items-center">
-                  <div
-                    class="w-10 h-10 bg-green-600 text-white rounded-lg flex items-center justify-center mr-3 shadow-md">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                      </path>
-                    </svg>
-                  </div>
-                  Harga Tiket
-                </h4>
-                <div class="space-y-4">
-                  <div
-                    class="bg-white p-4 rounded-xl border border-green-100 shadow-sm flex justify-between items-center group hover:border-green-300 transition-colors">
-                    <div>
-                      <span class="block font-bold text-travellora-dark">Reguler</span>
-                      <span class="text-xs text-gray-500">Per Orang (Shared)</span>
-                    </div>
-                    <span id="price-reguler" class="font-bold text-travellora-blue text-2xl">Rp 150.000</span>
-                  </div>
-                  <div
-                    class="bg-white p-4 rounded-xl border border-green-100 shadow-sm flex justify-between items-center group hover:border-green-300 transition-colors">
-                    <div>
-                      <span class="block font-bold text-travellora-dark">Carter Drop</span>
-                      <span class="text-xs text-gray-500">Per Mobil (Private)</span>
-                    </div>
-                    <span id="price-carter" class="font-bold text-travellora-blue text-2xl">Rp 500.000</span>
-                  </div>
-                </div>
-                <div class="mt-6">
-                  <a href="Form.html"
-                    class="flex items-center justify-center w-full bg-travellora-blue text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-800 transition-all transform hover:-translate-y-1">
-                    <span>Pesan Tiket Sekarang</span>
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-              <a href="https://wa.me/6282316290290" target="_blank"
-                class="flex items-center justify-center px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
-                </svg>
-                Tanya Admin WhatsApp
-              </a>
-              <button id="download-schedule-btn-new" onclick="retryDownload()"
-                class="flex items-center justify-center px-6 py-3 bg-white border-2 border-travellora-blue text-travellora-blue font-bold rounded-xl hover:bg-blue-50 transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                  </path>
-                </svg>
-                Download Jadwal (PDF)
-              </button>
-            </div>
-          </div>
-
-          <!-- Empty State -->
-          <div id="ticket-empty" class="text-center py-10">
-            <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      <div class="p-8">
+        <div class="max-w-md mx-auto mb-10">
+          <label for="route-select" class="block text-gray-700 font-bold mb-4 text-lg text-center">Pilih Rute
+            Perjalanan</label>
+          <div class="relative">
+            <select id="route-select" onchange="updateTicketInfo()"
+              class="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:border-travellora-blue focus:ring-0 transition-all text-lg appearance-none cursor-pointer bg-white">
+              <option value="">-- Silakan Pilih Rute --</option>
+              <optgroup label="Dari Malang / Batu">
+                <option value="malang-juanda">Malang → Juanda / Surabaya</option>
+                <option value="malang-perak">Malang → Perak</option>
+                <option value="batu-juanda">Batu → Juanda / Surabaya</option>
+                <option value="batu-perak">Batu → Perak</option>
+                <option value="malang-batu">Malang → Batu</option>
+              </optgroup>
+              <optgroup label="Menuju Malang / Batu">
+                <option value="juanda-malang">Juanda → Malang</option>
+                <option value="surabaya-malang">Surabaya → Malang</option>
+                <option value="perak-malang">Perak → Malang</option>
+                <option value="batu-malang">Batu → Malang</option>
+              </optgroup>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
+              <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.707 6.586 4.293 8l5 5z" />
               </svg>
             </div>
-            <p class="text-gray-500 font-medium text-lg">Silakan pilih rute di atas untuk melihat detail tiket</p>
           </div>
         </div>
-      </div>
 
-      <!-- Hidden Elements for PDF Download (Preserved) -->
-      <div class="hidden">
-        <button id="download-schedule-btn">Download</button>
-        <div id="download-loading"></div>
-        <div id="download-success"></div>
+        <!-- Result Area (Hidden by default) -->
+        <div id="ticket-result" class="hidden space-y-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Schedule/Duration Box -->
+            <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+              <!-- Title will be updated dynamically -->
+              <h4 id="schedule-title" class="font-bold text-travellora-dark text-xl mb-6 flex items-center">
+                <div
+                  class="w-10 h-10 bg-travellora-blue text-white rounded-lg flex items-center justify-center mr-3 shadow-md">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <span id="title-text">Jadwal Keberangkatan</span>
+              </h4>
+
+              <!-- Schedule List (for Dari Malang/Batu) -->
+              <div id="schedule-list" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- Times will be injected here -->
+              </div>
+
+              <!-- Duration Info (for Menuju Malang/Batu) -->
+              <div id="duration-list" class="hidden grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- Duration times will be injected here -->
+              </div>
+
+              <!-- Info Note -->
+              <div class="mt-6 p-4 bg-white rounded-xl border border-blue-100">
+                <p class="text-sm text-gray-600 flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span id="info-text">Jadwal armada keluar dari Pool / Garasi. Estimasi perjalanan 1.5 - 2 jam.</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="bg-green-50 rounded-2xl p-6 border border-green-100">
+              <h4 class="font-bold text-travellora-dark text-xl mb-6 flex items-center">
+                <div
+                  class="w-10 h-10 bg-green-600 text-white rounded-lg flex items-center justify-center mr-3 shadow-md">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                  </svg>
+                </div>
+                Harga Tiket
+              </h4>
+              <div class="space-y-4">
+                <div
+                  class="bg-white p-4 rounded-xl border border-green-100 shadow-sm flex justify-between items-center group hover:border-green-300 transition-colors">
+                  <div>
+                    <span class="block font-bold text-travellora-dark">Reguler</span>
+                    <span class="text-xs text-gray-500">Per Orang (Shared)</span>
+                  </div>
+                  <span id="price-reguler" class="font-bold text-travellora-blue text-2xl">Rp 150.000</span>
+                </div>
+                <div
+                  class="bg-white p-4 rounded-xl border border-green-100 shadow-sm flex justify-between items-center group hover:border-green-300 transition-colors">
+                  <div>
+                    <span class="block font-bold text-travellora-dark">Travel Drop</span>
+                    <span class="text-xs text-gray-500">Per Mobil (Private)</span>
+                  </div>
+                  <span id="price-carter" class="font-bold text-travellora-blue text-2xl">Rp 500.000</span>
+                </div>
+              </div>
+              <div class="mt-6">
+                <a href="Form.html"
+                  class="flex items-center justify-center w-full bg-travellora-blue text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-800 transition-all transform hover:-translate-y-1">
+                  <span>Pesan Tiket Sekarang</span>
+                  <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+            <a href="https://wa.me/6282316290290" target="_blank"
+              class="flex items-center justify-center px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+              </svg>
+              Tanya Admin WhatsApp
+            </a>
+            <button id="download-schedule-btn-new" onclick="retryDownload()"
+              class="flex items-center justify-center px-6 py-3 bg-white border-2 border-travellora-blue text-travellora-blue font-bold rounded-xl hover:bg-blue-50 transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                </path>
+              </svg>
+              Download Jadwal (PDF)
+            </button>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="ticket-empty" class="text-center py-10">
+          <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <p class="text-gray-500 font-medium text-lg">Silakan pilih rute di atas untuk melihat detail tiket</p>
+        </div>
       </div>
     </div>
 
-    <style>
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
+    <!-- Hidden Elements for PDF Download (Preserved) -->
+    <div class="hidden">
+      <button id="download-schedule-btn">Download</button>
+      <div id="download-loading"></div>
+      <div id="download-success"></div>
+    </div>
+  </div>
 
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+  <style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
       }
 
-      .animate-fade-in {
-        animation: fadeIn 0.4s ease-out forwards;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-    </style>
+    }
 
-    <script>
-      const ticketData = {
-        "malang-juanda": {
-          prices: { reguler: "150.000", carter: "500.000" },
-          schedule: ["06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:35-22:35"]
-        },
-        "juanda-malang": {
-          prices: { reguler: "150.000", carter: "550.000" },
-          schedule: ["06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:35", "16:35-17:35", "17:35-18:35", "18:35-22:35"]
-        },
-        "surabaya-malang": {
-          prices: { reguler: "150.000", carter: "550.000" },
-          schedule: ["06:00-08:00", "08:00-10:00", "10:00-12:00", "12:00-14:00", "14:00-16:00", "16:00-18:00", "18:00-20:00", "20:00-22:35"]
-        },
-        "malang-perak": {
-          prices: { reguler: "170.000", carter: "500.000" },
-          schedule: ["01:00", "03:00", "05:00", "07:00", "09:00", "11:00", "13:00", "15:00"]
-        },
-        "perak-malang": {
-          prices: { reguler: "170.000", carter: "500.000" },
-          schedule: ["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00"]
-        },
-        "batu-juanda": {
-          prices: { reguler: "170.000", carter: "600.000" },
-          schedule: ["01:00", "03:00", "05:00", "07:00", "09:00", "11:00", "13:00", "15:00"]
-        },
-        "batu-perak": {
-          prices: { reguler: "180.000", carter: "600.000" },
-          schedule: ["01:00", "03:00", "05:00", "07:00", "09:00", "11:00", "13:00", "15:00"]
-        },
-        "batu-malang": {
-          prices: { reguler: "80.000", carter: "400.000" },
-          schedule: ["Setiap Jam"]
-        },
-        "malang-batu": {
-          prices: { reguler: "80.000", carter: "400.000" },
-          schedule: ["Setiap Jam"]
-        }
-      };
+    .animate-fade-in {
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+  </style>
 
-      function updateTicketInfo() {
-        const select = document.getElementById('route-select');
-        const route = select.value;
-        const resultArea = document.getElementById('ticket-result');
-        const emptyState = document.getElementById('ticket-empty');
+  <script>
+    const ticketData = {
+      "malang-juanda": {
+        prices: { reguler: "150.000", carter: "500.000" },
+        schedule: ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00","19:00","20:00"],
+        type: "departure" // Dari Malang/Batu
+      },
+      "malang-perak": {
+        prices: { reguler: "170.000", carter: "500.000" },
+        schedule: ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+        type: "departure"
+      },
+      "batu-juanda": {
+        prices: { reguler: "170.000", carter: "600.000" },
+        schedule: ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+        type: "departure"
+      },
+      "batu-perak": {
+        prices: { reguler: "180.000", carter: "600.000" },
+        schedule: ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+        type: "departure"
+      },
+      "malang-batu": {
+        prices: { reguler: "80.000", carter: "400.000" },
+        schedule: ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+        type: "departure"
+      },
+      "juanda-malang": {
+        prices: { reguler: "150.000", carter: "550.000" },
+        duration: ["06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00"],
+        type: "arrival" // Menuju Malang/Batu
+      },
+      "surabaya-malang": {
+        prices: { reguler: "150.000", carter: "550.000" },
+        duration: ["06:00-08:00", "08:00-10:00", "10:00-12:00", "12:00-14:00", "14:00-16:00", "16:00-18:00", "18:00-20:00", "19:00-21:00", ],
+        type: "arrival"
+      },
+      "perak-malang": {
+        prices: { reguler: "170.000", carter: "500.000" },
+        duration: ["06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00"],
+        type: "arrival"
+      },
+      "batu-malang": {
+        prices: { reguler: "80.000", carter: "400.000" },
+        duration: ["06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00"],
+        type: "arrival"
+      }
+    };
 
-        if (!route) {
-          resultArea.classList.add('hidden');
-          emptyState.classList.remove('hidden');
-          return;
-        }
+    function updateTicketInfo() {
+      const routeSelect = document.getElementById('route-select');
+      const selectedRoute = routeSelect.value;
+      const ticketResult = document.getElementById('ticket-result');
+      const ticketEmpty = document.getElementById('ticket-empty');
 
-        const data = ticketData[route];
-        if (!data) return;
+      if (!selectedRoute) {
+        ticketResult.classList.add('hidden');
+        ticketEmpty.classList.remove('hidden');
+        return;
+      }
 
-        // Update Prices
-        document.getElementById('price-reguler').textContent = "Rp " + data.prices.reguler;
-        document.getElementById('price-carter').textContent = "Rp " + data.prices.carter;
+      const routeData = ticketData[selectedRoute];
+      if (!routeData) return;
 
-        // Update Schedule
-        const scheduleList = document.getElementById('schedule-list');
-        scheduleList.innerHTML = '';
-        data.schedule.forEach(time => {
-          const timeBadge = document.createElement('div');
-          timeBadge.className = 'bg-white border border-blue-200 text-travellora-blue font-bold py-2 px-3 rounded-lg text-center shadow-sm hover:border-travellora-blue transition-colors';
-          timeBadge.textContent = time;
-          scheduleList.appendChild(timeBadge);
+      // Update prices
+      document.getElementById('price-reguler').textContent = `Rp ${routeData.prices.reguler}`;
+      document.getElementById('price-carter').textContent = `Rp ${routeData.prices.carter}`;
+
+      // Get elements
+      const scheduleList = document.getElementById('schedule-list');
+      const durationList = document.getElementById('duration-list');
+      const titleText = document.getElementById('title-text');
+      const infoText = document.getElementById('info-text');
+
+      // Reset display
+      scheduleList.innerHTML = '';
+      durationList.innerHTML = '';
+
+      if (routeData.type === "departure") {
+        // Show schedule for "Dari Malang/Batu"
+        titleText.textContent = "Jadwal Keberangkatan";
+        infoText.textContent = "Jadwal armada keluar dari Pool / Garasi. Estimasi perjalanan 1.5 - 2 jam.";
+
+        // Show schedule list, hide duration
+        scheduleList.classList.remove('hidden');
+        durationList.classList.add('hidden');
+
+        // Populate schedule times
+        routeData.schedule.forEach(time => {
+          const timeElement = document.createElement('div');
+          timeElement.className = 'bg-white border border-blue-200 rounded-xl p-3 text-center font-semibold text-travellora-dark text-sm sm:text-base';
+          timeElement.textContent = time;
+          scheduleList.appendChild(timeElement);
         });
+      } else {
+        // Show duration for "Menuju Malang/Batu"
+        titleText.textContent = "Durasi";
+        infoText.textContent = "Rentang waktu perjalanan dari titik jemput ke tujuan.";
 
-        // Show Result with Animation
-        emptyState.classList.add('hidden');
-        resultArea.classList.remove('hidden');
-        resultArea.classList.add('animate-fade-in');
+        // Show duration, hide schedule list
+        scheduleList.classList.add('hidden');
+        durationList.classList.remove('hidden');
 
-        setTimeout(() => {
-          resultArea.classList.remove('animate-fade-in');
-        }, 500);
-      }
-
-      // PDF logic
-      document.addEventListener('DOMContentLoaded', function () {
-        const downloadBtn = document.getElementById('download-schedule-btn');
-        const loadingSpinner = document.getElementById('download-loading');
-        const successModal = document.getElementById('download-success');
-
-        if (!downloadBtn) return;
-
-        // Data for PDF (simplified but consistent)
-        const pdfScheduleData = {
-          juanda: {
-            route: "Juanda -> Malang",
-            schedule: ticketData["juanda-malang"].schedule.map(t => ({ departure: t, landing: t + " - " + (parseInt(t) + 1) + ":00", estimated: t }))
-          },
-          surabaya: {
-            route: "Surabaya/Perak -> Malang",
-            schedule: ticketData["surabaya-malang"].schedule.map(t => ({ departure: t, travelTime: t + " - " + (parseInt(t) + 1) + ":30" }))
-          }
-        };
-
-        downloadBtn.addEventListener('click', async function () {
-          loadingSpinner.classList.remove('hidden');
-          try {
-            await generateAndDownloadPDF(pdfScheduleData);
-            loadingSpinner.classList.add('hidden');
-            successModal.classList.remove('hidden');
-          } catch (error) {
-            console.error('Error generating PDF:', error);
-            loadingSpinner.classList.add('hidden');
-            alert('Maaf, terjadi kesalahan saat mengunduh jadwal. Silakan coba lagi.');
-          }
+        // Populate duration times
+        routeData.duration.forEach(timeRange => {
+          const timeElement = document.createElement('div');
+          timeElement.className = 'bg-white border border-blue-200 rounded-xl p-3 text-center font-semibold text-travellora-dark text-sm sm:text-base';
+          timeElement.textContent = timeRange;
+          durationList.appendChild(timeElement);
         });
-
-        async function generateAndDownloadPDF(data) {
-          const { jsPDF } = window.jspdf;
-          const doc = new jsPDF();
-          const currentDate = new Date().toLocaleDateString('id-ID', {
-            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-          });
-
-          doc.setFontSize(20);
-          doc.setTextColor(30, 64, 175);
-          doc.text('JADWAL UJS TRAVEL', 105, 20, null, null, 'center');
-          doc.setFontSize(11);
-          doc.setTextColor(0, 0, 0);
-          doc.text(`Dicetak pada: ${currentDate}`, 105, 30, null, null, 'center');
-          doc.line(20, 35, 190, 35);
-
-          let y = 45;
-          doc.text('Informasi Kontak WhatsApp: +62 823-1629-0290', 20, y);
-          y += 15;
-          doc.setFontSize(16);
-          doc.text('JADWAL JUANDA -> MALANG', 20, y);
-          y += 10;
-          doc.setFontSize(10);
-          data.juanda.schedule.forEach(item => {
-            doc.text(`Berangkat: ${item.departure} | Est. Tiba: ${item.estimated}`, 25, y);
-            y += 7;
-          });
-
-          y += 10;
-          doc.setFontSize(16);
-          doc.text('JADWAL SURABAYA -> MALANG', 20, y);
-          y += 10;
-          doc.setFontSize(10);
-          data.surabaya.schedule.forEach(item => {
-            doc.text(`Berangkat: ${item.departure}`, 25, y);
-            y += 7;
-          });
-
-          doc.save(`Jadwal_UJS_Travel.pdf`);
-        }
-
-        if (!window.jspdf) {
-          const script = document.createElement('script');
-          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-          document.head.appendChild(script);
-        }
-      });
-
-      function retryDownload() {
-        const oldBtn = document.getElementById('download-schedule-btn');
-        if (oldBtn) oldBtn.click();
       }
-    </script>
-  </section>
 
+      // Show result
+      ticketEmpty.classList.add('hidden');
+      ticketResult.classList.remove('hidden');
+      ticketResult.classList.add('animate-fade-in');
+    }
+
+    function retryDownload() {
+      // Fungsi untuk download PDF
+      alert('Fitur download PDF akan segera tersedia!');
+    }
+
+    // Initialize with first route selected if needed
+    document.addEventListener('DOMContentLoaded', function () {
+      // Optional: Set default selection
+      // document.getElementById('route-select').value = 'malang-juanda';
+      // updateTicketInfo();
+    });
+  </script>
+</section>
   <!-- Why Choose Us Section -->
   <section id="tentangkami" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1580,7 +1555,7 @@
                 <svg class="w-4 h-4 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
-                Carter Drop Private
+                Travel Drop Private
               </a>
             </li>
             <li>

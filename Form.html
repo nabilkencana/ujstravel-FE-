@@ -251,7 +251,7 @@
                 required onchange="toggleCityTourFields(); calculatePrice(); toggleMaxPenumpang();">
                 <option value="">Pilih Jenis Layanan</option>
                 <option value="Travel Reguler">Travel Reguler</option>
-                <option value="Carter Drop">Carter Drop</option>
+                <option value="Travel Drop">Travel Drop</option>
                 <option value="Carter Full Day">Carter Full Day</option>
                 <option value="City Tour">City Tour</option>
                 <option value="Kirim Paket">Kirim Paket</option>
@@ -274,43 +274,14 @@
                 Rute Perjalanan <span class="text-red-500">*</span>
               </label>
               <select id="rutePerjalanan" name="rutePerjalanan"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                required onchange="toggleBandaraFields(); calculatePrice();">
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors" required
+                onchange="toggleBandaraFields(); calculatePrice();">
                 <option value="">Pilih Rute Perjalanan</option>
-                <!-- Rute Malang -->
-                <optgroup label="Rute Malang">
-                  <option value="Malang → Juanda">Malang → Juanda</option>
-                  <option value="Juanda → Malang">Juanda → Malang</option>
-                  <option value="Malang → SBY Kota">Malang → SBY Kota</option>
-                  <option value="SBY Kota → Malang">SBY Kota → Malang</option>
-                  <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
-                  <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
-                </optgroup>
-                
-                <!-- Rute Batu -->
-                <optgroup label="Rute Batu">
-                  <option value="Batu → Juanda">Batu → Juanda</option>
-                  <option value="Juanda → Batu">Juanda → Batu</option>
-                  <option value="Batu → SBY Kota">Batu → SBY Kota</option>
-                  <option value="SBY Kota → Batu">SBY Kota → Batu</option>
-                  <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
-                  <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
-                </optgroup>
-                
-                <!-- Daerah Abu-Abu (Malang Khusus) -->
-                <optgroup label="Daerah Abu-Abu (Malang Khusus)">
-                  <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
-                  <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
-                  <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
-                  <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
-                  <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
-                  <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
-                  <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
-                  <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
-                </optgroup>
+                <!-- Options akan diisi oleh JavaScript berdasarkan jenis layanan -->
               </select>
             </div>
           </div>
+          
 
           <!-- Section C: Tanggal & Waktu -->
           <div class="mb-8">
@@ -562,7 +533,7 @@
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
                       <div class="w-20 h-10 flex items-center justify-center">
-                        <img src="/img/BCA.svg" alt="Logo BCA" class="bank-logo w-full h-full object-contain">
+                        <img src="/img/bca.svg" alt="Logo BCA" class="bank-logo w-full h-full object-contain">
                       </div>
                     </div>
                     <div class="text-xs font-medium text-center">BCA</div>
@@ -576,7 +547,7 @@
                     class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
                     <div class="mb-2">
                       <div class="w-20 h-10 flex items-center justify-center">
-                        <img src="/img/bni.svg" alt="Logo BNI" class="bank-logo w-full h-full object-contain">
+                        <img src="/img/BNI.svg" alt="Logo BNI" class="bank-logo w-full h-full object-contain">
                       </div>
                     </div>
                     <div class="text-xs font-medium text-center">BNI</div>
@@ -688,7 +659,7 @@
                   • Maksimal bagasi 1 koper + 1 tas ransel<br />
                   • Tidak menerima hewan peliharaan<br />
                   • Tidak menerima durian<br />
-                  • <strong>Carter Drop/Full Day:</strong> harga mobil, bukan per orang (maks 5 penumpang)<br />
+                  • <strong>Travel Drop/Full Day:</strong> harga mobil, bukan per orang (maks 5 penumpang)<br />
                   • <strong>City Tour:</strong> harga mulai Rp 500.000 untuk 1 mobil (sesuai pilihan destinasi)<br />
                   • <strong>Jadwal Keberangkatan:</strong><br />
                   &nbsp;&nbsp;• Dari Malang: 01.00 - 15.00<br />
@@ -786,96 +757,79 @@
 
   <script>
     // Data harga untuk setiap layanan dan rute - DIUPDATE SESUAI BROSUR
-    const hargaData = {
-      "Travel Reguler": {
-        "Malang → Juanda": 150000,
-        "Juanda → Malang": 150000,
-        "Malang → SBY Kota": 165000,
-        "SBY Kota → Malang": 165000,
-        "Malang → SBY Utara / SBY Barat / Perak": 180000,
-        "SBY Utara / SBY Barat / Perak → Malang": 180000,
-        "Batu → Juanda": 170000,
-        "Juanda → Batu": 170000,
-        "Batu → SBY Kota": 180000,
-        "SBY Kota → Batu": 180000,
-        "Batu → SBY Utara / SBY Barat / Perak": 200000,
-        "SBY Utara / SBY Barat / Perak → Batu": 200000,
-        // Daerah Abu-Abu (Tambahan)
-        "Malang (Dau) → Juanda": 160000,
-        "Juanda → Malang (Dau)": 160000,
-        "Malang (Wagir) → Juanda": 160000,
-        "Juanda → Malang (Wagir)": 160000,
-        "Malang (Kebunagung) → Juanda": 160000,
-        "Juanda → Malang (Kebunagung)": 160000,
-        "Malang (Kedungkandang) → Juanda": 160000,
-        "Juanda → Malang (Kedungkandang)": 160000,
-        "type": "per_orang",
-        "max_penumpang": 10
-      },
-      "Carter Drop": {
-        "Malang → Juanda": 500000,
-        "Juanda → Malang": 500000,
-        "Malang → SBY Kota": 500000,
-        "SBY Kota → Malang": 500000,
-        "Malang → SBY Utara / SBY Barat / Perak": 550000,
-        "SBY Utara / SBY Barat / Perak → Malang": 550000,
-        "Batu → Juanda": 600000,
-        "Juanda → Batu": 600000,
-        "Batu → SBY Kota": 650000,
-        "SBY Kota → Batu": 650000,
-        "Batu → SBY Utara / SBY Barat / Perak": 650000,
-        "SBY Utara / SBY Barat / Perak → Batu": 650000,
-        "type": "mobil",
-        "max_penumpang": 5,
-        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
-      },
-      "Carter Full Day": {
-        "Malang → Juanda": 800000,
-        "Juanda → Malang": 800000,
-        "Malang → SBY Kota": 800000,
-        "SBY Kota → Malang": 800000,
-        "Malang → SBY Utara / SBY Barat / Perak": 850000,
-        "SBY Utara / SBY Barat / Perak → Malang": 850000,
-        "Batu → Juanda": 850000,
-        "Juanda → Batu": 850000,
-        "Batu → SBY Kota": 900000,
-        "SBY Kota → Batu": 900000,
-        "Batu → SBY Utara / SBY Barat / Perak": 900000,
-        "SBY Utara / SBY Barat / Perak → Batu": 900000,
-        "type": "mobil",
-        "max_penumpang": 5,
-        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
-      },
-      "City Tour": {
-        // Harga sesuai brosur (seperti Transportasi Wisuda di brosur Carter Drop)
-        "Transportasi Wisuda": 500000,
-        "Tour Malang - Batu": 500000,
-        "Tour Malang - Pantai": 600000,
-        "Tour Malang - Bromo": 600000,
-        "Tour Kota Malang - Surabaya": 650000,
-        "Custom Destination": 600000,
-        "type": "mobil_custom",
-        "max_penumpang": 5,
-        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
-      },
-      "Kirim Paket": {
-        "Malang → Juanda": 50000,
-        "Juanda → Malang": 50000,
-        "Malang → SBY Kota": 45000,
-        "SBY Kota → Malang": 45000,
-        "Malang → SBY Utara / SBY Barat / Perak": 50000,
-        "SBY Utara / SBY Barat / Perak → Malang": 50000,
-        "Batu → Juanda": 55000,
-        "Juanda → Batu": 55000,
-        "Batu → SBY Kota": 50000,
-        "SBY Kota → Batu": 50000,
-        "Batu → SBY Utara / SBY Barat / Perak": 55000,
-        "SBY Utara / SBY Barat / Perak → Batu": 55000,
-        "type": "per_item",
-        "max_penumpang": 1,
-        "note": "Harga per paket (konfirmasi untuk ukuran besar)"
-      },
-    };
+      const hargaData = {
+        "Travel Reguler": {
+          // Harga Travel Reguler (sesuai brosur bagian kiri)
+          "Malang → Juanda": 150000,
+          "Juanda → Malang": 150000,
+          "Malang → SBY Kota": 165000,
+          "SBY Kota → Malang": 165000,
+          "Malang → SBY Utara / SBY Barat / Perak": 180000,
+          "SBY Utara / SBY Barat / Perak → Malang": 180000,
+          "Batu → Juanda": 170000,
+          "Juanda → Batu": 170000,
+          "Batu → SBY Kota": 180000,
+          "SBY Kota → Batu": 180000,
+          "Batu → SBY Utara / SBY Barat / Perak": 200000,
+          "SBY Utara / SBY Barat / Perak → Batu": 200000,
+          // Daerah Abu-Abu (Tambahan)
+          "Malang (Dau) → Juanda": 160000,
+          "Juanda → Malang (Dau)": 160000,
+          "Malang (Wagir) → Juanda": 160000,
+          "Juanda → Malang (Wagir)": 160000,
+          "Malang (Kebunagung) → Juanda": 160000,
+          "Juanda → Malang (Kebunagung)": 160000,
+          "Malang (Kedungkandang) → Juanda": 160000,
+          "Juanda → Malang (Kedungkandang)": 160000,
+          "type": "per_orang",
+          "max_penumpang": 10
+        },
+
+        "Travel Drop": {
+          // Harga Travel Drop sesuai brosur bagian kanan (lebih sedikit rute)
+          "Malang → Juanda": 500000,
+          "Juanda → Malang": 500000,
+          "Malang → SBY Kota": 500000,
+          "SBY Kota → Malang": 500000,
+          "Malang → SBY Utara / SBY Barat / Perak": 550000,
+          "SBY Utara / SBY Barat / Perak → Malang": 550000,
+          "Batu → Juanda": 550000,
+          "Juanda → Batu": 550000,
+          "Batu → SBY Kota": 550000,
+          "SBY Kota → Batu": 550000,
+          "Batu → SBY Utara / SBY Barat / Perak": 600000,
+          "SBY Utara / SBY Barat / Perak → Batu": 600000,
+          "type": "mobil",
+          "max_penumpang": 5,
+          "note": "Harga untuk 1 mobil (maks 5 penumpang)"
+        },
+
+        "Carter Full Day": {
+          // Harga Carter Full Day (tidak ada di brosur, bisa disesuaikan)
+          "type": "mobil",
+          "max_penumpang": 5,
+          "note": "Harga untuk 1 mobil (maks 5 penumpang). Silakan hubungi admin untuk harga spesifik."
+        },
+
+        "City Tour": {
+          "Transportasi Wisuda": 500000,
+          "Tour Malang - Batu": 500000,
+          "Tour Malang - Pantai": 600000,
+          "Tour Malang - Bromo": 600000,
+          "Tour Kota Malang - Surabaya": 650000,
+          "Custom Destination": 600000,
+          "type": "mobil_custom",
+          "max_penumpang": 5,
+          "note": "Harga untuk 1 mobil (maks 5 penumpang)"
+        },
+
+        "Kirim Paket": {
+          // Harga Kirim Paket (tidak ada di brosur, bisa disesuaikan)
+          "type": "per_item",
+          "max_penumpang": 1,
+          "note": "Harga per paket (konfirmasi untuk ukuran besar)"
+        },
+      };
 
     // Fungsi untuk menampilkan/menyembunyikan field City Tour dan mengatur urutan section
     function toggleCityTourFields() {
@@ -1472,6 +1426,188 @@
     document.querySelectorAll('.reveal').forEach(el => {
       revealObserver.observe(el);
     });
+
+    // Fungsi untuk mengubah opsi rute berdasarkan jenis layanan
+      function updateRouteOptions() {
+        const jenisLayanan = document.getElementById("jenisLayanan").value;
+        const ruteSelect = document.getElementById("rutePerjalanan");
+
+        // Reset opsi
+        ruteSelect.innerHTML = '<option value="">Pilih Rute Perjalanan</option>';
+
+        if (!jenisLayanan) return;
+
+        if (jenisLayanan === "Travel Reguler") {
+          // Travel Reguler: semua rute
+          ruteSelect.innerHTML = `
+      <option value="">Pilih Rute Perjalanan</option>
+      <optgroup label="Rute Malang">
+        <option value="Malang → Juanda">Malang → Juanda</option>
+        <option value="Juanda → Malang">Juanda → Malang</option>
+        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+      </optgroup>
+      <optgroup label="Rute Batu">
+        <option value="Batu → Juanda">Batu → Juanda</option>
+        <option value="Juanda → Batu">Juanda → Batu</option>
+        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+      </optgroup>
+      <optgroup label="Daerah Abu-Abu (Malang Khusus)">
+        <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
+        <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
+        <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
+        <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
+        <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
+        <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
+        <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
+        <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
+      </optgroup>
+    `;
+        } else if (jenisLayanan === "Travel Drop") {
+          // Carter Drop: hanya rute tertentu sesuai brosur
+          ruteSelect.innerHTML = `
+      <option value="">Pilih Rute Perjalanan</option>
+      <optgroup label="Rute Malang">
+        <option value="Malang → Juanda">Malang → Juanda</option>
+        <option value="Juanda → Malang">Juanda → Malang</option>
+        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+      </optgroup>
+      <optgroup label="Rute Batu">
+        <option value="Batu → Juanda">Batu → Juanda</option>
+        <option value="Juanda → Batu">Juanda → Batu</option>
+        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+      </optgroup>
+    `;
+        } else if (jenisLayanan === "Carter Full Day") {
+          // Carter Full Day: sama seperti Carter Drop
+          ruteSelect.innerHTML = `
+      <option value="">Pilih Rute Perjalanan</option>
+      <optgroup label="Rute Malang">
+        <option value="Malang → Juanda">Malang → Juanda</option>
+        <option value="Juanda → Malang">Juanda → Malang</option>
+        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+      </optgroup>
+      <optgroup label="Rute Batu">
+        <option value="Batu → Juanda">Batu → Juanda</option>
+        <option value="Juanda → Batu">Juanda → Batu</option>
+        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+      </optgroup>
+    `;
+        } else if (jenisLayanan === "Kirim Paket") {
+          // Kirim Paket: semua rute
+          ruteSelect.innerHTML = `
+      <option value="">Pilih Rute Perjalanan</option>
+      <optgroup label="Rute Malang">
+        <option value="Malang → Juanda">Malang → Juanda</option>
+        <option value="Juanda → Malang">Juanda → Malang</option>
+        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+      </optgroup>
+      <optgroup label="Rute Batu">
+        <option value="Batu → Juanda">Batu → Juanda</option>
+        <option value="Juanda → Batu">Juanda → Batu</option>
+        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+      </optgroup>
+      <optgroup label="Daerah Abu-Abu (Malang Khusus)">
+        <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
+        <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
+        <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
+        <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
+        <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
+        <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
+        <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
+        <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
+      </optgroup>
+    `;
+        }
+
+        // Reset value dan hitung ulang harga
+        ruteSelect.value = "";
+        calculatePrice();
+      }
+
+      // Panggil fungsi saat jenis layanan berubah
+      document.getElementById("jenisLayanan").addEventListener("change", function () {
+        updateRouteOptions();
+        toggleCityTourFields();
+        toggleMaxPenumpang();
+      });
+
+      // Tambahkan juga di fungsi toggleCityTourFields untuk memanggil updateRouteOptions
+      function toggleCityTourFields() {
+        const jenisLayanan = document.getElementById("jenisLayanan").value;
+        const cityTourFields = document.getElementById("cityTourFields");
+        const sectionBRute = document.getElementById("sectionBRute");
+        const bandaraFields = document.getElementById("bandaraFields");
+
+        // Reset semua fields bandara
+        document.getElementById("maskapai").value = "";
+        document.getElementById("kodePenerbangan").value = "";
+        document.getElementById("jamLanding").value = "";
+
+        if (jenisLayanan === "City Tour") {
+          // Tampilkan field City Tour (Section B untuk City Tour)
+          cityTourFields.classList.remove("hidden");
+
+          // Sembunyikan Section B (Rute Perjalanan biasa)
+          sectionBRute.classList.add("hidden");
+
+          // Sembunyikan field bandara
+          bandaraFields.classList.add("hidden");
+
+          // Atur placeholder untuk alamat tujuan
+          document.getElementById("alamatTujuan").placeholder = "Area/wilayah tujuan tour (contoh: Kota Malang, Batu, Bromo, dll.)";
+
+        } else {
+          // Sembunyikan field City Tour
+          cityTourFields.classList.add("hidden");
+
+          // Tampilkan Section B (Rute Perjalanan biasa)
+          sectionBRute.classList.remove("hidden");
+
+          // Kembalikan placeholder alamat tujuan
+          document.getElementById("alamatTujuan").placeholder = "Detail alamat tujuan";
+
+          // Reset destinasi tour
+          if (document.getElementById("destinasiTour")) {
+            document.getElementById("destinasiTour").value = "";
+          }
+          if (document.getElementById("rencanaPerjalanan")) {
+            document.getElementById("rencanaPerjalanan").value = "";
+          }
+
+          // Update opsi rute berdasarkan jenis layanan
+          updateRouteOptions();
+        }
+
+        // Update penomoran section setelah City Tour
+        updateSectionNumbers(jenisLayanan);
+
+        // Hitung harga
+        calculatePrice();
+      }
   </script>
 </body>
 </html>
