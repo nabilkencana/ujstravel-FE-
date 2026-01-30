@@ -277,15 +277,37 @@
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
                 required onchange="toggleBandaraFields(); calculatePrice();">
                 <option value="">Pilih Rute Perjalanan</option>
-                <option value="Malang → Juanda">Malang → Juanda</option>
-                <option value="Juanda → Malang">Juanda → Malang</option>
-                <option value="Malang → Surabaya">Malang → Surabaya</option>
-                <option value="Surabaya → Malang">Surabaya → Malang</option>
-                <option value="Malang → Perak">Malang → Perak</option>
-                <option value="Perak → Malang">Perak → Malang</option>
-                <option value="Malang → Batu">Malang → Batu</option>
-                <option value="Batu → Malang">Batu → Malang</option>
-                <!-- Sidoarjo dihapus sesuai permintaan -->
+                <!-- Rute Malang -->
+                <optgroup label="Rute Malang">
+                  <option value="Malang → Juanda">Malang → Juanda</option>
+                  <option value="Juanda → Malang">Juanda → Malang</option>
+                  <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+                  <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+                  <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+                  <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+                </optgroup>
+                
+                <!-- Rute Batu -->
+                <optgroup label="Rute Batu">
+                  <option value="Batu → Juanda">Batu → Juanda</option>
+                  <option value="Juanda → Batu">Juanda → Batu</option>
+                  <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+                  <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+                  <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+                  <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+                </optgroup>
+                
+                <!-- Daerah Abu-Abu (Malang Khusus) -->
+                <optgroup label="Daerah Abu-Abu (Malang Khusus)">
+                  <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
+                  <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
+                  <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
+                  <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
+                  <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
+                  <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
+                  <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
+                  <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
+                </optgroup>
               </select>
             </div>
           </div>
@@ -667,7 +689,10 @@
                   • Tidak menerima hewan peliharaan<br />
                   • Tidak menerima durian<br />
                   • <strong>Carter Drop/Full Day:</strong> harga mobil, bukan per orang (maks 5 penumpang)<br />
-                  • <strong>City Tour:</strong> harga mulai Rp 500.000 untuk 1 mobil (sesuai pilihan destinasi)
+                  • <strong>City Tour:</strong> harga mulai Rp 500.000 untuk 1 mobil (sesuai pilihan destinasi)<br />
+                  • <strong>Jadwal Keberangkatan:</strong><br />
+                  &nbsp;&nbsp;• Dari Malang: 01.00 - 15.00<br />
+                  &nbsp;&nbsp;• Dari Surabaya/Juanda: 06.00 - 21.00
                 </p>
               </div>
             </div>
@@ -760,46 +785,69 @@
   </div>
 
   <script>
-    // Data harga untuk setiap layanan dan rute
+    // Data harga untuk setiap layanan dan rute - DIUPDATE SESUAI BROSUR
     const hargaData = {
       "Travel Reguler": {
         "Malang → Juanda": 150000,
         "Juanda → Malang": 150000,
-        "Malang → Surabaya": 100000,
-        "Surabaya → Malang": 100000,
-        "Malang → Perak": 120000,
-        "Perak → Malang": 120000,
-        "Malang → Batu": 80000,
-        "Batu → Malang": 80000,
+        "Malang → SBY Kota": 165000,
+        "SBY Kota → Malang": 165000,
+        "Malang → SBY Utara / SBY Barat / Perak": 180000,
+        "SBY Utara / SBY Barat / Perak → Malang": 180000,
+        "Batu → Juanda": 170000,
+        "Juanda → Batu": 170000,
+        "Batu → SBY Kota": 180000,
+        "SBY Kota → Batu": 180000,
+        "Batu → SBY Utara / SBY Barat / Perak": 200000,
+        "SBY Utara / SBY Barat / Perak → Batu": 200000,
+        // Daerah Abu-Abu (Tambahan)
+        "Malang (Dau) → Juanda": 160000,
+        "Juanda → Malang (Dau)": 160000,
+        "Malang (Wagir) → Juanda": 160000,
+        "Juanda → Malang (Wagir)": 160000,
+        "Malang (Kebunagung) → Juanda": 160000,
+        "Juanda → Malang (Kebunagung)": 160000,
+        "Malang (Kedungkandang) → Juanda": 160000,
+        "Juanda → Malang (Kedungkandang)": 160000,
         "type": "per_orang",
         "max_penumpang": 10
       },
       "Carter Drop": {
-        "Malang → Juanda": 550000,
-        "Juanda → Malang": 550000,
-        "Malang → Surabaya": 500000,
-        "Surabaya → Malang": 500000,
-        "Malang → Perak": 500000,
-        "Perak → Malang": 500000,
-        "Malang → Batu": 400000,
-        "Batu → Malang": 400000,
+        "Malang → Juanda": 500000,
+        "Juanda → Malang": 500000,
+        "Malang → SBY Kota": 500000,
+        "SBY Kota → Malang": 500000,
+        "Malang → SBY Utara / SBY Barat / Perak": 550000,
+        "SBY Utara / SBY Barat / Perak → Malang": 550000,
+        "Batu → Juanda": 600000,
+        "Juanda → Batu": 600000,
+        "Batu → SBY Kota": 650000,
+        "SBY Kota → Batu": 650000,
+        "Batu → SBY Utara / SBY Barat / Perak": 650000,
+        "SBY Utara / SBY Barat / Perak → Batu": 650000,
         "type": "mobil",
-        "max_penumpang": 5
+        "max_penumpang": 5,
+        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
       },
       "Carter Full Day": {
         "Malang → Juanda": 800000,
         "Juanda → Malang": 800000,
-        "Malang → Surabaya": 700000,
-        "Surabaya → Malang": 700000,
-        "Malang → Perak": 650000,
-        "Perak → Malang": 650000,
-        "Malang → Batu": 600000,
-        "Batu → Malang": 600000,
+        "Malang → SBY Kota": 800000,
+        "SBY Kota → Malang": 800000,
+        "Malang → SBY Utara / SBY Barat / Perak": 850000,
+        "SBY Utara / SBY Barat / Perak → Malang": 850000,
+        "Batu → Juanda": 850000,
+        "Juanda → Batu": 850000,
+        "Batu → SBY Kota": 900000,
+        "SBY Kota → Batu": 900000,
+        "Batu → SBY Utara / SBY Barat / Perak": 900000,
+        "SBY Utara / SBY Barat / Perak → Batu": 900000,
         "type": "mobil",
-        "max_penumpang": 5
+        "max_penumpang": 5,
+        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
       },
       "City Tour": {
-        // Destinasi City Tour sesuai dengan gambar
+        // Harga sesuai brosur (seperti Transportasi Wisuda di brosur Carter Drop)
         "Transportasi Wisuda": 500000,
         "Tour Malang - Batu": 500000,
         "Tour Malang - Pantai": 600000,
@@ -813,14 +861,19 @@
       "Kirim Paket": {
         "Malang → Juanda": 50000,
         "Juanda → Malang": 50000,
-        "Malang → Surabaya": 40000,
-        "Surabaya → Malang": 40000,
-        "Malang → Perak": 45000,
-        "Perak → Malang": 45000,
-        "Malang → Batu": 35000,
-        "Batu → Malang": 35000,
+        "Malang → SBY Kota": 45000,
+        "SBY Kota → Malang": 45000,
+        "Malang → SBY Utara / SBY Barat / Perak": 50000,
+        "SBY Utara / SBY Barat / Perak → Malang": 50000,
+        "Batu → Juanda": 55000,
+        "Juanda → Batu": 55000,
+        "Batu → SBY Kota": 50000,
+        "SBY Kota → Batu": 50000,
+        "Batu → SBY Utara / SBY Barat / Perak": 55000,
+        "SBY Utara / SBY Barat / Perak → Batu": 55000,
         "type": "per_item",
-        "max_penumpang": 1
+        "max_penumpang": 1,
+        "note": "Harga per paket (konfirmasi untuk ukuran besar)"
       },
     };
 
@@ -1010,6 +1063,9 @@
         totalPriceElement.textContent = formattedPrice;
         priceDescription.textContent = `${jenisLayanan} - ${rutePerjalanan}`;
         pricePerPerson.textContent = `Harga untuk 1 mobil (maks ${maxPenumpang} penumpang)`;
+        if (serviceData.note) {
+          priceNote.textContent = serviceData.note;
+        }
         priceTitle.textContent = "Harga Carter Mobil";
       } else if (pricingType === "per_item") {
         // Untuk Kirim Paket - per item
@@ -1418,5 +1474,4 @@
     });
   </script>
 </body>
-
 </html>
