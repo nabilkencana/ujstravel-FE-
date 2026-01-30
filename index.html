@@ -938,11 +938,11 @@
         },
         "juanda-malang": {
           prices: { reguler: "150.000", carter: "550.000" },
-          schedule: ["07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00", "21:00"]
+          schedule: ["06:00 - 07:00", "07:00 - 08:00", "08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00", "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00", "17:00 - 18:00", "18:00 - 19:00", "19:00 - 20:00", "20:00 - 21:00"]
         },
         "surabaya-malang": {
           prices: { reguler: "150.000", carter: "500.000" },
-          schedule: ["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00"]
+          schedule: ["06:00 - 08:00", "08:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "19:00 - 21:00"]
         },
         "malang-perak": {
           prices: { reguler: "170.000", carter: "500.000" },
@@ -1021,11 +1021,11 @@
         const pdfScheduleData = {
           juanda: {
             route: "Juanda -> Malang",
-            schedule: ticketData["juanda-malang"].schedule.map(t => ({ departure: t, landing: t + " - " + (parseInt(t)+1) + ":00", estimated: t }))
+            schedule: ticketData["juanda-malang"].schedule.map(t => ({ departure: t, estimated: "1.5 - 2 Jam" }))
           },
           surabaya: {
             route: "Surabaya/Perak -> Malang",
-            schedule: ticketData["surabaya-malang"].schedule.map(t => ({ departure: t, travelTime: t + " - " + (parseInt(t)+1) + ":30" }))
+            schedule: ticketData["surabaya-malang"].schedule.map(t => ({ departure: t }))
           }
         };
 
