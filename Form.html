@@ -49,8 +49,8 @@
     }
 
     .bank-logo {
-      width: 60px;
-      height: 30px;
+      width: 80px;
+      height: 40px;
       object-fit: contain;
     }
 
@@ -123,9 +123,8 @@
                 <a href="carter-drop.html"
                   class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Carter
                   Drop</a>
-                <a href="city-tour.html"
-                  class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">City
-                  Tour</a>
+                  <a href="city-tour.html"
+                  class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Carter</a>
                 <a href="kirim-paket.html"
                   class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Kirim
                   Paket</a>
@@ -182,7 +181,7 @@
               Carter Drop
             </a>
             <a href="city-tour.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
-              City Tour
+              Carter 
             </a>
             <a href="kirim-paket.html" class="block px-3 py-2 text-sm text-travellora-gray hover:text-travellora-dark">
               Kirim Paket
@@ -248,18 +247,17 @@
               </label>
               <select id="jenisLayanan" name="jenisLayanan"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                required onchange="toggleCityTourFields(); calculatePrice(); toggleMaxPenumpang();">
+                required onchange="toggleCarterFields(); updateRouteOptions(); calculatePrice(); toggleMaxPenumpang();">
                 <option value="">Pilih Jenis Layanan</option>
                 <option value="Travel Reguler">Travel Reguler</option>
                 <option value="Travel Drop">Travel Drop</option>
-                <option value="Carter Full Day">Carter Full Day</option>
-                <option value="City Tour">City Tour</option>
+                <option value="Carter">Carter</option>
                 <option value="Kirim Paket">Kirim Paket</option>
               </select>
             </div>
           </div>
 
-          <!-- Section B: Pilih Rute Perjalanan (BUKAN untuk City Tour) -->
+          <!-- Section B: Pilih Rute Perjalanan -->
           <div id="sectionBRute" class="mb-8">
             <div class="flex items-center mb-4">
               <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
@@ -275,13 +273,12 @@
               </label>
               <select id="rutePerjalanan" name="rutePerjalanan"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors" required
-                onchange="toggleBandaraFields(); calculatePrice();">
+                onchange="toggleBandaraFields(); updateJamKeberangkatanOptions(); calculatePrice(); autoFillAlamatTujuan();">
                 <option value="">Pilih Rute Perjalanan</option>
                 <!-- Options akan diisi oleh JavaScript berdasarkan jenis layanan -->
               </select>
             </div>
           </div>
-          
 
           <!-- Section C: Tanggal & Waktu -->
           <div class="mb-8">
@@ -304,10 +301,13 @@
               </div>
               <div>
                 <label for="jamKeberangkatan" class="block text-gray-700 font-medium mb-2">
-                  Jam Keberangkatan (Opsional)
+                  Jam Keberangkatan <span class="text-red-500">*</span>
                 </label>
-                <input type="time" id="jamKeberangkatan" name="jamKeberangkatan"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors" />
+                <select id="jamKeberangkatan" name="jamKeberangkatan"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors" required>
+                  <option value="">Pilih Jam Keberangkatan</option>
+                  <!-- Options akan diisi berdasarkan rute -->
+                </select>
               </div>
             </div>
           </div>
@@ -409,49 +409,28 @@
                   placeholder="Contoh: GA123" />
               </div>
 
-              <!-- Jam Landing Pesawat -->
+              <!-- Jam Penerbangan -->
               <div>
-                <label for="jamLanding" class="block text-gray-700 font-medium mb-2">
-                  Jam Landing Pesawat
+                <label for="jamPenerbangan" class="block text-gray-700 font-medium mb-2">
+                  <span id="jamPenerbanganLabel">Jam Landing Pesawat</span>
                 </label>
-                <input type="time" id="jamLanding" name="jamLanding"
+                <input type="time" id="jamPenerbangan" name="jamPenerbangan"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors" />
               </div>
             </div>
           </div>
 
-          <!-- Section F: Khusus City Tour (Conditional Field) -->
-          <div id="cityTourFields" class="mb-8 hidden">
+          <!-- Section F: Khusus Carter (Conditional Field) -->
+          <div id="carterFields" class="mb-8 hidden">
             <div class="flex items-center mb-4">
               <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                <span class="font-bold">B</span>
+                <span class="font-bold">F</span>
               </div>
               <h3 class="text-lg font-bold text-travellora-dark">
-                Pilih Destinasi City Tour
+                Detail Carter
               </h3>
             </div>
             <div class="space-y-4 bg-green-50 p-4 rounded-lg">
-              <!-- Destinasi Tour -->
-              <div>
-                <label for="destinasiTour" class="block text-gray-700 font-medium mb-2">
-                  Destinasi Tour <span class="text-red-500">*</span>
-                </label>
-                <select id="destinasiTour" name="destinasiTour"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  onchange="calculatePrice()">
-                  <option value="">Pilih Destinasi City Tour</option>
-                  <option value="Transportasi Wisuda">Transportasi Wisuda - Rp 500.000</option>
-                  <option value="Tour Malang - Batu">Tour Malang - Batu - Rp 500.000</option>
-                  <option value="Tour Malang - Pantai">Tour Malang - Pantai - Rp 600.000</option>
-                  <option value="Tour Malang - Bromo">Tour Malang - Bromo - Rp 600.000</option>
-                  <option value="Tour Kota Malang - Surabaya">Tour Kota Malang - Surabaya - Rp 650.000</option>
-                  <option value="Custom Destination">Custom Destination (request)</option>
-                </select>
-                <p class="text-xs text-gray-500 mt-1">
-                  *Harga untuk 1 mobil (maksimal 5 penumpang)
-                </p>
-              </div>
-
               <!-- Rencana Perjalanan -->
               <div>
                 <label for="rencanaPerjalanan" class="block text-gray-700 font-medium mb-2">
@@ -468,7 +447,7 @@
           <div class="mb-8">
             <div class="flex items-center mb-4">
               <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                <span class="font-bold">C</span>
+                <span class="font-bold">G</span>
               </div>
               <h3 class="text-lg font-bold text-travellora-dark">
                 Barang Bawaan
@@ -491,7 +470,7 @@
           <div class="mb-8">
             <div class="flex items-center mb-4">
               <div class="w-8 h-8 bg-travellora-blue text-white rounded-full flex items-center justify-center mr-3">
-                <span class="font-bold">D</span>
+                <span class="font-bold">H</span>
               </div>
               <h3 class="text-lg font-bold text-travellora-dark">
                 Metode Pembayaran
@@ -502,11 +481,11 @@
             <div class="mb-4">
               <div class="space-y-3">
                 <div class="flex items-center">
-                  <input type="radio" id="transfer" name="metodePembayaran" value="Transfer"
+                  <input type="radio" id="transfer" name="metodePembayaran" value="Transfer BCA"
                     class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300" checked
                     onchange="toggleBankSelection(); updatePaymentNote();" />
                   <label for="transfer" class="ml-3 block text-gray-700 font-medium">
-                    Transfer Bank
+                    Transfer BCA
                   </label>
                 </div>
                 <div class="flex items-center">
@@ -520,112 +499,33 @@
               </div>
             </div>
 
-            <!-- Pilihan Bank (hanya muncul jika pilih Transfer) -->
-            <div id="bankSelection" class="mt-4 p-4 bg-gray-50 rounded-lg">
+            <!-- Box BCA (muncul jika transfer dipilih) -->
+            <div id="bcaSelection" class="mt-4 p-4 bg-gray-50 rounded-lg">
               <label class="block text-gray-700 font-medium mb-3">
-                Pilih Bank Transfer
+                Transfer ke Bank BCA
               </label>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <!-- BCA -->
+              <div class="flex flex-col items-center">
                 <div>
-                  <input type="radio" id="bca" name="bank" value="BCA" class="hidden peer">
+                  <input type="radio" id="bca" name="bank" value="BCA" class="hidden peer" checked>
                   <label for="bca"
-                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                    <div class="mb-2">
-                      <div class="w-20 h-10 flex items-center justify-center">
-                        <img src="/img/bca.svg" alt="Logo BCA" class="bank-logo w-full h-full object-contain">
+                    class="flex flex-col items-center p-4 bg-white border-2 border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
+                    <div class="mb-3">
+                      <div class="w-40 h-20 flex items-center justify-center">
+                        <!-- Logo BCA -->
+                        <img src="img/bca.svg" 
+                             alt="Logo BCA" 
+                             class="bank-logo w-full h-full object-contain">
                       </div>
                     </div>
-                    <div class="text-xs font-medium text-center">BCA</div>
+                    <div class="text-sm font-bold text-center text-gray-800">BANK CENTRAL ASIA</div>
+                    <div class="text-xs text-gray-600 text-center mt-1">Rekening akan dikirim via WhatsApp</div>
                   </label>
                 </div>
-
-                <!-- BNI -->
-                <div>
-                  <input type="radio" id="bni" name="bank" value="BNI" class="hidden peer">
-                  <label for="bni"
-                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                    <div class="mb-2">
-                      <div class="w-20 h-10 flex items-center justify-center">
-                        <img src="/img/BNI.svg" alt="Logo BNI" class="bank-logo w-full h-full object-contain">
-                      </div>
-                    </div>
-                    <div class="text-xs font-medium text-center">BNI</div>
-                  </label>
-                </div>
-
-                <!-- BRI -->
-                <div>
-                  <input type="radio" id="bri" name="bank" value="BRI" class="hidden peer">
-                  <label for="bri"
-                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                    <div class="mb-2">
-                      <div class="w-20 h-10 flex items-center justify-center">
-                        <img src="/img/BRI.svg" alt="Logo BRI" class="bank-logo w-full h-full object-contain">
-                      </div>
-                    </div>
-                    <div class="text-xs font-medium text-center">BRI</div>
-                  </label>
-                </div>
-
-                <!-- Mandiri -->
-                <div>
-                  <input type="radio" id="mandiri" name="bank" value="Mandiri" class="hidden peer">
-                  <label for="mandiri"
-                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                    <div class="mb-2">
-                      <div class="w-20 h-10 flex items-center justify-center">
-                        <img src="/img/mandiri.svg" alt="Logo Mandiri" class="bank-logo w-full h-full object-contain">
-                      </div>
-                    </div>
-                    <div class="text-xs font-medium text-center">Mandiri</div>
-                  </label>
-                </div>
-
-                <!-- CIMB Niaga -->
-                <div>
-                  <input type="radio" id="cimb" name="bank" value="CIMB Niaga" class="hidden peer">
-                  <label for="cimb"
-                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                    <div class="mb-2">
-                      <div class="w-20 h-10 flex items-center justify-center">
-                        <img src="/img/CIMB.svg" alt="Logo CIMB Niaga" class="bank-logo w-full h-full object-contain">
-                      </div>
-                    </div>
-                    <div class="text-xs font-medium text-center">CIMB Niaga</div>
-                  </label>
-                </div>
-
-                <!-- DANA -->
-                <div>
-                  <input type="radio" id="dana" name="bank" value="DANA" class="hidden peer">
-                  <label for="dana"
-                    class="flex flex-col items-center p-3 bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                    <div class="mb-2">
-                      <div class="w-20 h-10 flex items-center justify-center">
-                        <img
-                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png"
-                          alt="Logo DANA" class="bank-log w-full h-full object-contain">
-                      </div>
-                    </div>
-                    <div class="text-xs font-medium text-center">DANA</div>
-                  </label>
-                </div>
-              </div>
-
-              <!-- Bank Lainnya -->
-              <div class="mt-4">
-                <label for="bankLainnya" class="block text-gray-700 font-medium mb-2">
-                  Atau Bank Lainnya
-                </label>
-                <input type="text" id="bankLainnya" name="bankLainnya"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-travellora-blue transition-colors"
-                  placeholder="Tulis nama bank lainnya" />
               </div>
             </div>
           </div>
 
-          <!-- Price Display - AKAN DITAMPILKAN UNTUK SEMUA METODE PEMBAYARAN -->
+          <!-- Price Display -->
           <div id="priceDisplay" class="bg-white rounded-xl shadow-lg p-6 mb-6 border-2 border-travellora-blue hidden">
             <div class="flex justify-between items-center">
               <div>
@@ -657,10 +557,8 @@
                   <strong>Ketentuan Reservasi:</strong><br />
                   • Pembatalan kurang dari 6 jam dikenakan charge full<br />
                   • Maksimal bagasi 1 koper + 1 tas ransel<br />
-                  • Tidak menerima hewan peliharaan<br />
-                  • Tidak menerima durian<br />
-                  • <strong>Travel Drop/Full Day:</strong> harga mobil, bukan per orang (maks 5 penumpang)<br />
-                  • <strong>City Tour:</strong> harga mulai Rp 500.000 untuk 1 mobil (sesuai pilihan destinasi)<br />
+                  
+                  • <strong>Travel Drop/Carter:</strong> harga mobil, bukan per orang (maks 5 penumpang)<br />
                   • <strong>Jadwal Keberangkatan:</strong><br />
                   &nbsp;&nbsp;• Dari Malang: 01.00 - 15.00<br />
                   &nbsp;&nbsp;• Dari Surabaya/Juanda: 06.00 - 21.00
@@ -737,7 +635,7 @@
     </div>
   </footer>
 
-  <!-- Floating WhatsApp Button - Versi Simpel -->
+  <!-- Floating WhatsApp Button -->
   <div class="fixed bottom-6 right-6 z-50">
     <a href="https://wa.me/6282316290290" target="_blank"
       class="bg-green-500 hover:bg-green-600 text-white px-5 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center space-x-3 hover:scale-105 active:scale-95">
@@ -756,160 +654,130 @@
   </div>
 
   <script>
-    // Data harga untuk setiap layanan dan rute - DIUPDATE SESUAI BROSUR
-      const hargaData = {
-        "Travel Reguler": {
-          // Harga Travel Reguler (sesuai brosur bagian kiri)
-          "Malang → Juanda": 150000,
-          "Juanda → Malang": 150000,
-          "Malang → SBY Kota": 165000,
-          "SBY Kota → Malang": 165000,
-          "Malang → SBY Utara / SBY Barat / Perak": 180000,
-          "SBY Utara / SBY Barat / Perak → Malang": 180000,
-          "Batu → Juanda": 170000,
-          "Juanda → Batu": 170000,
-          "Batu → SBY Kota": 180000,
-          "SBY Kota → Batu": 180000,
-          "Batu → SBY Utara / SBY Barat / Perak": 200000,
-          "SBY Utara / SBY Barat / Perak → Batu": 200000,
-          // Daerah Abu-Abu (Tambahan)
-          "Malang (Dau) → Juanda": 160000,
-          "Juanda → Malang (Dau)": 160000,
-          "Malang (Wagir) → Juanda": 160000,
-          "Juanda → Malang (Wagir)": 160000,
-          "Malang (Kebunagung) → Juanda": 160000,
-          "Juanda → Malang (Kebunagung)": 160000,
-          "Malang (Kedungkandang) → Juanda": 160000,
-          "Juanda → Malang (Kedungkandang)": 160000,
-          "type": "per_orang",
-          "max_penumpang": 10
-        },
+    // Data harga untuk setiap layanan dan rute
+    const hargaData = {
+      "Travel Reguler": {
+        "Malang → Juanda": 150000,
+        "Juanda → Malang": 150000,
+        "Malang → SBY Kota": 165000,
+        "SBY Kota → Malang": 165000,
+        "Malang → SBY Utara / SBY Barat / Perak": 180000,
+        "SBY Utara / SBY Barat / Perak → Malang": 180000,
+        "Batu → Juanda": 170000,
+        "Juanda → Batu": 170000,
+        "Batu → SBY Kota": 180000,
+        "SBY Kota → Batu": 180000,
+        "Batu → SBY Utara / SBY Barat / Perak": 200000,
+        "SBY Utara / SBY Barat / Perak → Batu": 200000,
+        "Malang (Dau) → Juanda": 160000,
+        "Juanda → Malang (Dau)": 160000,
+        "Malang (Wagir) → Juanda": 160000,
+        "Juanda → Malang (Wagir)": 160000,
+        "Malang (Kebunagung) → Juanda": 160000,
+        "Juanda → Malang (Kebunagung)": 160000,
+        "Malang (Kedungkandang) → Juanda": 160000,
+        "Juanda → Malang (Kedungkandang)": 160000,
+        "type": "per_orang",
+        "max_penumpang": 10
+      },
 
-        "Travel Drop": {
-          // Harga Travel Drop sesuai brosur bagian kanan (lebih sedikit rute)
-          "Malang → Juanda": 500000,
-          "Juanda → Malang": 500000,
-          "Malang → SBY Kota": 500000,
-          "SBY Kota → Malang": 500000,
-          "Malang → SBY Utara / SBY Barat / Perak": 550000,
-          "SBY Utara / SBY Barat / Perak → Malang": 550000,
-          "Batu → Juanda": 550000,
-          "Juanda → Batu": 550000,
-          "Batu → SBY Kota": 550000,
-          "SBY Kota → Batu": 550000,
-          "Batu → SBY Utara / SBY Barat / Perak": 600000,
-          "SBY Utara / SBY Barat / Perak → Batu": 600000,
-          "type": "mobil",
-          "max_penumpang": 5,
-          "note": "Harga untuk 1 mobil (maks 5 penumpang)"
-        },
+      "Travel Drop": {
+        "Malang → Juanda": 500000,
+        "Juanda → Malang": 500000,
+        "Malang → SBY Kota": 500000,
+        "SBY Kota → Malang": 500000,
+        "Malang → SBY Utara / SBY Barat / Perak": 550000,
+        "SBY Utara / SBY Barat / Perak → Malang": 550000,
+        "Batu → Juanda": 550000,
+        "Juanda → Batu": 550000,
+        "Batu → SBY Kota": 550000,
+        "SBY Kota → Batu": 550000,
+        "Batu → SBY Utara / SBY Barat / Perak": 600000,
+        "SBY Utara / SBY Barat / Perak → Batu": 600000,
+        "type": "mobil",
+        "max_penumpang": 5,
+        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
+      },
 
-        "Carter Full Day": {
-          // Harga Carter Full Day (tidak ada di brosur, bisa disesuaikan)
-          "type": "mobil",
-          "max_penumpang": 5,
-          "note": "Harga untuk 1 mobil (maks 5 penumpang). Silakan hubungi admin untuk harga spesifik."
-        },
+      "Carter": {
+        "Malang → Juanda": 500000,
+        "Juanda → Malang": 500000,
+        "Malang → SBY Kota": 500000,
+        "SBY Kota → Malang": 500000,
+        "Malang → SBY Utara / SBY Barat / Perak": 550000,
+        "SBY Utara / SBY Barat / Perak → Malang": 550000,
+        "Batu → Juanda": 550000,
+        "Juanda → Batu": 550000,
+        "Batu → SBY Kota": 550000,
+        "SBY Kota → Batu": 550000,
+        "Batu → SBY Utara / SBY Barat / Perak": 600000,
+        "SBY Utara / SBY Barat / Perak → Batu": 600000,
+        "type": "mobil",
+        "max_penumpang": 5,
+        "note": "Harga untuk 1 mobil (maks 5 penumpang)"
+      },
 
-        "City Tour": {
-          "Transportasi Wisuda": 500000,
-          "Tour Malang - Batu": 500000,
-          "Tour Malang - Pantai": 600000,
-          "Tour Malang - Bromo": 600000,
-          "Tour Kota Malang - Surabaya": 650000,
-          "Custom Destination": 600000,
-          "type": "mobil_custom",
-          "max_penumpang": 5,
-          "note": "Harga untuk 1 mobil (maks 5 penumpang)"
-        },
+      "Kirim Paket": {
+        "Malang → Juanda": 150000,
+        "Juanda → Malang": 150000,
+        "Malang → SBY Kota": 165000,
+        "SBY Kota → Malang": 165000,
+        "Malang → SBY Utara / SBY Barat / Perak": 180000,
+        "SBY Utara / SBY Barat / Perak → Malang": 180000,
+        "Batu → Juanda": 170000,
+        "Juanda → Batu": 170000,
+        "Batu → SBY Kota": 180000,
+        "SBY Kota → Batu": 180000,
+        "Batu → SBY Utara / SBY Barat / Perak": 200000,
+        "SBY Utara / SBY Barat / Perak → Batu": 200000,
+        "Malang (Dau) → Juanda": 160000,
+        "Juanda → Malang (Dau)": 160000,
+        "Malang (Wagir) → Juanda": 160000,
+        "Juanda → Malang (Wagir)": 160000,
+        "Malang (Kebunagung) → Juanda": 160000,
+        "Juanda → Malang (Kebunagung)": 160000,
+        "Malang (Kedungkandang) → Juanda": 160000,
+        "Juanda → Malang (Kedungkandang)": 160000,
+        "type": "per_item",
+        "max_penumpang": 1,
+        "note": "Harga per paket (konfirmasi untuk ukuran besar)"
+      },
+    };
 
-        "Kirim Paket": {
-          // Harga Kirim Paket (tidak ada di brosur, bisa disesuaikan)
-          "type": "per_item",
-          "max_penumpang": 1,
-          "note": "Harga per paket (konfirmasi untuk ukuran besar)"
-        },
-      };
+    // Data jadwal berdasarkan rute
+    const jadwalData = {
+      "Malang → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "Juanda → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Malang → SBY Kota": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "SBY Kota → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Malang → SBY Utara / SBY Barat / Perak": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "SBY Utara / SBY Barat / Perak → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Batu → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "Juanda → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Batu → SBY Kota": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "SBY Kota → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Batu → SBY Utara / SBY Barat / Perak": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "SBY Utara / SBY Barat / Perak → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Malang (Dau) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "Juanda → Malang (Dau)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Malang (Wagir) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "Juanda → Malang (Wagir)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Malang (Kebunagung) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "Juanda → Malang (Kebunagung)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+      "Malang (Kedungkandang) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+      "Juanda → Malang (Kedungkandang)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]
+    };
 
-    // Fungsi untuk menampilkan/menyembunyikan field City Tour dan mengatur urutan section
-    function toggleCityTourFields() {
+    // Fungsi untuk menampilkan/menyembunyikan field Carter
+    function toggleCarterFields() {
       const jenisLayanan = document.getElementById("jenisLayanan").value;
-      const cityTourFields = document.getElementById("cityTourFields");
-      const sectionBRute = document.getElementById("sectionBRute");
-      const bandaraFields = document.getElementById("bandaraFields");
+      const carterFields = document.getElementById("carterFields");
       
-      // Reset semua fields bandara
-      document.getElementById("maskapai").value = "";
-      document.getElementById("kodePenerbangan").value = "";
-      document.getElementById("jamLanding").value = "";
-      
-      if (jenisLayanan === "City Tour") {
-        // Tampilkan field City Tour (Section B untuk City Tour)
-        cityTourFields.classList.remove("hidden");
-        
-        // Sembunyikan Section B (Rute Perjalanan biasa)
-        sectionBRute.classList.add("hidden");
-        
-        // Sembunyikan field bandara
-        bandaraFields.classList.add("hidden");
-        
-        // Atur placeholder untuk alamat tujuan
-        document.getElementById("alamatTujuan").placeholder = "Area/wilayah tujuan tour (contoh: Kota Malang, Batu, Bromo, dll.)";
-        
-        // Reset rute perjalanan
-        document.getElementById("rutePerjalanan").value = "";
+      if (jenisLayanan === "Carter") {
+        carterFields.classList.remove("hidden");
       } else {
-        // Sembunyikan field City Tour
-        cityTourFields.classList.add("hidden");
-        
-        // Tampilkan Section B (Rute Perjalanan biasa)
-        sectionBRute.classList.remove("hidden");
-        
-        // Kembalikan placeholder alamat tujuan
-        document.getElementById("alamatTujuan").placeholder = "Detail alamat tujuan";
-        
-        // Reset destinasi tour
-        document.getElementById("destinasiTour").value = "";
-        document.getElementById("rencanaPerjalanan").value = "";
+        carterFields.classList.add("hidden");
       }
-      
-      // Update penomoran section setelah City Tour
-      updateSectionNumbers(jenisLayanan);
-      
-      // Hitung harga
-      calculatePrice();
-    }
-
-    // Fungsi untuk mengupdate nomor section setelah City Tour
-    function updateSectionNumbers(jenisLayanan) {
-      // Section setelah City Tour akan diubah nomornya
-      const sections = document.querySelectorAll('.mb-8');
-      
-      let currentLetter = 'B'.charCodeAt(0); // Mulai dari B
-      
-      sections.forEach((section, index) => {
-        const letterDiv = section.querySelector('.w-8.h-8.bg-travellora-blue');
-        if (letterDiv) {
-          // Skip section A (jenis layanan)
-          if (index === 0) {
-            letterDiv.querySelector('span').textContent = 'A';
-          } else {
-            // Untuk layanan selain City Tour
-            if (jenisLayanan !== "City Tour") {
-              letterDiv.querySelector('span').textContent = String.fromCharCode(currentLetter);
-              currentLetter++;
-            } else {
-              // Untuk City Tour, section B adalah destinasi tour
-              if (section.id === "cityTourFields") {
-                letterDiv.querySelector('span').textContent = 'B';
-              } else {
-                // Section setelahnya dimulai dari C
-                letterDiv.querySelector('span').textContent = String.fromCharCode('C'.charCodeAt(0) + (index - 2));
-              }
-            }
-          }
-        }
-      });
     }
 
     // Fungsi untuk mengubah maksimal penumpang berdasarkan layanan
@@ -923,9 +791,7 @@
         jumlahPenumpangInput.max = maxPenumpang;
         
         // Update catatan
-        if (jenisLayanan === "City Tour") {
-          penumpangNote.textContent = `Maksimal ${maxPenumpang} penumpang untuk City Tour`;
-        } else if (hargaData[jenisLayanan].type === "mobil" || hargaData[jenisLayanan].type === "mobil_custom") {
+        if (hargaData[jenisLayanan].type === "mobil") {
           penumpangNote.textContent = `Maksimal ${maxPenumpang} penumpang untuk ${jenisLayanan} (harga mobil)`;
         } else if (hargaData[jenisLayanan].type === "per_item") {
           penumpangNote.textContent = "Jumlah paket";
@@ -945,7 +811,6 @@
       const jenisLayanan = document.getElementById("jenisLayanan").value;
       const rutePerjalanan = document.getElementById("rutePerjalanan").value;
       const jumlahPenumpang = parseInt(document.getElementById("jumlahPenumpang").value) || 1;
-      const destinasiTour = document.getElementById("destinasiTour")?.value || "";
       const priceDisplay = document.getElementById("priceDisplay");
       const totalPriceElement = document.getElementById("totalPrice");
       const priceDescription = document.getElementById("priceDescription");
@@ -954,7 +819,7 @@
       const priceTitle = document.getElementById("priceTitle");
       const paymentNote = document.getElementById("paymentNote");
 
-      if (!jenisLayanan) {
+      if (!jenisLayanan || !rutePerjalanan) {
         priceDisplay.classList.add("hidden");
         return;
       }
@@ -964,49 +829,19 @@
       let basePrice = 0;
       let pricingType = "per_orang";
       let maxPenumpang = 10;
-      let selectedDestination = "";
 
       if (serviceData) {
         pricingType = serviceData.type || "per_orang";
         maxPenumpang = serviceData.max_penumpang || 10;
-        
-        if (jenisLayanan === "City Tour") {
-          // Untuk City Tour, ambil harga berdasarkan destinasi yang dipilih
-          selectedDestination = destinasiTour;
-          // Hapus teks harga dari nilai untuk mendapatkan kunci yang benar
-          if (destinasiTour) {
-            const destinationKey = destinasiTour.split(" - ")[0];
-            basePrice = serviceData[destinasiTour] || serviceData[destinationKey] || 600000;
-          } else {
-            basePrice = 600000; // Harga default jika belum pilih destinasi
-          }
-        } else {
-          basePrice = serviceData[rutePerjalanan] || 0;
-        }
+        basePrice = serviceData[rutePerjalanan] || 0;
       }
 
-      // Tampilkan price display SELALU jika jenis layanan dipilih
+      // Tampilkan price display SELALU jika jenis layanan dan rute dipilih
       priceDisplay.classList.remove("hidden");
 
       // Tentukan cara kalkulasi berdasarkan tipe harga
-      if (jenisLayanan === "City Tour") {
-        // Untuk City Tour - harga berdasarkan destinasi
-        const total = basePrice;
-        const formattedPrice = new Intl.NumberFormat("id-ID", {
-          style: "currency",
-          currency: "IDR",
-          minimumFractionDigits: 0,
-        }).format(total);
-        
-        const displayDestination = selectedDestination || "Pilih destinasi di atas";
-        
-        totalPriceElement.textContent = formattedPrice;
-        priceDescription.textContent = `${jenisLayanan} - ${displayDestination}`;
-        pricePerPerson.textContent = `Harga untuk 1 mobil (maks ${maxPenumpang} penumpang)`;
-        priceNote.textContent = `✓ Harga sudah termasuk mobil + driver ✓ Cocok untuk wisata keluarga/grup ✓ Destinasi sesuai pilihan`;
-        priceTitle.textContent = "Harga City Tour";
-      } else if (pricingType === "mobil" || pricingType === "mobil_custom") {
-        // Untuk Carter Drop & Carter Full Day - harga mobil
+      if (pricingType === "mobil") {
+        // Untuk Carter & Travel Drop - harga mobil
         const total = basePrice;
         const formattedPrice = new Intl.NumberFormat("id-ID", {
           style: "currency",
@@ -1020,7 +855,7 @@
         if (serviceData.note) {
           priceNote.textContent = serviceData.note;
         }
-        priceTitle.textContent = "Harga Carter Mobil";
+        priceTitle.textContent = "Harga Mobil";
       } else if (pricingType === "per_item") {
         // Untuk Kirim Paket - per item
         const total = basePrice;
@@ -1082,7 +917,7 @@
             </div>
           </div>
         `;
-      } else if (metodePembayaran.value === "Transfer") {
+      } else if (metodePembayaran.value === "Transfer BCA") {
         paymentNote.classList.remove("hidden");
         paymentNote.innerHTML = `
           <div class="flex items-start">
@@ -1090,7 +925,7 @@
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
             </svg>
             <div>
-              <strong>Pembayaran Transfer:</strong> Silakan transfer sesuai total harga di atas ke rekening yang akan dikirim admin via WhatsApp.
+              <strong>Pembayaran Transfer BCA:</strong> Silakan transfer sesuai total harga di atas ke rekening BCA yang akan dikirim admin via WhatsApp.
             </div>
           </div>
         `;
@@ -1105,28 +940,82 @@
       mobileMenu.classList.toggle("hidden");
     }
 
-    // Fungsi untuk menampilkan/menyembunyikan field bandara
+    // Fungsi untuk menampilkan/menyembunyikan field bandara dan mengubah label
     function toggleBandaraFields() {
       const ruteSelect = document.getElementById("rutePerjalanan");
       const bandaraFields = document.getElementById("bandaraFields");
+      const jamPenerbanganLabel = document.getElementById("jamPenerbanganLabel");
       const selectedValue = ruteSelect.value;
 
       if (selectedValue.includes("Juanda")) {
         bandaraFields.classList.remove("hidden");
+        
+        // Tentukan label berdasarkan arah
+        if (selectedValue.includes("→ Juanda")) {
+          // Rute menuju Juanda: Jam Take Off
+          jamPenerbanganLabel.textContent = "Jam Take Off Pesawat";
+        } else {
+          // Rute dari Juanda: Jam Landing
+          jamPenerbanganLabel.textContent = "Jam Landing Pesawat";
+        }
       } else {
         bandaraFields.classList.add("hidden");
       }
     }
 
-    // Fungsi untuk menampilkan/menyembunyikan pilihan bank
+    // Fungsi untuk mengisi otomatis alamat tujuan jika rute menuju Juanda
+    function autoFillAlamatTujuan() {
+      const ruteSelect = document.getElementById("rutePerjalanan");
+      const alamatTujuan = document.getElementById("alamatTujuan");
+      const selectedValue = ruteSelect.value;
+
+      if (selectedValue.includes("→ Juanda")) {
+        // Isi otomatis dengan alamat Bandara Juanda
+        alamatTujuan.value = "Bandara Internasional Juanda, Surabaya";
+        alamatTujuan.readOnly = true;
+        alamatTujuan.style.backgroundColor = "#f0f9ff"; // Warna biru muda
+        alamatTujuan.style.cursor = "not-allowed";
+      } else {
+        // Reset ke normal
+        alamatTujuan.value = "";
+        alamatTujuan.readOnly = false;
+        alamatTujuan.style.backgroundColor = "";
+        alamatTujuan.style.cursor = "";
+        alamatTujuan.placeholder = "Detail alamat tujuan";
+      }
+    }
+
+    // Fungsi untuk update opsi jam keberangkatan berdasarkan rute
+    function updateJamKeberangkatanOptions() {
+      const ruteSelect = document.getElementById("rutePerjalanan");
+      const jamSelect = document.getElementById("jamKeberangkatan");
+      const selectedValue = ruteSelect.value;
+
+      // Reset opsi
+      jamSelect.innerHTML = '<option value="">Pilih Jam Keberangkatan</option>';
+
+      if (!selectedValue || !jadwalData[selectedValue]) {
+        return;
+      }
+
+      // Tambahkan opsi jam berdasarkan rute
+      jadwalData[selectedValue].forEach(jam => {
+        const option = document.createElement("option");
+        option.value = jam;
+        option.textContent = jam;
+        jamSelect.appendChild(option);
+      });
+    }
+
+    // Fungsi untuk menampilkan/menyembunyikan pilihan bank BCA
     function toggleBankSelection() {
       const transferRadio = document.getElementById("transfer");
-      const bankSelection = document.getElementById("bankSelection");
+      const bcaSelection = document.getElementById("bcaSelection");
 
       if (transferRadio.checked) {
-        bankSelection.classList.remove("hidden");
+        bcaSelection.classList.remove("hidden");
       } else {
-        bankSelection.classList.add("hidden");
+        bcaSelection.classList.add("hidden");
       }
       
       // Update catatan pembayaran
@@ -1146,6 +1035,7 @@
       // Ambil nilai dari form
       const formData = {
         jenisLayanan: document.getElementById("jenisLayanan").value,
+        rutePerjalanan: document.getElementById("rutePerjalanan").value,
         tanggalKeberangkatan: document.getElementById("tanggalKeberangkatan").value,
         jamKeberangkatan: document.getElementById("jamKeberangkatan").value,
         namaLengkap: document.getElementById("namaLengkap").value,
@@ -1157,25 +1047,26 @@
         metodePembayaran: document.querySelector('input[name="metodePembayaran"]:checked').value,
       };
 
-      // Tambahkan rute perjalanan atau destinasi tour
-      if (formData.jenisLayanan === "City Tour") {
-        formData.destinasiTour = document.getElementById("destinasiTour").value;
+      // Validasi rute perjalanan
+      if (!formData.rutePerjalanan) {
+        alert("Harap pilih rute perjalanan.");
+        return;
+      }
+
+      // Validasi jam keberangkatan
+      if (!formData.jamKeberangkatan) {
+        alert("Harap pilih jam keberangkatan.");
+        return;
+      }
+
+      // Tambahkan data carter jika jenis layanan Carter
+      if (formData.jenisLayanan === "Carter") {
         formData.rencanaPerjalanan = document.getElementById("rencanaPerjalanan").value;
-        formData.rutePerjalanan = "City Tour";
-        
-        // Validasi destinasi tour untuk City Tour
-        if (!formData.destinasiTour) {
-          alert("Harap pilih destinasi City Tour.");
-          return;
-        }
-      } else {
-        formData.rutePerjalanan = document.getElementById("rutePerjalanan").value;
-        
-        // Validasi rute perjalanan untuk layanan lain
-        if (!formData.rutePerjalanan) {
-          alert("Harap pilih rute perjalanan.");
-          return;
-        }
+      }
+
+      // Tambahkan data bank BCA jika transfer dipilih
+      if (formData.metodePembayaran === "Transfer BCA") {
+        formData.bank = "BCA";
       }
 
       // Hitung harga berdasarkan tipe layanan
@@ -1183,31 +1074,17 @@
       let basePrice = 0;
       let pricingType = "per_orang";
       let maxPenumpang = 10;
-      let destinationForPrice = "";
 
       if (serviceData) {
         pricingType = serviceData.type || "per_orang";
         maxPenumpang = serviceData.max_penumpang || 10;
-        
-        if (formData.jenisLayanan === "City Tour") {
-          // Untuk City Tour, ambil harga berdasarkan destinasi
-          destinationForPrice = formData.destinasiTour;
-          // Hapus teks harga dari nilai untuk mendapatkan kunci yang benar
-          if (destinationForPrice) {
-            const destinationKey = destinationForPrice.split(" - ")[0];
-            basePrice = serviceData[destinationForPrice] || serviceData[destinationKey] || 600000;
-          } else {
-            basePrice = 600000;
-          }
-        } else {
-          basePrice = serviceData[formData.rutePerjalanan] || 0;
-        }
+        basePrice = serviceData[formData.rutePerjalanan] || 0;
       }
 
       const jumlahPenumpang = parseInt(formData.jumlahPenumpang) || 1;
 
       // Validasi jumlah penumpang
-      if ((pricingType === "mobil" || pricingType === "mobil_custom") && jumlahPenumpang > maxPenumpang) {
+      if ((pricingType === "mobil") && jumlahPenumpang > maxPenumpang) {
         alert(`Jumlah penumpang maksimal untuk ${formData.jenisLayanan} adalah ${maxPenumpang} orang.`);
         return;
       }
@@ -1215,12 +1092,8 @@
       let totalHarga = 0;
       let hargaDisplay = "";
 
-      if (formData.jenisLayanan === "City Tour") {
-        // City Tour - harga berdasarkan destinasi
-        totalHarga = basePrice;
-        hargaDisplay = `Harga City Tour: Rp ${totalHarga.toLocaleString("id-ID")} (${destinationForPrice}, maks ${maxPenumpang} penumpang)`;
-      } else if (pricingType === "mobil" || pricingType === "mobil_custom") {
-        // Carter Drop/Full Day - harga mobil
+      if (pricingType === "mobil") {
+        // Carter & Travel Drop - harga mobil
         totalHarga = basePrice;
         hargaDisplay = `Harga Mobil: Rp ${totalHarga.toLocaleString("id-ID")} (maks ${maxPenumpang} penumpang)`;
       } else if (pricingType === "per_item") {
@@ -1238,25 +1111,18 @@
       formData.pricingType = pricingType;
       formData.maxPenumpang = maxPenumpang;
 
-      // Tambahkan pilihan bank jika transfer
-      if (formData.metodePembayaran === "Transfer") {
-        const selectedBank = document.querySelector('input[name="bank"]:checked');
-        const bankLainnya = document.getElementById("bankLainnya").value;
-
-        if (selectedBank) {
-          formData.bank = selectedBank.value;
-        } else if (bankLainnya) {
-          formData.bank = bankLainnya;
-        } else {
-          formData.bank = "Bank belum dipilih";
-        }
-      }
-
       // Tambahkan data bandara jika ada
       if (!document.getElementById("bandaraFields").classList.contains("hidden")) {
         formData.maskapai = document.getElementById("maskapai").value;
         formData.kodePenerbangan = document.getElementById("kodePenerbangan").value;
-        formData.jamLanding = document.getElementById("jamLanding").value;
+        formData.jamPenerbangan = document.getElementById("jamPenerbangan").value;
+        
+        // Tentukan jenis jam penerbangan
+        if (formData.rutePerjalanan.includes("→ Juanda")) {
+          formData.jenisJamPenerbangan = "Jam Take Off";
+        } else {
+          formData.jenisJamPenerbangan = "Jam Landing";
+        }
       }
 
       // Format tanggal untuk ditampilkan
@@ -1270,19 +1136,9 @@
       // Buat pesan untuk WhatsApp
       let message = `*FORM BOOKING UJS TRAVEL*%0A%0A`;
       message += `*Jenis Layanan:* ${formData.jenisLayanan}%0A`;
-      
-      if (formData.jenisLayanan === "City Tour") {
-        message += `*Destinasi Tour:* ${formData.destinasiTour || "-"}%0A`;
-        message += `*Rute:* City Tour%0A`;
-      } else {
-        message += `*Rute Perjalanan:* ${formData.rutePerjalanan}%0A`;
-      }
-      
+      message += `*Rute Perjalanan:* ${formData.rutePerjalanan}%0A`;
       message += `*Tanggal Keberangkatan:* ${formattedDate}%0A`;
-
-      if (formData.jamKeberangkatan) {
-        message += `*Jam Keberangkatan:* ${formData.jamKeberangkatan}%0A`;
-      }
+      message += `*Jam Keberangkatan:* ${formData.jamKeberangkatan}%0A`;
 
       message += `%0A*DATA PENUMPANG*%0A`;
       message += `Nama: ${formData.namaLengkap}%0A`;
@@ -1292,13 +1148,7 @@
       message += `Jumlah Penumpang: ${formData.jumlahPenumpang} orang%0A`;
 
       message += `%0A*RINCIAN HARGA*%0A`;
-      if (formData.jenisLayanan === "City Tour") {
-        message += `*Harga City Tour:* Rp ${formData.totalHarga.toLocaleString("id-ID")}%0A`;
-        message += `(Untuk maksimal ${formData.maxPenumpang} penumpang)%0A`;
-        if (formData.rencanaPerjalanan) {
-          message += `*Rencana Perjalanan:* ${formData.rencanaPerjalanan}%0A`;
-        }
-      } else if (formData.pricingType === "mobil" || formData.pricingType === "mobil_custom") {
+      if (formData.pricingType === "mobil") {
         message += `*Harga 1 Mobil:* Rp ${formData.totalHarga.toLocaleString("id-ID")}%0A`;
         message += `(Untuk maksimal ${formData.maxPenumpang} penumpang)%0A`;
       } else if (formData.pricingType === "per_item") {
@@ -1309,20 +1159,27 @@
       }
       message += `%0A`;
 
-      if (formData.maskapai) {
+      if (formData.maskapai || formData.kodePenerbangan || formData.jamPenerbangan) {
         message += `*DATA PENERBANGAN*%0A`;
         message += `Maskapai: ${formData.maskapai || "-"}%0A`;
         message += `Kode Penerbangan: ${formData.kodePenerbangan || "-"}%0A`;
-        message += `Jam Landing: ${formData.jamLanding || "-"}%0A`;
+        if (formData.jenisJamPenerbangan && formData.jamPenerbangan) {
+          message += `${formData.jenisJamPenerbangan}: ${formData.jamPenerbangan}%0A`;
+        }
+      }
+
+      if (formData.jenisLayanan === "Carter" && formData.rencanaPerjalanan) {
+        message += `%0A*RENCANA CARTER*%0A`;
+        message += `${formData.rencanaPerjalanan}%0A`;
       }
 
       message += `%0A*DATA TAMBAHAN*%0A`;
       message += `Barang Bawaan: ${formData.barangBawaan || "-"}%0A`;
       message += `Metode Pembayaran: ${formData.metodePembayaran}%0A`;
 
-      if (formData.metodePembayaran === "Transfer" && formData.bank) {
+      if (formData.metodePembayaran === "Transfer BCA") {
         message += `Bank: ${formData.bank}%0A`;
-        message += `*Silakan transfer ke rekening yang akan dikirim admin*%0A`;
+        message += `*Silakan transfer ke rekening BCA yang akan dikirim admin*%0A`;
       } else if (formData.metodePembayaran === "Cash ke Driver") {
         message += `*Bayar langsung ke driver saat penjemputan: Rp ${formData.totalHarga.toLocaleString("id-ID")}*%0A`;
       }
@@ -1348,20 +1205,122 @@
       }, 1500);
     }
 
+    // Fungsi untuk mengubah opsi rute berdasarkan jenis layanan
+    function updateRouteOptions() {
+      const jenisLayanan = document.getElementById("jenisLayanan").value;
+      const ruteSelect = document.getElementById("rutePerjalanan");
+
+      // Reset opsi
+      ruteSelect.innerHTML = '<option value="">Pilih Rute Perjalanan</option>';
+
+      if (!jenisLayanan) return;
+
+      if (jenisLayanan === "Travel Reguler") {
+        // Travel Reguler: semua rute
+        ruteSelect.innerHTML = `
+          <option value="">Pilih Rute Perjalanan</option>
+          <optgroup label="Rute Malang">
+            <option value="Malang → Juanda">Malang → Juanda</option>
+            <option value="Juanda → Malang">Juanda → Malang</option>
+            <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+            <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+            <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+            <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+          </optgroup>
+          <optgroup label="Rute Batu">
+            <option value="Batu → Juanda">Batu → Juanda</option>
+            <option value="Juanda → Batu">Juanda → Batu</option>
+            <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+            <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+            <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+            <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+          </optgroup>
+          <optgroup label="Daerah Abu-Abu (Malang Khusus)">
+            <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
+            <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
+            <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
+            <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
+            <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
+            <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
+            <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
+            <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
+          </optgroup>
+        `;
+      } else if (jenisLayanan === "Travel Drop" || jenisLayanan === "Carter") {
+        // Carter & Travel Drop: hanya rute tertentu
+        ruteSelect.innerHTML = `
+          <option value="">Pilih Rute Perjalanan</option>
+          <optgroup label="Rute Malang">
+            <option value="Malang → Juanda">Malang → Juanda</option>
+            <option value="Juanda → Malang">Juanda → Malang</option>
+            <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+            <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+            <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+            <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+          </optgroup>
+          <optgroup label="Rute Batu">
+            <option value="Batu → Juanda">Batu → Juanda</option>
+            <option value="Juanda → Batu">Juanda → Batu</option>
+            <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+            <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+            <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+            <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+          </optgroup>
+        `;
+      } else if (jenisLayanan === "Kirim Paket") {
+        // Kirim Paket: semua rute
+        ruteSelect.innerHTML = `
+          <option value="">Pilih Rute Perjalanan</option>
+          <optgroup label="Rute Malang">
+            <option value="Malang → Juanda">Malang → Juanda</option>
+            <option value="Juanda → Malang">Juanda → Malang</option>
+            <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+            <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+            <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+            <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+          </optgroup>
+          <optgroup label="Rute Batu">
+            <option value="Batu → Juanda">Batu → Juanda</option>
+            <option value="Juanda → Batu">Juanda → Batu</option>
+            <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+            <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+            <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+            <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+          </optgroup>
+          <optgroup label="Daerah Abu-Abu (Malang Khusus)">
+            <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
+            <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
+            <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
+            <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
+            <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
+            <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
+            <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
+            <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
+          </optgroup>
+        `;
+      }
+
+      // Reset value dan hitung ulang harga
+      ruteSelect.value = "";
+      calculatePrice();
+      updateJamKeberangkatanOptions();
+      autoFillAlamatTujuan(); // Panggil fungsi auto-fill
+    }
+
     // Set tanggal minimum untuk input tanggal (hari ini)
     const today = new Date().toISOString().split("T")[0];
     document.getElementById("tanggalKeberangkatan").min = today;
 
-    // Inisialisasi toggle
-    toggleCityTourFields();
+    // Inisialisasi
+    toggleCarterFields();
     toggleBandaraFields();
     toggleBankSelection();
+    updatePaymentNote();
 
-    // Tambahkan event listener untuk semua elemen yang mempengaruhi harga
+    // Tambahkan event listener
     document.getElementById("jumlahPenumpang").addEventListener("input", calculatePrice);
-    document.getElementById("jenisLayanan").addEventListener("change", toggleCityTourFields);
+    document.getElementById("jenisLayanan").addEventListener("change", toggleCarterFields);
     document.getElementById("jenisLayanan").addEventListener("change", toggleMaxPenumpang);
-    document.getElementById("destinasiTour").addEventListener("change", calculatePrice);
     document.getElementById("rutePerjalanan").addEventListener("change", calculatePrice);
     
     // Event listener untuk metode pembayaran
@@ -1426,188 +1385,6 @@
     document.querySelectorAll('.reveal').forEach(el => {
       revealObserver.observe(el);
     });
-
-    // Fungsi untuk mengubah opsi rute berdasarkan jenis layanan
-      function updateRouteOptions() {
-        const jenisLayanan = document.getElementById("jenisLayanan").value;
-        const ruteSelect = document.getElementById("rutePerjalanan");
-
-        // Reset opsi
-        ruteSelect.innerHTML = '<option value="">Pilih Rute Perjalanan</option>';
-
-        if (!jenisLayanan) return;
-
-        if (jenisLayanan === "Travel Reguler") {
-          // Travel Reguler: semua rute
-          ruteSelect.innerHTML = `
-      <option value="">Pilih Rute Perjalanan</option>
-      <optgroup label="Rute Malang">
-        <option value="Malang → Juanda">Malang → Juanda</option>
-        <option value="Juanda → Malang">Juanda → Malang</option>
-        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
-        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
-        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
-      </optgroup>
-      <optgroup label="Rute Batu">
-        <option value="Batu → Juanda">Batu → Juanda</option>
-        <option value="Juanda → Batu">Juanda → Batu</option>
-        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
-        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
-        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
-      </optgroup>
-      <optgroup label="Daerah Abu-Abu (Malang Khusus)">
-        <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
-        <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
-        <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
-        <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
-        <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
-        <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
-        <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
-        <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
-      </optgroup>
-    `;
-        } else if (jenisLayanan === "Travel Drop") {
-          // Carter Drop: hanya rute tertentu sesuai brosur
-          ruteSelect.innerHTML = `
-      <option value="">Pilih Rute Perjalanan</option>
-      <optgroup label="Rute Malang">
-        <option value="Malang → Juanda">Malang → Juanda</option>
-        <option value="Juanda → Malang">Juanda → Malang</option>
-        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
-        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
-        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
-      </optgroup>
-      <optgroup label="Rute Batu">
-        <option value="Batu → Juanda">Batu → Juanda</option>
-        <option value="Juanda → Batu">Juanda → Batu</option>
-        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
-        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
-        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
-      </optgroup>
-    `;
-        } else if (jenisLayanan === "Carter Full Day") {
-          // Carter Full Day: sama seperti Carter Drop
-          ruteSelect.innerHTML = `
-      <option value="">Pilih Rute Perjalanan</option>
-      <optgroup label="Rute Malang">
-        <option value="Malang → Juanda">Malang → Juanda</option>
-        <option value="Juanda → Malang">Juanda → Malang</option>
-        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
-        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
-        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
-      </optgroup>
-      <optgroup label="Rute Batu">
-        <option value="Batu → Juanda">Batu → Juanda</option>
-        <option value="Juanda → Batu">Juanda → Batu</option>
-        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
-        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
-        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
-      </optgroup>
-    `;
-        } else if (jenisLayanan === "Kirim Paket") {
-          // Kirim Paket: semua rute
-          ruteSelect.innerHTML = `
-      <option value="">Pilih Rute Perjalanan</option>
-      <optgroup label="Rute Malang">
-        <option value="Malang → Juanda">Malang → Juanda</option>
-        <option value="Juanda → Malang">Juanda → Malang</option>
-        <option value="Malang → SBY Kota">Malang → SBY Kota</option>
-        <option value="SBY Kota → Malang">SBY Kota → Malang</option>
-        <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
-      </optgroup>
-      <optgroup label="Rute Batu">
-        <option value="Batu → Juanda">Batu → Juanda</option>
-        <option value="Juanda → Batu">Juanda → Batu</option>
-        <option value="Batu → SBY Kota">Batu → SBY Kota</option>
-        <option value="SBY Kota → Batu">SBY Kota → Batu</option>
-        <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
-        <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
-      </optgroup>
-      <optgroup label="Daerah Abu-Abu (Malang Khusus)">
-        <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
-        <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
-        <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
-        <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
-        <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
-        <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
-        <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
-        <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
-      </optgroup>
-    `;
-        }
-
-        // Reset value dan hitung ulang harga
-        ruteSelect.value = "";
-        calculatePrice();
-      }
-
-      // Panggil fungsi saat jenis layanan berubah
-      document.getElementById("jenisLayanan").addEventListener("change", function () {
-        updateRouteOptions();
-        toggleCityTourFields();
-        toggleMaxPenumpang();
-      });
-
-      // Tambahkan juga di fungsi toggleCityTourFields untuk memanggil updateRouteOptions
-      function toggleCityTourFields() {
-        const jenisLayanan = document.getElementById("jenisLayanan").value;
-        const cityTourFields = document.getElementById("cityTourFields");
-        const sectionBRute = document.getElementById("sectionBRute");
-        const bandaraFields = document.getElementById("bandaraFields");
-
-        // Reset semua fields bandara
-        document.getElementById("maskapai").value = "";
-        document.getElementById("kodePenerbangan").value = "";
-        document.getElementById("jamLanding").value = "";
-
-        if (jenisLayanan === "City Tour") {
-          // Tampilkan field City Tour (Section B untuk City Tour)
-          cityTourFields.classList.remove("hidden");
-
-          // Sembunyikan Section B (Rute Perjalanan biasa)
-          sectionBRute.classList.add("hidden");
-
-          // Sembunyikan field bandara
-          bandaraFields.classList.add("hidden");
-
-          // Atur placeholder untuk alamat tujuan
-          document.getElementById("alamatTujuan").placeholder = "Area/wilayah tujuan tour (contoh: Kota Malang, Batu, Bromo, dll.)";
-
-        } else {
-          // Sembunyikan field City Tour
-          cityTourFields.classList.add("hidden");
-
-          // Tampilkan Section B (Rute Perjalanan biasa)
-          sectionBRute.classList.remove("hidden");
-
-          // Kembalikan placeholder alamat tujuan
-          document.getElementById("alamatTujuan").placeholder = "Detail alamat tujuan";
-
-          // Reset destinasi tour
-          if (document.getElementById("destinasiTour")) {
-            document.getElementById("destinasiTour").value = "";
-          }
-          if (document.getElementById("rencanaPerjalanan")) {
-            document.getElementById("rencanaPerjalanan").value = "";
-          }
-
-          // Update opsi rute berdasarkan jenis layanan
-          updateRouteOptions();
-        }
-
-        // Update penomoran section setelah City Tour
-        updateSectionNumbers(jenisLayanan);
-
-        // Hitung harga
-        calculatePrice();
-      }
   </script>
 </body>
 </html>
