@@ -220,7 +220,7 @@
           Form Booking UJS Travel
         </h1>
         <p class="text-lg text-travellora-gray">
-          Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan terpercaya.
+          Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan terbaik.
         </p>
       </div>
 
@@ -489,15 +489,15 @@
                 <div class="flex items-center">
                   <input type="radio" id="transfer" name="metodePembayaran" value="Transfer BCA"
                     class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300" checked
-                    onchange="toggleBankSelection(); updatePaymentNote();" />
+                    required onchange="toggleBankSelection()" />
                   <label for="transfer" class="ml-3 block text-gray-700 font-medium">
-                    Transfer BCA
+                    Transfer BCA (Rekomendasi)
                   </label>
                 </div>
                 <div class="flex items-center">
                   <input type="radio" id="cash" name="metodePembayaran" value="Cash ke Driver"
-                    class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300"
-                    onchange="toggleBankSelection(); updatePaymentNote();" />
+                    class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300" required
+                    onchange="toggleBankSelection()" />
                   <label for="cash" class="ml-3 block text-gray-700 font-medium">
                     Cash ke Driver
                   </label>
@@ -505,25 +505,24 @@
               </div>
             </div>
 
-            <!-- Box BCA (muncul jika transfer dipilih) -->
-            <div id="bcaSelection" class="mt-4 p-4 bg-gray-50 rounded-lg">
-              <label class="block text-gray-700 font-medium mb-3">
-                Transfer ke Bank BCA
-              </label>
-              <div class="flex flex-col items-center">
-                <div>
-                  <input type="radio" id="bca" name="bank" value="BCA" class="hidden peer" checked>
-                  <label for="bca"
-                    class="flex flex-col items-center p-4 bg-white border-2 border-gray-300 rounded-lg cursor-pointer peer-checked:border-travellora-blue peer-checked:bg-blue-50 transition-colors">
-                    <div class="mb-3">
-                      <div class="w-40 h-20 flex items-center justify-center">
-                        <!-- Logo BCA -->
-                        <img src="img/bca.svg" alt="Logo BCA" class="bank-logo w-full h-full object-contain">
-                      </div>
-                    </div>
-                    <div class="text-sm font-bold text-center text-gray-800">BANK CENTRAL ASIA</div>
-                    <div class="text-xs text-gray-600 text-center mt-1">Rekening akan dikirim via WhatsApp</div>
+            <!-- Box BCA -->
+            <div id="bcaSelection" class="mt-4 p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <div class="flex flex-col items-center text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="BCA" class="h-8 mb-4">
+                <div class="bg-white px-6 py-4 rounded-lg shadow-sm border border-blue-100 mb-4 w-full max-w-xs">
+                  <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Nomor Rekening</p>
+                  <p class="text-2xl font-bold text-blue-900 tracking-widest">8160808935</p>
+                  <p class="text-sm font-medium text-blue-700 mt-1">A/N Amir Dewantoro St</p>
+                </div>
+
+                <div class="w-full text-left">
+                  <label class="block text-sm font-bold text-gray-700 mb-2">
+                    Upload Bukti Transfer <span class="text-red-500">*</span>
                   </label>
+                  <input type="file" id="buktiTransfer" name="buktiTransfer" accept="image/*"
+                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-travellora-blue file:text-white hover:file:bg-blue-700 cursor-pointer"
+                    required />
+                  <p class="text-[10px] text-gray-500 mt-2">Format: JPG, PNG, atau JPEG. Maksimal 2MB.</p>
                 </div>
               </div>
             </div>
@@ -547,26 +546,21 @@
           </div>
 
           <!-- Catatan dan Ketentuan -->
-          <div class="mb-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+          <div class="mb-8 p-5 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg shadow-sm">
             <div class="flex">
               <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clip-rule="evenodd" />
+                <svg class="h-6 w-6 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
                 </svg>
               </div>
-              <div class="ml-3">
-                <p class="text-sm text-gray-700">
-                  <strong>Ketentuan Reservasi:</strong><br />
-                  • Pembatalan kurang dari 6 jam dikenakan charge full<br />
-                  • Maksimal bagasi 1 koper + 1 tas ransel<br />
-
-                  • <strong>Travel Drop/Carter:</strong> harga mobil, bukan per orang (maks 5 penumpang)<br />
-                  • <strong>Jadwal Keberangkatan:</strong><br />
-                  &nbsp;&nbsp;• Dari Malang: 01.00 - 15.00<br />
-                  &nbsp;&nbsp;• Dari Surabaya/Juanda: 06.00 - 21.00
-                </p>
+              <div class="ml-4">
+                <h4 class="text-sm font-bold text-yellow-800 uppercase tracking-wider mb-2">Ketentuan Reservasi:</h4>
+                <ol class="text-sm text-yellow-900 space-y-1 list-decimal ml-4">
+                  <li>Pembatalan Reservasi Kurang Dari 6 Jam Kena charge Full.</li>
+                  <li>Maksimal bagasi 1 koper dan 1 Tas ransel.</li>
+                  <li>Tidak membawa hewan peliharaan.</li>
+                  <li>Tidak membawa durian.</li>
+                </ol>
               </div>
             </div>
           </div>
@@ -635,7 +629,7 @@
             </div>
           </div>
           <p class="text-blue-100 mb-6 leading-relaxed text-justify">
-            Perusahaan travel terpercaya di Kota Malang dengan crew profesional
+            Perusahaan travel terbaik di Kota Malang dengan crew profesional
             yang siap melayani segala kebutuhan perjalanan Anda. Berpengalaman sejak
             2011 dalam memberikan layanan transportasi yang nyaman, aman, dan tepat waktu.
           </p>
@@ -663,8 +657,8 @@
               </svg>
               <div>
                 <div class="text-white font-semibold">Email</div>
-                <a href="mailto:info@ujstravel.com"
-                  class="text-blue-100 hover:text-white transition-colors">info@ujstravel.com</a>
+                <a href="mailto:ujs.tourandtravel18@gmail.com"
+                  class="text-blue-100 hover:text-white transition-colors">ujs.tourandtravel18@gmail.com</a>
               </div>
             </div>
             <div class="flex items-start">
@@ -818,7 +812,7 @@
 
       <!-- Copyright & Additional Info -->
       <div class="border-t border-blue-400 border-opacity-30 mt-12 pt-8 text-center">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <div class="text-blue-100 font-semibold mb-2">Pembayaran</div>
             <div class="text-blue-100 text-sm">Transfer Bank BCA dan CASH</div>
@@ -827,10 +821,7 @@
             <div class="text-blue-100 font-semibold mb-2">Armada</div>
             <div class="text-blue-100 text-sm">Toyota Avanza dan Sienta</div>
           </div>
-          <div>
-            <div class="text-blue-100 font-semibold mb-2">Sertifikasi</div>
-            <div class="text-blue-100 text-sm">Izin Operasi Resmi, Asuransi Penumpang</div>
-          </div>
+
         </div>
 
         <p class="text-blue-100">
@@ -1110,19 +1101,7 @@
         return;
       }
 
-      if (metodePembayaran.value === "Cash ke Driver") {
-        paymentNote.classList.remove("hidden");
-        paymentNote.innerHTML = `
-          <div class="flex items-start">
-            <svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-            </svg>
-            <div>
-              <strong>Pembayaran Cash ke Driver:</strong> Bayar langsung ke driver saat penjemputan dengan uang tunai sesuai total harga di atas.
-            </div>
-          </div>
-        `;
-      } else if (metodePembayaran.value === "Transfer BCA") {
+      if (metodePembayaran.value === "Transfer BCA") {
         paymentNote.classList.remove("hidden");
         paymentNote.innerHTML = `
           <div class="flex items-start">
@@ -1130,7 +1109,19 @@
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
             </svg>
             <div>
-              <strong>Pembayaran Transfer BCA:</strong> Silakan transfer sesuai total harga di atas ke rekening BCA yang akan dikirim admin via WhatsApp.
+              <strong>Pembayaran Transfer BCA:</strong> Silakan transfer sesuai total harga di atas ke rekening BCA yang tercantum.
+            </div>
+          </div>
+        `;
+      } else if (metodePembayaran.value === "Cash ke Driver") {
+        paymentNote.classList.remove("hidden");
+        paymentNote.innerHTML = `
+          <div class="flex items-start">
+            <svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <strong>Pembayaran Cash ke Driver:</strong> Silakan bayar tunai ke driver saat penjemputan/tiba di tujuan sesuai total harga.
             </div>
           </div>
         `;
@@ -1216,11 +1207,14 @@
     function toggleBankSelection() {
       const transferRadio = document.getElementById("transfer");
       const bcaSelection = document.getElementById("bcaSelection");
+      const buktiTransferInput = document.getElementById("buktiTransfer");
 
       if (transferRadio.checked) {
         bcaSelection.classList.remove("hidden");
+        buktiTransferInput.required = true;
       } else {
         bcaSelection.classList.add("hidden");
+        buktiTransferInput.required = false;
       }
 
       // Update catatan pembayaran
@@ -1271,7 +1265,7 @@
 
       // Tambahkan data bank BCA jika transfer dipilih
       if (formData.metodePembayaran === "Transfer BCA") {
-        formData.bank = "BCA";
+        formData.bank = "BCA (8160808935 a/n Amir Dewantoro St)";
       }
 
       // Hitung harga berdasarkan tipe layanan
@@ -1384,9 +1378,7 @@
 
       if (formData.metodePembayaran === "Transfer BCA") {
         message += `Bank: ${formData.bank}%0A`;
-        message += `*Silakan transfer ke rekening BCA yang akan dikirim admin*%0A`;
-      } else if (formData.metodePembayaran === "Cash ke Driver") {
-        message += `*Bayar langsung ke driver saat penjemputan: Rp ${formData.totalHarga.toLocaleString("id-ID")}*%0A`;
+        message += `*Bukti transfer telah dilampirkan di form (Mohon kirimkan ulang gambar bukti transfer di chat ini)*%0A`;
       }
 
       message += `%0A---%0A`;
