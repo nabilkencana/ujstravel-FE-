@@ -1139,19 +1139,24 @@
 
           scheduleList.innerHTML = `
             <div class="col-span-full overflow-x-auto">
-              <table class="w-full text-left text-xs border-collapse">
+              <table class="w-full text-left text-[10px] sm:text-xs border-collapse">
                 <thead>
-                  <tr class="bg-blue-50">
-                    <th class="p-2 border font-bold">Jadwal</th>
-                    <th class="p-2 border font-bold">Domestik</th>
-                    <th class="p-2 border font-bold">Internasional</th>
+                  <tr class="bg-blue-600 text-white">
+                    <th class="p-2 border border-blue-700 font-bold">Sesi</th>
+                    <th class="p-2 border border-blue-700 font-bold text-center">Jadwal Travel</th>
+                    <th class="p-2 border border-blue-700 font-bold text-center">Pesawat (Domestik)</th>
+                    <th class="p-2 border border-blue-700 font-bold text-center">Pesawat (Internasional)</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr><td class="p-2 border">Dini Hari</td><td class="p-2 border">01.00 - 02.00</td><td class="p-2 border">23.00 - 00.00</td></tr>
-                  <tr><td class="p-2 border">Pagi</td><td class="p-2 border">03.00 - 09.00</td><td class="p-2 border">01.00 - 07.00</td></tr>
-                  <tr><td class="p-2 border">Siang</td><td class="p-2 border">10.00 - 14.00</td><td class="p-2 border">08.00 - 12.00</td></tr>
-                  <tr><td class="p-2 border">Sore</td><td class="p-2 border">15.00 - 17.00</td><td class="p-2 border">13.00 - 15.00</td></tr>
+                <tbody class="bg-white">
+                  <tr><td class="p-2 border font-medium">Dini Hari</td><td class="p-2 border text-center text-blue-700 font-bold">✓ 01:00</td><td class="p-2 border text-center">05:00 - 06:00</td><td class="p-2 border text-center">06:00 - 07:00</td></tr>
+                  <tr><td class="p-2 border font-medium"></td><td class="p-2 border text-center text-blue-700 font-bold">✓ 03:00</td><td class="p-2 border text-center">06:00 - 08:00</td><td class="p-2 border text-center">07:00 - 09:00</td></tr>
+                  <tr><td class="p-2 border font-medium bg-gray-50">Pagi</td><td class="p-2 border text-center text-blue-700 font-bold bg-gray-50">✓ 05:00</td><td class="p-2 border text-center bg-gray-50">09:00 - 10:00</td><td class="p-2 border text-center bg-gray-50">10:00 - 11:00</td></tr>
+                  <tr><td class="p-2 border font-medium"></td><td class="p-2 border text-center text-blue-700 font-bold">✓ 07:00</td><td class="p-2 border text-center">11:00 - 12:00</td><td class="p-2 border text-center">12:00 - 13:00</td></tr>
+                  <tr><td class="p-2 border font-medium"></td><td class="p-2 border text-center text-blue-700 font-bold">✓ 09:00</td><td class="p-2 border text-center">13:00 - 14:00</td><td class="p-2 border text-center">14:00 - 15:00</td></tr>
+                  <tr><td class="p-2 border font-medium bg-gray-50">Siang</td><td class="p-2 border text-center text-blue-700 font-bold bg-gray-50">✓ 11:00</td><td class="p-2 border text-center bg-gray-50">15:00 - 16:00</td><td class="p-2 border text-center bg-gray-50">16:00 - 17:00</td></tr>
+                  <tr><td class="p-2 border font-medium"></td><td class="p-2 border text-center text-blue-700 font-bold">✓ 13:00</td><td class="p-2 border text-center">17:00 - 18:00</td><td class="p-2 border text-center">18:00 - 19:00</td></tr>
+                  <tr><td class="p-2 border font-medium bg-gray-50">Sore</td><td class="p-2 border text-center text-blue-700 font-bold bg-gray-50">✓ 15:00</td><td class="p-2 border text-center bg-gray-50">19:00 - 20:00</td><td class="p-2 border text-center bg-gray-50">20:00 - 21:00</td></tr>
                 </tbody>
               </table>
             </div>
