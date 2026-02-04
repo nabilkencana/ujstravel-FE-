@@ -220,7 +220,7 @@
           Form Booking UJS Travel
         </h1>
         <p class="text-lg text-travellora-gray">
-          Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan terpercaya.
+          Pesan travel Malang – Juanda – Surabaya dengan mudah, cepat, dan terbaik.
         </p>
       </div>
 
@@ -489,9 +489,17 @@
                 <div class="flex items-center">
                   <input type="radio" id="transfer" name="metodePembayaran" value="Transfer BCA"
                     class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300" checked
-                    required />
+                    required onchange="toggleBankSelection()" />
                   <label for="transfer" class="ml-3 block text-gray-700 font-medium">
-                    Transfer BCA (Khusus)
+                    Transfer BCA (Rekomendasi)
+                  </label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="cash" name="metodePembayaran" value="Cash ke Driver"
+                    class="h-5 w-5 text-travellora-blue focus:ring-travellora-blue border-gray-300" required
+                    onchange="toggleBankSelection()" />
+                  <label for="cash" class="ml-3 block text-gray-700 font-medium">
+                    Cash ke Driver
                   </label>
                 </div>
               </div>
@@ -807,7 +815,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <div class="text-blue-100 font-semibold mb-2">Pembayaran</div>
-            <div class="text-blue-100 text-sm">Transfer Bank BCA</div>
+            <div class="text-blue-100 text-sm">Transfer Bank BCA dan CASH</div>
           </div>
           <div>
             <div class="text-blue-100 font-semibold mb-2">Armada</div>
@@ -1105,6 +1113,18 @@
             </div>
           </div>
         `;
+      } else if (metodePembayaran.value === "Cash ke Driver") {
+        paymentNote.classList.remove("hidden");
+        paymentNote.innerHTML = `
+          <div class="flex items-start">
+            <svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <strong>Pembayaran Cash ke Driver:</strong> Silakan bayar tunai ke driver saat penjemputan/tiba di tujuan sesuai total harga.
+            </div>
+          </div>
+        `;
       } else {
         paymentNote.classList.add("hidden");
       }
@@ -1187,11 +1207,14 @@
     function toggleBankSelection() {
       const transferRadio = document.getElementById("transfer");
       const bcaSelection = document.getElementById("bcaSelection");
+      const buktiTransferInput = document.getElementById("buktiTransfer");
 
       if (transferRadio.checked) {
         bcaSelection.classList.remove("hidden");
+        buktiTransferInput.required = true;
       } else {
         bcaSelection.classList.add("hidden");
+        buktiTransferInput.required = false;
       }
 
       // Update catatan pembayaran
