@@ -1225,7 +1225,7 @@
     }
 
     // Fungsi untuk submit form dan redirect ke WhatsApp
-    function submitBooking(event) {
+    async function submitBooking(event) {
       event.preventDefault();
 
       // Validasi form
@@ -1261,6 +1261,42 @@
         return;
       }
 
+      // Tampilkan loading state
+      const submitBtn = document.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="flex items-center justify-center"><svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Memproses...</span>';
+      submitBtn.disabled = true;
+
+      // Handle Image Upload jika transfer BCA
+      let buktiTransferUrl = "";
+      const imageFile = document.getElementById("buktiTransfer").files[0];
+
+      if (formData.metodePembayaran === "Transfer BCA" && imageFile) {
+        // KONFIGURASI API KEY IMGBB
+        // Silakan ganti "YOUR_IMGBB_API_KEY_HERE" dengan API Key Anda sendiri dari https://api.imgbb.com/
+        const IMGBB_API_KEY = "97cb68be4bb10cb7bb8519eefdba494e";
+
+        if (IMGBB_API_KEY !== "97cb68be4bb10cb7bb8519eefdba494e") {
+          try {
+            const uploadData = new FormData();
+            uploadData.append("image", imageFile);
+
+            const uploadResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+              method: "POST",
+              body: uploadData
+            });
+
+            const uploadResult = await uploadResponse.json();
+            if (uploadResult.success) {
+              buktiTransferUrl = uploadResult.data.url;
+            }
+          } catch (error) {
+            console.error("Gagal mengupload gambar:", error);
+            // Tetap lanjut meskipun upload gagal
+          }
+        }
+      }
+
       // Tambahkan data carter jika jenis layanan Carter
       if (formData.jenisLayanan === "Carter") {
         formData.rencanaPerjalanan = document.getElementById("rencanaPerjalanan").value;
@@ -1288,6 +1324,8 @@
       // Validasi jumlah penumpang
       if ((pricingType === "mobil") && jumlahPenumpang > maxPenumpang) {
         alert(`Jumlah penumpang maksimal untuk ${formData.jenisLayanan} adalah ${maxPenumpang} orang.`);
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
         return;
       }
 
@@ -1381,7 +1419,11 @@
 
       if (formData.metodePembayaran === "Transfer BCA") {
         message += `Bank: ${formData.bank}%0A`;
-        message += `*Bukti transfer telah dilampirkan di form (Mohon kirimkan ulang gambar bukti transfer di chat ini)*%0A`;
+        if (buktiTransferUrl) {
+          message += `*Link Bukti Transfer:* ${buktiTransferUrl}%0A`;
+        } else {
+          message += `*Bukti transfer telah dilampirkan di form (Mohon kirimkan ulang gambar bukti transfer di chat ini)*%0A`;
+        }
       }
 
       message += `%0A---%0A`;
@@ -1391,18 +1433,10 @@
       const phoneNumber = "6282316290290";
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
-      // Tampilkan loading
-      const submitBtn = document.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<span class="flex items-center justify-center"><svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Mengirim...</span>';
-      submitBtn.disabled = true;
-
-      // Tunggu 1.5 detik kemudian redirect
-      setTimeout(() => {
-        window.open(whatsappUrl, "_blank");
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }, 1500);
+      // Selesai memproses
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+      window.open(whatsappUrl, "_blank");
     }
 
     // Fungsi untuk mengubah opsi rute berdasarkan jenis layanan
