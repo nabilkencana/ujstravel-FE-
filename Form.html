@@ -1244,6 +1244,11 @@
     async function submitBooking(event) {
       event.preventDefault();
 
+      const transferRadio = document.getElementById("transfer");
+      if (transferRadio && transferRadio.checked && !GOOGLE_SCRIPT_URL) {
+        console.warn("Peringatan: GOOGLE_SCRIPT_URL belum diisi. Gambar tidak akan tersimpan ke Google Drive. Silakan ikuti panduan di gas-setup.md.");
+      }
+
       // Validasi form
       if (!document.getElementById("persetujuan").checked) {
         alert("Harap setujui syarat dan ketentuan terlebih dahulu.");

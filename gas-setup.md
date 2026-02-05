@@ -60,4 +60,7 @@ function doPost(e) {
 3. Tempelkan URL yang sudah Anda salin tadi di antara tanda kutip:
    `const GOOGLE_SCRIPT_URL = "URL_HASIL_DEPLOY_ANDA";`
 
-Selesai! Sekarang bukti transfer yang diunggah akan langsung tersimpan di Google Drive Anda.
+## Dimana Filenya Tersimpan?
+- **Lokasi Default:** Secara default, file akan tersimpan di halaman depan (**Root**) Google Drive Anda.
+- **Kustomisasi:** Jika ingin menyimpan di folder tertentu, masukkan ID folder tersebut ke variabel `folderId` di dalam kode Google Apps Script di atas.
+- **Akses:** Script ini otomatis mengatur file menjadi "Anyone with link can view", sehingga Admin bisa melihat bukti transfer melalui link yang dikirim ke WhatsApp.
