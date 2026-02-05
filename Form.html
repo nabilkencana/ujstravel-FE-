@@ -853,6 +853,22 @@
   </div>
 
   <script>
+    // --- KONFIGURASI UPLOAD ---
+    // Ganti dengan URL Google Apps Script Anda (lihat gas-setup.md)
+    const GOOGLE_SCRIPT_URL = "";
+
+    // Ganti dengan API Key ImgBB Anda (opsional, sebagai fallback)
+    const IMGBB_API_KEY = "97cb68be4bb10cb7bb8519eefdba494e";
+    // --------------------------
+
+    // Helper function untuk konversi file ke base64
+    const toBase64 = file => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+
     // Data harga untuk setiap layanan dan rute
     const hargaData = {
       "Travel Reguler": {
@@ -1272,11 +1288,33 @@
       const imageFile = document.getElementById("buktiTransfer").files[0];
 
       if (formData.metodePembayaran === "Transfer BCA" && imageFile) {
-        // KONFIGURASI API KEY IMGBB
-        // Silakan ganti "YOUR_IMGBB_API_KEY_HERE" dengan API Key Anda sendiri dari https://api.imgbb.com/
-        const IMGBB_API_KEY = "97cb68be4bb10cb7bb8519eefdba494e";
+        // 1. Coba upload ke Google Drive (Prioritas Utama)
+        if (GOOGLE_SCRIPT_URL) {
+          try {
+            const base64 = await toBase64(imageFile);
+            const uploadResponse = await fetch(GOOGLE_SCRIPT_URL, {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "text/plain;charset=utf-8",
+              },
+              body: JSON.stringify({
+                file: base64.split(",")[1],
+                fileName: imageFile.name,
+                mimeType: imageFile.type,
+              }),
+            });
+            const uploadResult = await uploadResponse.json();
+            if (uploadResult.success) {
+              buktiTransferUrl = uploadResult.url;
+            }
+          } catch (error) {
+            console.error("Gagal mengupload ke Google Drive:", error);
+          }
+        }
 
-        if (IMGBB_API_KEY !== "97cb68be4bb10cb7bb8519eefdba494e") {
+        // 2. Fallback ke ImgBB jika Google Drive gagal/tidak dikonfigurasi
+        if (!buktiTransferUrl && IMGBB_API_KEY && IMGBB_API_KEY !== "PASTE_YOUR_IMGBB_API_KEY_HERE") {
           try {
             const uploadData = new FormData();
             uploadData.append("image", imageFile);
@@ -1291,8 +1329,7 @@
               buktiTransferUrl = uploadResult.data.url;
             }
           } catch (error) {
-            console.error("Gagal mengupload gambar:", error);
-            // Tetap lanjut meskipun upload gagal
+            console.error("Gagal mengupload ke ImgBB:", error);
           }
         }
       }
