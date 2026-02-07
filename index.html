@@ -878,7 +878,7 @@
                       d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                       clip-rule="evenodd"></path>
                   </svg>
-                  <span id="info-text">Jadwal armada keluar dari Pool / Garasi. Estimasi perjalanan 1.5 - 2 jam.</span>
+                  <span id="info-text">Jadwal armada keluar dari Pool / Garasi.</span>
                 </p>
               </div>
             </div>
@@ -1241,7 +1241,7 @@
             { time: "15.00", domestic: "18.30 -", international: "19.30 -" }
           ],
           type: "departure_juanda_table",
-          info: "Jadwal keberangkatan dari Malang ke Juanda. Estimasi perjalanan 2-3 jam tergantung kondisi lalu lintas."
+          info: "Jadwal keberangkatan dari Malang ke Juanda."
         },
         "Juanda → Malang": {
           reguler: 150000,
@@ -1265,7 +1265,7 @@
             { landing: "21.00 - 22.00", departure: "22.00 - 23.00" }
           ],
           type: "juanda_format",
-          info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Malang. Perjalanan sekitar 2-3 jam."
+          info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Malang."
         },
         "Malang → SBY Kota": {
           reguler: 165000,
@@ -1295,7 +1295,7 @@
               { time: "15:00", range: "17:30 - 18:30" }
             ]
           },
-          info: "Jadwal keberangkatan dari Malang ke Surabaya Kota. Estimasi perjalanan 2-3 jam."
+          info: "Jadwal keberangkatan dari Malang ke Surabaya Kota."
         },
         "SBY Kota → Malang": {
           reguler: 165000,
@@ -1325,7 +1325,7 @@
               { time: "20:00", range: "22:00 - 23:30" }
             ]
           },
-          info: "Surabaya Kota → Malang. Estimasi penjemputan dan kedatangan sesuai dengan waktu yang dipilih."
+          info: "Surabaya Kota → Malang."
         },
         "Malang → SBY Utara / SBY Barat / Perak": {
           reguler: 180000,
@@ -1355,7 +1355,7 @@
               { time: "15:00", range: "17:30 - 18:30" }
             ]
           },
-          info: "Jadwal keberangkatan dari Malang ke Perak. Estimasi perjalanan 2-3 jam."
+          info: "Jadwal keberangkatan dari Malang ke Perak."
         },
         "SBY Utara / SBY Barat / Perak → Malang": {
           reguler: 180000,
@@ -1385,7 +1385,7 @@
               { time: "20:00", range: "22:00 - 23:30" }
             ]
           },
-          info: "Perak → Malang. Estimasi penjemputan dan kedatangan sesuai dengan waktu yang dipilih."
+          info: "Perak → Malang."
         },
 
         // Rute Batu
@@ -1403,7 +1403,7 @@
             { time: "15.00", domestic: "18.30 -", international: "19.30 -" }
           ],
           type: "departure_juanda_table",
-          info: "Jadwal keberangkatan dari Batu ke Juanda. Estimasi perjalanan 2-3 jam tergantung kondisi lalu lintas."
+          info: "Jadwal keberangkatan dari Batu ke Juanda."
         },
         "Juanda → Batu": {
           reguler: 170000,
@@ -1427,7 +1427,7 @@
             { landing: "21.00 - 22.00", departure: "22.00 - 23.00" }
           ],
           type: "juanda_format",
-          info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Batu. Perjalanan sekitar 2-3 jam."
+          info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Batu."
         },
         "Batu → SBY Kota": {
           reguler: 180000,
@@ -1457,7 +1457,7 @@
               { time: "15:00", range: "17:30 - 18:30" }
             ]
           },
-          info: "Jadwal keberangkatan dari Batu ke Surabaya Kota. Estimasi perjalanan 2-3 jam."
+          info: "Jadwal keberangkatan dari Batu ke Surabaya Kota."
         },
         "SBY Kota → Batu": {
           reguler: 180000,
@@ -1487,7 +1487,7 @@
               { time: "20:00", range: "22:00 - 23:30" }
             ]
           },
-          info: "Surabaya Kota → Batu. Estimasi penjemputan dan kedatangan sesuai dengan waktu yang dipilih."
+          info: "Surabaya Kota → Batu."
         },
         "Batu → SBY Utara / SBY Barat / Perak": {
           reguler: 200000,
@@ -1517,7 +1517,7 @@
               { time: "15:00", range: "17:30 - 18:30" }
             ]
           },
-          info: "Jadwal keberangkatan dari Batu ke Perak. Estimasi perjalanan 2-3 jam."
+          info: "Jadwal keberangkatan dari Batu ke Perak."
         },
         "SBY Utara / SBY Barat / Perak → Batu": {
           reguler: 200000,
@@ -1547,7 +1547,7 @@
               { time: "20:00", range: "22:00 - 23:30" }
             ]
           },
-          info: "Perak → Batu. Estimasi penjemputan dan kedatangan sesuai dengan waktu yang dipilih."
+          info: "Perak → Batu."
         }
       };
 
@@ -1580,7 +1580,7 @@
 
         // Render berdasarkan tipe data
         if (data.type === 'departure_juanda_table') {
-          titleText.textContent = `Jadwal Keberangkatan ${selectedValue.includes('Malang') ? 'Malang' : 'Batu'} → Juanda`;
+          titleText.textContent = "Jam Keberangkatan";
           infoText.textContent = data.info;
 
           scheduleList.innerHTML = `
@@ -1624,94 +1624,56 @@
             </div>
           `;
         } else if (data.type === 'departure_dual_column') {
-          titleText.textContent = `Jadwal Keberangkatan ${data.origin} → ${data.destination}`;
+          titleText.textContent = "Jam Keberangkatan";
           infoText.textContent = data.info;
 
           scheduleList.innerHTML = `
-            <div class="animate-fade-in dual-column-layout">
-              <!-- Kolom Kiri: Estimasi Keberangkatan -->
+            <div class="animate-fade-in">
+              <!-- Kolom: Jam Keberangkatan -->
               <div class="column-section">
-                <div class="column-header">Estimasi Keberangkatan</div>
-                ${data.schedule.departure.map(item => `
-                  <div class="schedule-item">
-                    <span class="time-badge">${item.time}</span>
-                    <span class="time-label">Est Keberangkatan</span>
-                    <span class="time-range">${item.range}</span>
-                  </div>
-                `).join('')}
+                <div class="column-header">Jam Keberangkatan</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  ${data.schedule.departure.map(item => `
+                    <div class="schedule-item mb-0">
+                      <span class="time-badge">${item.time}</span>
+                      <span class="time-label">Jam Keberangkatan</span>
+                      <span class="time-range">${item.range}</span>
+                    </div>
+                  `).join('')}
+                </div>
               </div>
-              
-              <!-- Kolom Kanan: Estimasi Sampai -->
-              <div class="column-section">
-                <div class="column-header">Estimasi Sampai di ${data.destination}</div>
-                ${data.schedule.arrival.map(item => `
-                  <div class="schedule-item">
-                    <span class="time-badge">${item.time}</span>
-                    <span class="time-label">Est Sampai</span>
-                    <span class="time-range">${item.range}</span>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-            
-            <div class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-              <p class="text-sm text-gray-700 flex items-start">
-                <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                </svg>
-                <span>Estimasi waktu dapat berubah tergantung kondisi lalu lintas.</span>
-              </p>
             </div>
           `;
         } else if (data.type === 'arrival_dual_column') {
-          titleText.textContent = `Estimasi Penjemputan dari ${data.origin} → ${data.destination}`;
+          titleText.textContent = "Durasi Penjemputan";
           infoText.textContent = data.info;
 
           scheduleList.innerHTML = `
-            <div class="animate-fade-in dual-column-layout">
-              <!-- Kolom Kiri: Estimasi Penjemputan -->
+            <div class="animate-fade-in">
+              <!-- Kolom: Durasi Penjemputan -->
               <div class="column-section">
-                <div class="column-header">Estimasi Penjemputan</div>
-                ${data.schedule.pickup.map(item => `
-                  <div class="schedule-item">
-                    <span class="time-badge">${item.time}</span>
-                    <span class="time-label">Est Penjemputan</span>
-                    <span class="time-range">${item.range}</span>
-                  </div>
-                `).join('')}
+                <div class="column-header">Durasi Penjemputan</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  ${data.schedule.pickup.map(item => `
+                    <div class="schedule-item mb-0">
+                      <span class="time-badge">${item.time}</span>
+                      <span class="time-label">Durasi Penjemputan</span>
+                      <span class="time-range">${item.range}</span>
+                    </div>
+                  `).join('')}
+                </div>
               </div>
-              
-              <!-- Kolom Kanan: Estimasi Sampai -->
-              <div class="column-section">
-                <div class="column-header">Estimasi Sampai di ${data.destination}</div>
-                ${data.schedule.arrival.map(item => `
-                  <div class="schedule-item">
-                    <span class="time-badge">${item.time}</span>
-                    <span class="time-label">Est Sampai</span>
-                    <span class="time-range">${item.range}</span>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-            
-            <div class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-              <p class="text-sm text-gray-700 flex items-start">
-                <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                </svg>
-                <span>Estimasi waktu dapat berubah tergantung kondisi lalu lintas dan lokasi penjemputan.</span>
-              </p>
             </div>
           `;
         } else if (data.type === 'juanda_format') {
-          const destination = selectedValue.includes('malang') ? 'Malang' : 'Batu';
-          titleText.textContent = `Jadwal untuk Juanda - ${destination}`;
+          const destination = selectedValue.toLowerCase().includes('malang') ? 'Malang' : 'Batu';
+          titleText.textContent = "Durasi Penjemputan";
           infoText.textContent = data.info;
 
           scheduleList.innerHTML = `
             <div class="animate-fade-in juanda-container">
               <div class="juanda-header">
-                <h5>Jadwal untuk Juanda - ${destination}</h5>
+                <h5>Durasi Penjemputan</h5>
                 <p>Jam Landing dan Estimasi Keberangkatan</p>
               </div>
               
@@ -1734,7 +1696,6 @@
                   </svg>
                   <span>
                     <strong>Catatan:</strong> Estimasi keberangkatan menyesuaikan dengan jam landing pesawat. 
-                    Perjalanan dari Juanda ke ${destination} memakan waktu sekitar 2-3 jam tergantung kondisi lalu lintas.
                     Disarankan untuk booking minimal 2 jam sebelum waktu landing pesawat.
                   </span>
                 </p>
