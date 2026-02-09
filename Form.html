@@ -811,7 +811,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <div class="text-blue-100 font-semibold mb-2">Pembayaran</div>
-            <div class="text-blue-100 text-sm">Transfer Bank BCA </div>
+            <div class="text-blue-100 text-sm">Transfer Bank BCA dan CASH</div>
           </div>
           <div>
             <div class="text-blue-100 font-semibold mb-2">Armada</div>
@@ -846,22 +846,6 @@
   </div>
 
   <script>
-    // --- KONFIGURASI UPLOAD ---
-    // Ganti dengan URL Google Apps Script Anda (lihat gas-setup.md)
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxQg0BCad-9s1_SZjR6O8IWLp0XTjxlvbTmmPcn_v_DtVCND7tV1f3Fvir5ve747H98Q/exec";
-
-    // Ganti dengan API Key ImgBB Anda (opsional, sebagai fallback)
-    const IMGBB_API_KEY = "97cb68be4bb10cb7bb8519eefdba494e";
-    // --------------------------
-
-    // Helper function untuk konversi file ke base64
-    const toBase64 = file => new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-
     // Data harga untuk setiap layanan dan rute
     const hargaData = {
       "Travel Reguler": {
@@ -955,17 +939,17 @@
     // Data jadwal berdasarkan rute
     const jadwalData = {
       "Malang → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Malang": ["06.00-07.00", "07.00-08.00", "08.00-09.00", "09.00-10.00", "10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00", "20.00-21.00", "21.00-22.00"],
+      "Juanda → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
       "Malang → SBY Kota": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Kota → Malang": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00", "20.00-22.00"],
+      "SBY Kota → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
       "Malang → SBY Utara / SBY Barat / Perak": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Utara / SBY Barat / Perak → Malang": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00", "20.00-22.00"],
+      "SBY Utara / SBY Barat / Perak → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
       "Batu → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Batu": ["06.00-07.00", "07.00-08.00", "08.00-09.00", "09.00-10.00", "10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00", "20.00-21.00", "21.00-22.00"],
+      "Juanda → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
       "Batu → SBY Kota": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Kota → Batu": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00", "20.00-22.00"],
+      "SBY Kota → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
       "Batu → SBY Utara / SBY Barat / Perak": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Utara / SBY Barat / Perak → Batu": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00", "20.00-22.00"],
+      "SBY Utara / SBY Barat / Perak → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
       "Malang (Dau) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
       "Juanda → Malang (Dau)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
       "Malang (Wagir) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
@@ -1106,7 +1090,7 @@
     // Fungsi untuk update catatan pembayaran berdasarkan metode yang dipilih
     function updatePaymentNote() {
       const paymentNote = document.getElementById("paymentNote");
-
+      
       // Karena hanya ada transfer, selalu tampilkan
       paymentNote.classList.remove("hidden");
       paymentNote.innerHTML = `
@@ -1212,11 +1196,6 @@
     async function submitBooking(event) {
       event.preventDefault();
 
-      const transferRadio = document.getElementById("transfer");
-      if (transferRadio && transferRadio.checked && !GOOGLE_SCRIPT_URL) {
-        console.warn("Peringatan: GOOGLE_SCRIPT_URL belum diisi. Gambar tidak akan tersimpan ke Google Drive. Silakan ikuti panduan di gas-setup.md.");
-      }
-
       // Validasi form
       if (!document.getElementById("persetujuan").checked) {
         alert("Harap setujui syarat dan ketentuan terlebih dahulu.");
@@ -1260,34 +1239,12 @@
       let buktiTransferUrl = "";
       const imageFile = document.getElementById("buktiTransfer").files[0];
 
-      if (formData.metodePembayaran === "Transfer BCA" && imageFile) {
-        // 1. Coba upload ke Google Drive (Prioritas Utama)
-        if (GOOGLE_SCRIPT_URL) {
-          try {
-            const base64 = await toBase64(imageFile);
-            const uploadResponse = await fetch(GOOGLE_SCRIPT_URL, {
-              method: "POST",
-              mode: "cors",
-              headers: {
-                "Content-Type": "text/plain;charset=utf-8",
-              },
-              body: JSON.stringify({
-                file: base64.split(",")[1],
-                fileName: imageFile.name,
-                mimeType: imageFile.type,
-              }),
-            });
-            const uploadResult = await uploadResponse.json();
-            if (uploadResult.success) {
-              buktiTransferUrl = uploadResult.url;
-            }
-          } catch (error) {
-            console.error("Gagal mengupload ke Google Drive:", error);
-          }
-        }
+      if (imageFile) {
+        // KONFIGURASI API KEY IMGBB
+        // Silakan ganti "YOUR_IMGBB_API_KEY_HERE" dengan API Key Anda sendiri dari https://api.imgbb.com/
+        const IMGBB_API_KEY = "97cb68be4bb10cb7bb8519eefdba494e";
 
-        // 2. Fallback ke ImgBB jika Google Drive gagal/tidak dikonfigurasi
-        if (!buktiTransferUrl && IMGBB_API_KEY && IMGBB_API_KEY !== "PASTE_YOUR_IMGBB_API_KEY_HERE") {
+        if (IMGBB_API_KEY !== "97cb68be4bb10cb7bb8519eefdba494e") {
           try {
             const uploadData = new FormData();
             uploadData.append("image", imageFile);
@@ -1302,7 +1259,8 @@
               buktiTransferUrl = uploadResult.data.url;
             }
           } catch (error) {
-            console.error("Gagal mengupload ke ImgBB:", error);
+            console.error("Gagal mengupload gambar:", error);
+            // Tetap lanjut meskipun upload gagal
           }
         }
       }
@@ -1432,6 +1390,9 @@
         message += `*Bukti transfer telah dilampirkan di form (Mohon kirimkan ulang gambar bukti transfer di chat ini)*%0A`;
       }
 
+      message += `%0A---%0A`;
+      message += `*Form ini dikirim melalui website UJS Travel*`;
+
       // Redirect ke WhatsApp dengan pesan
       const phoneNumber = "6282316290290";
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
@@ -1440,6 +1401,7 @@
       submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
       window.open(whatsappUrl, "_blank");
+    }
 
     // Fungsi untuk mengubah opsi rute berdasarkan jenis layanan
     function updateRouteOptions() {
