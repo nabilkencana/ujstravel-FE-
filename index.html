@@ -1594,10 +1594,10 @@
             const isToJuanda = selectedValue.includes('Juanda');
             const scheduleSubtitle = document.getElementById('schedule-subtitle');
             
-            if (isToJuanda) {
-                scheduleSubtitle.textContent = isFromMalangBatu ? "Keberangkatan dari kota ke Bandara Juanda" : "Penjemputan dari Bandara Juanda";
+            if (isFromMalangBatu) {
+                scheduleSubtitle.textContent = "Jadwal Keberangkatan";
             } else {
-                scheduleSubtitle.textContent = isFromMalangBatu ? "Jam Keberangkatan" : "Durasi Penjemputan";
+                scheduleSubtitle.textContent = "Durasi Keberangkatan";
             }
 
             // Render based on type
@@ -1607,45 +1607,17 @@
                         <table class="schedule-table">
                             <thead>
                                 <tr>
-                                    <th class="rounded-tl-xl">Waktu Berangkat</th>
-                                    <th>Domestik</th>
-                                    <th class="rounded-tr-xl">Internasional</th>
+                                    <th class="rounded-t-xl">Waktu Berangkat</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${data.schedule.map((item, index) => `
                                     <tr class="${index === data.schedule.length - 1 ? 'rounded-b-xl' : ''}">
-                                        <td class="departure-time font-bold">${item.time}</td>
-                                        <td class="domestic-time">${item.domestic}</td>
-                                        <td class="international-time">${item.international}</td>
+                                        <td class="departure-time font-bold text-center">${item.time}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
                         </table>
-                    </div>
-                    
-                    <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm">
-                        <div class="flex items-center bg-blue-50 px-4 py-3 rounded-lg shadow-sm">
-                            <div class="w-4 h-4 rounded-full bg-blue-500 mr-3"></div>
-                            <div>
-                                <span class="font-semibold text-gray-700">Waktu Keberangkatan Travel</span>
-                                <span class="block text-xs text-gray-500">Dari kota ke bandara</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center bg-green-50 px-4 py-3 rounded-lg shadow-sm">
-                            <div class="w-4 h-4 rounded-full bg-green-500 mr-3"></div>
-                            <div>
-                                <span class="font-semibold text-gray-700">Saran Jam Pesawat Domestik</span>
-                                <span class="block text-xs text-gray-500">Penerbangan dalam negeri</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center bg-red-50 px-4 py-3 rounded-lg shadow-sm">
-                            <div class="w-4 h-4 rounded-full bg-red-500 mr-3"></div>
-                            <div>
-                                <span class="font-semibold text-gray-700">Saran Jam Pesawat Internasional</span>
-                                <span class="block text-xs text-gray-500">Penerbangan luar negeri</span>
-                            </div>
-                        </div>
                     </div>
                 `;
             } else if (data.type === 'departure_dual_column') {
@@ -1692,41 +1664,22 @@
                     </div>
                 `;
             } else if (data.type === 'juanda_format') {
-                const destination = selectedValue.includes('Malang') ? 'Malang' : 'Batu';
                 scheduleList.innerHTML = `
-                    <div class="landing-container">
-                        <div class="mb-6 text-center">
-                            <h5 class="font-bold text-xl text-gray-800">Jam Landing Pesawat</h5>
-                            <p class="text-gray-600 text-sm mt-1">Estimasi keberangkatan menuju ${destination}</p>
-                        </div>
-                        
-                        <div class="landing-grid">
-                            ${data.schedule.map(item => `
-                                <div class="landing-row">
-                                    <div class="landing-col-header">Jam Landing</div>
-                                    <div class="landing-col-header">Est. Keberangkatan</div>
-                                    <div class="landing-col">${item.landing}</div>
-                                    <div class="landing-col">${item.departure}</div>
-                                </div>
-                            `).join('')}
-                        </div>
-                        
-                        <div class="mt-8 flex flex-wrap items-center justify-center gap-6">
-                            <div class="flex items-center bg-blue-50 px-4 py-3 rounded-lg shadow-sm">
-                                <div class="w-4 h-4 rounded-full bg-blue-500 mr-3"></div>
-                                <div>
-                                    <span class="font-semibold text-gray-700">Jam Landing Pesawat</span>
-                                    <span class="block text-xs text-gray-500">Waktu pesawat mendarat</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center bg-green-50 px-4 py-3 rounded-lg shadow-sm">
-                                <div class="w-4 h-4 rounded-full bg-green-500 mr-3"></div>
-                                <div>
-                                    <span class="font-semibold text-gray-700">Estimasi Keberangkatan</span>
-                                    <span class="block text-xs text-gray-500">Waktu mulai perjalanan</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="overflow-hidden rounded-xl border border-gray-200 shadow-inner">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th class="rounded-t-xl">Waktu Berangkat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.schedule.map((item, index) => `
+                                    <tr class="${index === data.schedule.length - 1 ? 'rounded-b-xl' : ''}">
+                                        <td class="departure-time font-bold text-center">${item.landing}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
                     </div>
                 `;
             }
