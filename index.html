@@ -799,829 +799,893 @@
       </div>
     </div>
   </section>
-<section id="jadwal" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+  <section id="jadwal" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 reveal fade-bottom">
-            <div class="inline-flex items-center justify-center mb-4">
+      <div class="text-center mb-12 reveal fade-bottom">
+        <div class="inline-flex items-center justify-center mb-4">
+        </div>
+        <h2 class="text-4xl sm:text-5xl font-bold text-travellora-dark mb-4">
+          Cek Jadwal & Harga Tiket
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Pilih rute perjalanan Anda untuk melihat jadwal keberangkatan dan harga tiket terbaru dengan mudah
+        </p>
+      </div>
+
+      <!-- Cek Tiket Box -->
+      <div
+        class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200 reveal fade-bottom hover:shadow-2xl transition-shadow duration-300">
+        <!-- Header dengan gradient -->
+        <div class="relative bg-gradient-to-r from-travellora-blue to-blue-600 p-8 text-white">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+          <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
+
+          <div class="relative z-10 text-center">
+            <h3 class="text-3xl font-bold mb-2">Cek Tiket Kamu</h3>
+            <p class="text-blue-100 opacity-90">Dapatkan informasi lengkap dengan satu klik</p>
+          </div>
+        </div>
+
+        <div class="p-8">
+          <!-- Pilih Rute Section -->
+          <div class="max-w-lg mx-auto mb-12">
+            <div class="text-center mb-6">
+              <label for="route-select" class="block text-gray-700 font-bold text-xl mb-4">
+                Pilih Rute Perjalanan
+              </label>
+              <p class="text-gray-500 mb-6">Pilih asal dan tujuan perjalanan Anda</p>
             </div>
-            <h2 class="text-4xl sm:text-5xl font-bold text-travellora-dark mb-4">
-                Cek Jadwal & Harga Tiket
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                Pilih rute perjalanan Anda untuk melihat jadwal keberangkatan dan harga tiket terbaru dengan mudah
+
+            <div class="relative group">
+              <select id="route-select" onchange="updateTicketInfo()"
+                class="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:border-travellora-blue focus:ring-4 focus:ring-blue-100 transition-all text-lg appearance-none cursor-pointer bg-white shadow-sm hover:shadow-md transition-shadow duration-200 group-hover:border-blue-300">
+                <option value="">-- Silakan Pilih Rute --</option>
+                <optgroup label=" Rute Malang" class="text-gray-700">
+                  <option value="Malang → Juanda">Malang → Juanda</option>
+                  <option value="Juanda → Malang">Juanda → Malang</option>
+                  <option value="Malang → SBY Kota">Malang → SBY Kota</option>
+                  <option value="SBY Kota → Malang">SBY Kota → Malang</option>
+                  <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
+                  <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
+                </optgroup>
+                <optgroup label=" Rute Batu" class="text-gray-700">
+                  <option value="Batu → Juanda">Batu → Juanda</option>
+                  <option value="Juanda → Batu">Juanda → Batu</option>
+                  <option value="Batu → SBY Kota">Batu → SBY Kota</option>
+                  <option value="SBY Kota → Batu">SBY Kota → Batu</option>
+                  <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
+                  <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
+                </optgroup>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5">
+                <svg class="w-8 h-8 text-travellora-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Area -->
+          <div id="ticket-result" class="hidden space-y-10 animate-fade-in">
+            <!-- Route Info Banner -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200 shadow-sm">
+              <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center">
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-travellora-blue to-blue-600 rounded-xl flex items-center justify-center mr-4 shadow-md">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 id="route-title" class="font-bold text-travellora-dark text-2xl mb-1">
+                      <span id="origin-text"></span> → <span id="destination-text"></span>
+                    </h4>
+                    <p class="text-gray-600 text-sm" id="route-info"></p>
+                  </div>
+                </div>
+                <div class="mt-4 md:mt-0">
+                  <span
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-travellora-blue to-blue-600 text-white font-semibold shadow-md">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    Rute Aktif
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Single Column Layout - Jadwal Dulu, Harga di Bawah -->
+            <div class="space-y-8">
+              <!-- Jadwal Section (TOP) -->
+              <div
+                class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-center mb-8">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-travellora-dark text-2xl">Jadwal Perjalanan</h4>
+                    <p class="text-gray-500 text-sm" id="schedule-subtitle"></p>
+                  </div>
+                </div>
+
+                <!-- Schedule Content -->
+                <div id="schedule-list" class="space-y-6">
+                  <!-- Dynamic content will be inserted here -->
+                </div>
+
+                <!-- Schedule Note -->
+                <div class="mt-8 p-5 bg-blue-50 rounded-xl border border-blue-200">
+                  <div class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor"
+                      viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    <div>
+                      <p class="text-sm text-gray-700 font-medium mb-1">Informasi Penting</p>
+                      <p class="text-sm text-gray-600" id="info-text">Estimasi waktu dapat berubah tergantung kondisi
+                        lalu lintas.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Harga Tiket Section (BOTTOM) -->
+              <div
+                class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-center mb-8">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-travellora-dark text-2xl">Harga Tiket</h4>
+                    <p class="text-gray-500 text-sm">Harga berlaku saat ini</p>
+                  </div>
+                </div>
+
+                <!-- Price Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <!-- Reguler Card -->
+                  <div
+                    class="bg-gradient-to-r from-blue-50 to-white p-6 rounded-2xl border-2 border-blue-100 shadow-sm hover:border-blue-300 transition-all duration-300 group hover:shadow-md">
+                    <div class="flex flex-col h-full">
+                      <div class="flex items-center mb-4">
+                        <div
+                          class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-blue-200 transition-colors">
+                          <svg class="w-6 h-6 text-travellora-blue" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                              d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <span class="block font-bold text-travellora-dark text-lg">Travel Reguler</span>
+                          <span class="text-sm text-gray-600">Per Orang (Shared Car)</span>
+                        </div>
+                      </div>
+                      <div class="mt-auto">
+                        <div class="text-center p-4 bg-blue-50 rounded-xl">
+                          <span id="price-reguler" class="font-bold text-travellora-blue text-3xl">Rp 0</span>
+                          <span class="block text-sm text-gray-500 mt-1">/orang</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3 text-center">
+                          Cocok untuk perjalanan personal dengan budget terbatas
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Drop Card -->
+                  <div
+                    class="bg-gradient-to-r from-green-50 to-white p-6 rounded-2xl border-2 border-green-100 shadow-sm hover:border-green-300 transition-all duration-300 group hover:shadow-md">
+                    <div class="flex flex-col h-full">
+                      <div class="flex items-center mb-4">
+                        <div
+                          class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-green-200 transition-colors">
+                          <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                              d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </div>
+                        <div>
+                          <span class="block font-bold text-travellora-dark text-lg">Travel Drop</span>
+                          <span class="text-sm text-gray-600">Per Mobil (Private, Max 5 Orang)</span>
+                        </div>
+                      </div>
+                      <div class="mt-auto">
+                        <div class="text-center p-4 bg-green-50 rounded-xl">
+                          <span id="price-drop" class="font-bold text-green-600 text-3xl">Rp 0</span>
+                          <span class="block text-sm text-gray-500 mt-1">/mobil</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3 text-center">
+                          Cocok untuk keluarga atau grup yang ingin privasi
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Action Buttons Side by Side -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  <a href="Form.html"
+                    class="w-full bg-gradient-to-r from-travellora-blue to-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center group">
+                    <div class="flex items-center justify-center">
+                      <svg class="w-6 h-6 mr-3 group-hover:animate-pulse" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                      <span class="text-lg">Pesan Tiket Sekarang</span>
+                    </div>
+                  </a>
+
+                  <a href="https://wa.me/6282316290290" target="_blank"
+                    class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all text-center group">
+                    <div class="flex items-center justify-center">
+                      <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                      </svg>
+                      <span class="text-lg">Tanya via WhatsApp</span>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Info Box -->
+                <div
+                  class="p-5 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border border-yellow-200 shadow-sm">
+                  <div class="flex items-start">
+                    <svg class="w-5 h-5 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor"
+                      viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    <div>
+                      <p class="text-sm font-medium text-yellow-800 mb-1">Perhatian Khusus</p>
+                      <p class="text-sm text-yellow-700">
+                        Harga tidak berlaku selama periode H-7 sampai H+7 Lebaran
+                        dan tanggal 20 Desember - 31 Desember.
+                        <span class="font-semibold">Booking minimal 2 jam sebelum keberangkatan.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div id="ticket-empty" class="text-center py-16">
+            <div
+              class="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <svg class="w-12 h-12 text-travellora-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-700 mb-3">Pilih Rute Perjalanan</h3>
+            <p class="text-gray-500 text-lg max-w-md mx-auto">
+              Silakan pilih rute perjalanan dari dropdown di atas untuk melihat jadwal dan harga tiket
             </p>
-        </div>
-
-        <!-- Cek Tiket Box -->
-        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200 reveal fade-bottom hover:shadow-2xl transition-shadow duration-300">
-            <!-- Header dengan gradient -->
-            <div class="relative bg-gradient-to-r from-travellora-blue to-blue-600 p-8 text-white">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-                <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
-                
-                <div class="relative z-10 text-center">
-                    <h3 class="text-3xl font-bold mb-2">Cek Tiket Kamu</h3>
-                    <p class="text-blue-100 opacity-90">Dapatkan informasi lengkap dengan satu klik</p>
-                </div>
+            <div class="mt-6 animate-bounce">
+              <svg class="w-8 h-8 text-travellora-blue mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
             </div>
-
-            <div class="p-8">
-                <!-- Pilih Rute Section -->
-                <div class="max-w-lg mx-auto mb-12">
-                    <div class="text-center mb-6">
-                        <label for="route-select" class="block text-gray-700 font-bold text-xl mb-4">
-                            Pilih Rute Perjalanan
-                        </label>
-                        <p class="text-gray-500 mb-6">Pilih asal dan tujuan perjalanan Anda</p>
-                    </div>
-                    
-                    <div class="relative group">
-                        <select id="route-select" onchange="updateTicketInfo()"
-                            class="w-full px-6 py-5 border-2 border-gray-200 rounded-2xl focus:border-travellora-blue focus:ring-4 focus:ring-blue-100 transition-all text-lg appearance-none cursor-pointer bg-white shadow-sm hover:shadow-md transition-shadow duration-200 group-hover:border-blue-300">
-                            <option value="">-- Silakan Pilih Rute --</option>
-                            <optgroup label=" Rute Malang" class="text-gray-700">
-                                <option value="Malang → Juanda">Malang → Juanda</option>
-                                <option value="Juanda → Malang">Juanda → Malang</option>
-                                <option value="Malang → SBY Kota">Malang → SBY Kota</option>
-                                <option value="SBY Kota → Malang">SBY Kota → Malang</option>
-                                <option value="Malang → SBY Utara / SBY Barat / Perak">Malang → SBY Utara/SBY Barat/Perak</option>
-                                <option value="SBY Utara / SBY Barat / Perak → Malang">SBY Utara/SBY Barat/Perak → Malang</option>
-                            </optgroup>
-                            <optgroup label=" Rute Batu" class="text-gray-700">
-                                <option value="Batu → Juanda">Batu → Juanda</option>
-                                <option value="Juanda → Batu">Juanda → Batu</option>
-                                <option value="Batu → SBY Kota">Batu → SBY Kota</option>
-                                <option value="SBY Kota → Batu">SBY Kota → Batu</option>
-                                <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
-                                <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
-                            </optgroup>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5">
-                            <svg class="w-8 h-8 text-travellora-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Result Area -->
-                <div id="ticket-result" class="hidden space-y-10 animate-fade-in">
-                    <!-- Route Info Banner -->
-                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200 shadow-sm">
-                        <div class="flex flex-col md:flex-row items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-gradient-to-br from-travellora-blue to-blue-600 rounded-xl flex items-center justify-center mr-4 shadow-md">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 id="route-title" class="font-bold text-travellora-dark text-2xl mb-1">
-                                        <span id="origin-text"></span> → <span id="destination-text"></span>
-                                    </h4>
-                                    <p class="text-gray-600 text-sm" id="route-info"></p>
-                                </div>
-                            </div>
-                            <div class="mt-4 md:mt-0">
-                                <span class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-travellora-blue to-blue-600 text-white font-semibold shadow-md">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                                    </svg>
-                                    Rute Aktif
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Column Layout - Jadwal Dulu, Harga di Bawah -->
-                    <div class="space-y-8">
-                        <!-- Jadwal Section (TOP) -->
-                        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <div class="flex items-center mb-8">
-                                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-travellora-dark text-2xl">Jadwal Perjalanan</h4>
-                                    <p class="text-gray-500 text-sm" id="schedule-subtitle"></p>
-                                </div>
-                            </div>
-
-                            <!-- Schedule Content -->
-                            <div id="schedule-list" class="space-y-6">
-                                <!-- Dynamic content will be inserted here -->
-                            </div>
-
-                            <!-- Schedule Note -->
-                            <div class="mt-8 p-5 bg-blue-50 rounded-xl border border-blue-200">
-                                <div class="flex items-start">
-                                    <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm text-gray-700 font-medium mb-1">Informasi Penting</p>
-                                        <p class="text-sm text-gray-600" id="info-text">Estimasi waktu dapat berubah tergantung kondisi lalu lintas.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Harga Tiket Section (BOTTOM) -->
-                        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <div class="flex items-center mb-8">
-                                <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-travellora-dark text-2xl">Harga Tiket</h4>
-                                    <p class="text-gray-500 text-sm">Harga berlaku saat ini</p>
-                                </div>
-                            </div>
-
-                            <!-- Price Cards Grid -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                                <!-- Reguler Card -->
-                                <div class="bg-gradient-to-r from-blue-50 to-white p-6 rounded-2xl border-2 border-blue-100 shadow-sm hover:border-blue-300 transition-all duration-300 group hover:shadow-md">
-                                    <div class="flex flex-col h-full">
-                                        <div class="flex items-center mb-4">
-                                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-blue-200 transition-colors">
-                                                <svg class="w-6 h-6 text-travellora-blue" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <span class="block font-bold text-travellora-dark text-lg">Travel Reguler</span>
-                                                <span class="text-sm text-gray-600">Per Orang (Shared Car)</span>
-                                            </div>
-                                        </div>
-                                        <div class="mt-auto">
-                                            <div class="text-center p-4 bg-blue-50 rounded-xl">
-                                                <span id="price-reguler" class="font-bold text-travellora-blue text-3xl">Rp 0</span>
-                                                <span class="block text-sm text-gray-500 mt-1">/orang</span>
-                                            </div>
-                                            <p class="text-xs text-gray-500 mt-3 text-center">
-                                                Cocok untuk perjalanan personal dengan budget terbatas
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Drop Card -->
-                                <div class="bg-gradient-to-r from-green-50 to-white p-6 rounded-2xl border-2 border-green-100 shadow-sm hover:border-green-300 transition-all duration-300 group hover:shadow-md">
-                                    <div class="flex flex-col h-full">
-                                        <div class="flex items-center mb-4">
-                                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-green-200 transition-colors">
-                                                <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <span class="block font-bold text-travellora-dark text-lg">Travel Drop</span>
-                                                <span class="text-sm text-gray-600">Per Mobil (Private, Max 5 Orang)</span>
-                                            </div>
-                                        </div>
-                                        <div class="mt-auto">
-                                            <div class="text-center p-4 bg-green-50 rounded-xl">
-                                                <span id="price-drop" class="font-bold text-green-600 text-3xl">Rp 0</span>
-                                                <span class="block text-sm text-gray-500 mt-1">/mobil</span>
-                                            </div>
-                                            <p class="text-xs text-gray-500 mt-3 text-center">
-                                                Cocok untuk keluarga atau grup yang ingin privasi
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Action Buttons Side by Side -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                                <a href="Form.html"
-                                   class="w-full bg-gradient-to-r from-travellora-blue to-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center group">
-                                    <div class="flex items-center justify-center">
-                                        <svg class="w-6 h-6 mr-3 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                        </svg>
-                                        <span class="text-lg">Pesan Tiket Sekarang</span>
-                                    </div>
-                                </a>
-
-                                <a href="https://wa.me/6282316290290" target="_blank"
-                                   class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all text-center group">
-                                    <div class="flex items-center justify-center">
-                                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                                        </svg>
-                                        <span class="text-lg">Tanya via WhatsApp</span>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <!-- Info Box -->
-                            <div class="p-5 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border border-yellow-200 shadow-sm">
-                                <div class="flex items-start">
-                                    <svg class="w-5 h-5 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm font-medium text-yellow-800 mb-1">Perhatian Khusus</p>
-                                        <p class="text-sm text-yellow-700">
-                                            Harga tidak berlaku selama periode H-7 sampai H+7 Lebaran 
-                                            dan tanggal 20 Desember - 31 Desember. 
-                                            <span class="font-semibold">Booking minimal 2 jam sebelum keberangkatan.</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Empty State -->
-                <div id="ticket-empty" class="text-center py-16">
-                    <div class="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <svg class="w-12 h-12 text-travellora-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-700 mb-3">Pilih Rute Perjalanan</h3>
-                    <p class="text-gray-500 text-lg max-w-md mx-auto">
-                        Silakan pilih rute perjalanan dari dropdown di atas untuk melihat jadwal dan harga tiket
-                    </p>
-                    <div class="mt-6 animate-bounce">
-                        <svg class="w-8 h-8 text-travellora-blue mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
 
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
-        /* Styling untuk table schedule */
-        .schedule-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+      .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
 
-        .schedule-table th {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            font-weight: 600;
-            padding: 16px;
-            text-align: center;
-            font-size: 1rem;
-        }
+      /* Styling untuk table schedule */
+      .schedule-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
 
-        .schedule-table td {
-            padding: 16px;
-            text-align: center;
-            font-weight: 500;
-            border-bottom: 1px solid #e5e7eb;
-        }
+      .schedule-table th {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+        font-weight: 600;
+        padding: 16px;
+        text-align: center;
+        font-size: 1rem;
+      }
 
-        .schedule-table tr:last-child td {
-            border-bottom: none;
-        }
+      .schedule-table td {
+        padding: 16px;
+        text-align: center;
+        font-weight: 500;
+        border-bottom: 1px solid #e5e7eb;
+      }
 
-        .schedule-table tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
+      .schedule-table tr:last-child td {
+        border-bottom: none;
+      }
 
-        .schedule-table tr:hover {
-            background-color: #eff6ff;
-            transition: background-color 0.2s;
-        }
+      .schedule-table tr:nth-child(even) {
+        background-color: #f8fafc;
+      }
 
-        .departure-time {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #1e40af;
-        }
+      .schedule-table tr:hover {
+        background-color: #eff6ff;
+        transition: background-color 0.2s;
+      }
 
-        .domestic-time {
-            color: #059669;
-            font-weight: 600;
-        }
+      .departure-time {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1e40af;
+      }
 
-        .international-time {
-            color: #dc2626;
-            font-weight: 600;
-        }
+      .domestic-time {
+        color: #059669;
+        font-weight: 600;
+      }
 
-        /* Styling untuk schedule cards */
-        .schedule-card {
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 1.25rem;
-            margin-bottom: 0.75rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
+      .international-time {
+        color: #dc2626;
+        font-weight: 600;
+      }
 
-        .schedule-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
-            border-radius: 4px 0 0 4px;
-        }
+      /* Styling untuk schedule cards */
+      .schedule-card {
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
 
-        .schedule-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
-        }
+      .schedule-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        border-radius: 4px 0 0 4px;
+      }
 
-        .time-badge {
-            font-size: 1.375rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
+      .schedule-card:hover {
+        border-color: #3b82f6;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+      }
 
-        .time-label {
-            font-size: 0.75rem;
-            color: #6b7280;
-            margin-bottom: 0.25rem;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+      .time-badge {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: #1e40af;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
 
-        .time-range {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #111827;
-            display: block;
-        }
+      .time-label {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-bottom: 0.25rem;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
 
-        /* Styling untuk landing format */
-        .landing-container {
-            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 2px solid #dbeafe;
-        }
+      .time-range {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #111827;
+        display: block;
+      }
 
+      /* Styling untuk landing format */
+      .landing-container {
+        background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 2px solid #dbeafe;
+      }
+
+      .landing-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      @media (min-width: 640px) {
         .landing-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
+          grid-template-columns: 1fr 1fr;
         }
+      }
 
-        @media (min-width: 640px) {
-            .landing-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+      .landing-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.2s;
+      }
 
-        .landing-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.2s;
-        }
+      .landing-row:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+      }
 
-        .landing-row:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
-        }
+      .landing-col {
+        padding: 1rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
 
-        .landing-col {
-            padding: 1rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
+      .landing-col-header {
+        background: #f8fafc;
+        color: #374151;
+        font-weight: 700;
+        padding: 0.875rem;
+        text-align: center;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 2px solid #dbeafe;
+      }
 
-        .landing-col-header {
-            background: #f8fafc;
-            color: #374151;
-            font-weight: 700;
-            padding: 0.875rem;
-            text-align: center;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 2px solid #dbeafe;
-        }
+      /* Styling untuk departure times grid */
+      .times-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
 
-        /* Styling untuk departure times grid */
+      @media (min-width: 640px) {
         .times-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (min-width: 768px) {
+        .times-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .time-badge-grid {
+        background: white;
+        border: 2px solid #dbeafe;
+        padding: 1rem;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 700;
+        color: #1e40af;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.125rem;
+      }
+
+      .time-badge-grid:hover {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        color: white;
+        border-color: #1e40af;
+        transform: scale(1.05);
+        box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.3);
+      }
+
+      /* Custom scrollbar untuk select */
+      select::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      select::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 5px;
+      }
+
+      select::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 5px;
+      }
+
+      select::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+      }
+
+      /* Gradient border animation */
+      @keyframes gradientBorder {
+
+        0%,
+        100% {
+          border-color: #e5e7eb;
         }
 
-        @media (min-width: 640px) {
-            .times-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        50% {
+          border-color: #3b82f6;
         }
+      }
 
-        @media (min-width: 768px) {
-            .times-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
+      .select-pulse {
+        animation: gradientBorder 2s infinite;
+      }
 
-        .time-badge-grid {
-            background: white;
-            border: 2px solid #dbeafe;
-            padding: 1rem;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 700;
-            color: #1e40af;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.125rem;
-        }
+      /* Price card styles */
+      .price-card {
+        transition: all 0.3s ease;
+      }
 
-        .time-badge-grid:hover {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            color: white;
-            border-color: #1e40af;
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.3);
-        }
+      .price-card:hover {
+        transform: translateY(-5px);
+      }
 
-        /* Custom scrollbar untuk select */
-        select::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        select::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 5px;
-        }
-
-        select::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 5px;
-        }
-
-        select::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-
-        /* Gradient border animation */
-        @keyframes gradientBorder {
-            0%, 100% {
-                border-color: #e5e7eb;
-            }
-            50% {
-                border-color: #3b82f6;
-            }
-        }
-
-        .select-pulse {
-            animation: gradientBorder 2s infinite;
-        }
-
-        /* Price card styles */
-        .price-card {
-            transition: all 0.3s ease;
-        }
-
-        .price-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .price-highlight {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border: 2px solid #bae6fd;
-        }
+      .price-highlight {
+        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        border: 2px solid #bae6fd;
+      }
     </style>
 
     <script>
-        const ticketData = {
-            "Malang → Juanda": {
-                reguler: 150000,
-                drop: 500000,
-                schedule: [
-                    { time: "01.00", domestic: "05.00 / 06.00", international: "06.00 / 07.00" },
-                    { time: "03.00", domestic: "06.00 / 07.00 / 08.00", international: "08.00 / 09.00" },
-                    { time: "05.00", domestic: "08.30 / 09.00 / 10.00", international: "09.30 / 10.00 / 11.00" },
-                    { time: "07.00", domestic: "10.30 / 11.00 / 12.00", international: "11.30 / 12.00 / 13.00" },
-                    { time: "09.00", domestic: "12.30 / 13.00 / 14.00", international: "13.30 / 14.00 / 15.00" },
-                    { time: "11.00", domestic: "14.30 / 15.00 / 16.00", international: "15.30 / 16.00 / 17.00" },
-                    { time: "13.00", domestic: "16.30 / 17.00 / 18.00", international: "17.30 / 18.00 / 19.00" },
-                    { time: "15.00", domestic: "18.30 -", international: "19.30 -" }
-                ],
-                type: "departure_juanda_table",
-                info: "Jadwal keberangkatan dari Malang ke Juanda. Estimasi perjalanan 2-3 jam tergantung kondisi lalu lintas."
-            },
-            "Juanda → Malang": {
-                reguler: 150000,
-                drop: 500000,
-                schedule: [
-                    { landing: "06.00 - 07.00", departure: "07.00 - 08.00" },
-                    { landing: "07.00 - 08.00", departure: "08.00 - 09.00" },
-                    { landing: "08.00 - 09.00", departure: "09.00 - 10.00" },
-                    { landing: "09.00 - 10.00", departure: "10.00 - 11.00" },
-                    { landing: "10.00 - 11.00", departure: "11.00 - 12.00" },
-                    { landing: "11.00 - 12.00", departure: "12.00 - 13.00" },
-                    { landing: "12.00 - 13.00", departure: "13.00 - 14.00" },
-                    { landing: "13.00 - 14.00", departure: "14.00 - 15.00" },
-                    { landing: "14.00 - 15.00", departure: "15.00 - 16.00" },
-                    { landing: "15.00 - 16.00", departure: "16.00 - 17.00" },
-                    { landing: "16.00 - 17.00", departure: "17.00 - 18.00" },
-                    { landing: "17.00 - 18.00", departure: "18.00 - 19.00" },
-                    { landing: "18.00 - 19.00", departure: "19.00 - 20.00" },
-                    { landing: "19.00 - 20.00", departure: "20.00 - 21.00" },
-                    { landing: "20.00 - 21.00", departure: "21.00 - 22.00" },
-                    { landing: "21.00 - 22.00", departure: "22.00 - 23.00" }
-                ],
-                type: "juanda_format",
-                info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Malang. Perjalanan sekitar 2-3 jam."
-            },
-            "Malang → SBY Kota": {
-                reguler: 165000,
-                drop: 500000,
-                type: "departure_dual_column",
-                schedule: {
-                    departure: [
-                        { time: "01:00", range: "01:00 - 01:30" },
-                        { time: "03:00", range: "03:00 - 03:30" },
-                        { time: "05:00", range: "05:00 - 05:30" },
-                        { time: "07:00", range: "07:00 - 07:30" },
-                        { time: "09:00", range: "09:00 - 09:30" },
-                        { time: "11:00", range: "11:00 - 11:30" },
-                        { time: "13:00", range: "13:00 - 13:30" },
-                        { time: "15:00", range: "15:00 - 15:30" }
-                    ]
-                },
-                info: "Jadwal keberangkatan dari Malang ke Surabaya Kota. Estimasi perjalanan 2-3 jam."
-            },
-            "SBY Kota → Malang": {
-                reguler: 165000,
-                drop: 500000,
-                type: "arrival_dual_column",
-                schedule: {
-                    pickup: [
-                        { time: "06:00", range: "06:00 - 08:00" },
-                        { time: "08:00", range: "08:00 - 10:00" },
-                        { time: "10:00", range: "10:00 - 12:00" },
-                        { time: "12:00", range: "12:00 - 14:00" },
-                        { time: "14:00", range: "14:00 - 16:00" },
-                        { time: "16:00", range: "16:00 - 18:00" },
-                        { time: "18:00", range: "18:00 - 20:00" },
-                        { time: "20:00", range: "20:00 - 22:00" }
-                    ]
-                },
-                info: "Surabaya Kota → Malang. Estimasi penjemputan sesuai dengan waktu yang dipilih."
-            },
-            "Malang → SBY Utara / SBY Barat / Perak": {
-                reguler: 180000,
-                drop: 550000,
-                type: "departure_dual_column",
-                schedule: {
-                    departure: [
-                        { time: "01:00", range: "01:00 - 01:30" },
-                        { time: "03:00", range: "03:00 - 03:30" },
-                        { time: "05:00", range: "05:00 - 05:30" },
-                        { time: "07:00", range: "07:00 - 07:30" },
-                        { time: "09:00", range: "09:00 - 09:30" },
-                        { time: "11:00", range: "11:00 - 11:30" },
-                        { time: "13:00", range: "13:00 - 13:30" },
-                        { time: "15:00", range: "15:00 - 15:30" }
-                    ]
-                },
-                info: "Jadwal keberangkatan dari Malang ke Perak. Estimasi perjalanan 2-3 jam."
-            },
-            "SBY Utara / SBY Barat / Perak → Malang": {
-                reguler: 180000,
-                drop: 550000,
-                type: "arrival_dual_column",
-                schedule: {
-                    pickup: [
-                        { time: "06:00", range: "06:00 - 08:00" },
-                        { time: "08:00", range: "08:00 - 10:00" },
-                        { time: "10:00", range: "10:00 - 12:00" },
-                        { time: "12:00", range: "12:00 - 14:00" },
-                        { time: "14:00", range: "14:00 - 16:00" },
-                        { time: "16:00", range: "16:00 - 18:00" },
-                        { time: "18:00", range: "18:00 - 20:00" },
-                        { time: "20:00", range: "20:00 - 22:00" }
-                    ]
-                },
-                info: "Perak → Malang. Estimasi penjemputan sesuai dengan waktu yang dipilih."
-            },
-            "Batu → Juanda": {
-                reguler: 170000,
-                drop: 550000,
-                schedule: [
-                    { time: "01.00", domestic: "05.00 / 06.00", international: "06.00 / 07.00" },
-                    { time: "03.00", domestic: "06.00 / 07.00 / 08.00", international: "08.00 / 09.00" },
-                    { time: "05.00", domestic: "08.30 / 09.00 / 10.00", international: "09.30 / 10.00 / 11.00" },
-                    { time: "07.00", domestic: "10.30 / 11.00 / 12.00", international: "11.30 / 12.00 / 13.00" },
-                    { time: "09.00", domestic: "12.30 / 13.00 / 14.00", international: "13.30 / 14.00 / 15.00" },
-                    { time: "11.00", domestic: "14.30 / 15.00 / 16.00", international: "15.30 / 16.00 / 17.00" },
-                    { time: "13.00", domestic: "16.30 / 17.00 / 18.00", international: "17.30 / 18.00 / 19.00" },
-                    { time: "15.00", domestic: "18.30 -", international: "19.30 -" }
-                ],
-                type: "departure_juanda_table",
-                info: "Jadwal keberangkatan dari Batu ke Juanda. Estimasi perjalanan 2-3 jam tergantung kondisi lalu lintas."
-            },
-            "Juanda → Batu": {
-                reguler: 170000,
-                drop: 550000,
-                schedule: [
-                    { landing: "06.00 - 07.00", departure: "07.00 - 08.00" },
-                    { landing: "07.00 - 08.00", departure: "08.00 - 09.00" },
-                    { landing: "08.00 - 09.00", departure: "09.00 - 10.00" },
-                    { landing: "09.00 - 10.00", departure: "10.00 - 11.00" },
-                    { landing: "10.00 - 11.00", departure: "11.00 - 12.00" },
-                    { landing: "11.00 - 12.00", departure: "12.00 - 13.00" },
-                    { landing: "12.00 - 13.00", departure: "13.00 - 14.00" },
-                    { landing: "13.00 - 14.00", departure: "14.00 - 15.00" },
-                    { landing: "14.00 - 15.00", departure: "15.00 - 16.00" },
-                    { landing: "15.00 - 16.00", departure: "16.00 - 17.00" },
-                    { landing: "16.00 - 17.00", departure: "17.00 - 18.00" },
-                    { landing: "17.00 - 18.00", departure: "18.00 - 19.00" },
-                    { landing: "18.00 - 19.00", departure: "19.00 - 20.00" },
-                    { landing: "19.00 - 20.00", departure: "20.00 - 21.00" },
-                    { landing: "20.00 - 21.00", departure: "21.00 - 22.00" },
-                    { landing: "21.00 - 22.00", departure: "22.00 - 23.00" }
-                ],
-                type: "juanda_format",
-                info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Batu. Perjalanan sekitar 2-3 jam."
-            },
-            "Batu → SBY Kota": {
-                reguler: 180000,
-                drop: 550000,
-                type: "departure_dual_column",
-                schedule: {
-                    departure: [
-                        { time: "01:00", range: "01:00 - 01:30" },
-                        { time: "03:00", range: "03:00 - 03:30" },
-                        { time: "05:00", range: "05:00 - 05:30" },
-                        { time: "07:00", range: "07:00 - 07:30" },
-                        { time: "09:00", range: "09:00 - 09:30" },
-                        { time: "11:00", range: "11:00 - 11:30" },
-                        { time: "13:00", range: "13:00 - 13:30" },
-                        { time: "15:00", range: "15:00 - 15:30" }
-                    ]
-                },
-                info: "Jadwal keberangkatan dari Batu ke Surabaya Kota. Estimasi perjalanan 2-3 jam."
-            },
-            "SBY Kota → Batu": {
-                reguler: 180000,
-                drop: 550000,
-                type: "arrival_dual_column",
-                schedule: {
-                    pickup: [
-                        { time: "06:00", range: "06:00 - 08:00" },
-                        { time: "08:00", range: "08:00 - 10:00" },
-                        { time: "10:00", range: "10:00 - 12:00" },
-                        { time: "12:00", range: "12:00 - 14:00" },
-                        { time: "14:00", range: "14:00 - 16:00" },
-                        { time: "16:00", range: "16:00 - 18:00" },
-                        { time: "18:00", range: "18:00 - 20:00" },
-                        { time: "20:00", range: "20:00 - 22:00" }
-                    ]
-                },
-                info: "Surabaya Kota → Batu. Estimasi penjemputan sesuai dengan waktu yang dipilih."
-            },
-            "Batu → SBY Utara / SBY Barat / Perak": {
-                reguler: 200000,
-                drop: 600000,
-                type: "departure_dual_column",
-                schedule: {
-                    departure: [
-                        { time: "01:00", range: "01:00 - 01:30" },
-                        { time: "03:00", range: "03:00 - 03:30" },
-                        { time: "05:00", range: "05:00 - 05:30" },
-                        { time: "07:00", range: "07:00 - 07:30" },
-                        { time: "09:00", range: "09:00 - 09:30" },
-                        { time: "11:00", range: "11:00 - 11:30" },
-                        { time: "13:00", range: "13:00 - 13:30" },
-                        { time: "15:00", range: "15:00 - 15:30" }
-                    ]
-                },
-                info: "Jadwal keberangkatan dari Batu ke Perak. Estimasi perjalanan 2-3 jam."
-            },
-            "SBY Utara / SBY Barat / Perak → Batu": {
-                reguler: 200000,
-                drop: 600000,
-                type: "arrival_dual_column",
-                schedule: {
-                    pickup: [
-                        { time: "06:00", range: "06:00 - 08:00" },
-                        { time: "08:00", range: "08:00 - 10:00" },
-                        { time: "10:00", range: "10:00 - 12:00" },
-                        { time: "12:00", range: "12:00 - 14:00" },
-                        { time: "14:00", range: "14:00 - 16:00" },
-                        { time: "16:00", range: "16:00 - 18:00" },
-                        { time: "18:00", range: "18:00 - 20:00" },
-                        { time: "20:00", range: "20:00 - 22:00" }
-                    ]
-                },
-                info: "Perak → Batu. Estimasi penjemputan sesuai dengan waktu yang dipilih."
-            }
-        };
+      const ticketData = {
+        "Malang → Juanda": {
+          reguler: 150000,
+          drop: 500000,
+          schedule: [
+            { time: "01.00", domestic: "05.00 / 06.00", international: "06.00 / 07.00" },
+            { time: "03.00", domestic: "06.00 / 07.00 / 08.00", international: "08.00 / 09.00" },
+            { time: "05.00", domestic: "08.30 / 09.00 / 10.00", international: "09.30 / 10.00 / 11.00" },
+            { time: "07.00", domestic: "10.30 / 11.00 / 12.00", international: "11.30 / 12.00 / 13.00" },
+            { time: "09.00", domestic: "12.30 / 13.00 / 14.00", international: "13.30 / 14.00 / 15.00" },
+            { time: "11.00", domestic: "14.30 / 15.00 / 16.00", international: "15.30 / 16.00 / 17.00" },
+            { time: "13.00", domestic: "16.30 / 17.00 / 18.00", international: "17.30 / 18.00 / 19.00" },
+            { time: "15.00", domestic: "18.30 -", international: "19.30 -" }
+          ],
+          type: "departure_juanda_table",
+          info: "Jadwal keberangkatan dari Malang ke Juanda. Estimasi perjalanan 2-3 jam tergantung kondisi lalu lintas."
+        },
+        "Juanda → Malang": {
+          reguler: 150000,
+          drop: 500000,
+          schedule: [
+            { landing: "06.00 - 07.00", departure: "07.00 - 08.00" },
+            { landing: "07.00 - 08.00", departure: "08.00 - 09.00" },
+            { landing: "08.00 - 09.00", departure: "09.00 - 10.00" },
+            { landing: "09.00 - 10.00", departure: "10.00 - 11.00" },
+            { landing: "10.00 - 11.00", departure: "11.00 - 12.00" },
+            { landing: "11.00 - 12.00", departure: "12.00 - 13.00" },
+            { landing: "12.00 - 13.00", departure: "13.00 - 14.00" },
+            { landing: "13.00 - 14.00", departure: "14.00 - 15.00" },
+            { landing: "14.00 - 15.00", departure: "15.00 - 16.00" },
+            { landing: "15.00 - 16.00", departure: "16.00 - 17.00" },
+            { landing: "16.00 - 17.00", departure: "17.00 - 18.00" },
+            { landing: "17.00 - 18.00", departure: "18.00 - 19.00" },
+            { landing: "18.00 - 19.00", departure: "19.00 - 20.00" },
+            { landing: "19.00 - 20.00", departure: "20.00 - 21.00" },
+            { landing: "20.00 - 21.00", departure: "21.00 - 22.00" },
+            { landing: "21.00 - 22.00", departure: "22.00 - 23.00" }
+          ],
+          type: "juanda_format",
+          info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Malang. Perjalanan sekitar 2-3 jam."
+        },
+        "Malang → SBY Kota": {
+          reguler: 165000,
+          drop: 500000,
+          type: "departure_dual_column",
+          schedule: {
+            departure: [
+              { time: "01:00", range: "01:00 - 01:30" },
+              { time: "03:00", range: "03:00 - 03:30" },
+              { time: "05:00", range: "05:00 - 05:30" },
+              { time: "07:00", range: "07:00 - 07:30" },
+              { time: "09:00", range: "09:00 - 09:30" },
+              { time: "11:00", range: "11:00 - 11:30" },
+              { time: "13:00", range: "13:00 - 13:30" },
+              { time: "15:00", range: "15:00 - 15:30" }
+            ]
+          },
+          info: "Jadwal keberangkatan dari Malang ke Surabaya Kota. Estimasi perjalanan 2-3 jam."
+        },
+        "SBY Kota → Malang": {
+          reguler: 165000,
+          drop: 500000,
+          type: "arrival_dual_column",
+          schedule: {
+            pickup: [
+              { time: "06:00", range: "06:00 - 08:00" },
+              { time: "08:00", range: "08:00 - 10:00" },
+              { time: "10:00", range: "10:00 - 12:00" },
+              { time: "12:00", range: "12:00 - 14:00" },
+              { time: "14:00", range: "14:00 - 16:00" },
+              { time: "16:00", range: "16:00 - 18:00" },
+              { time: "18:00", range: "18:00 - 20:00" },
+              { time: "20:00", range: "20:00 - 22:00" }
+            ]
+          },
+          info: "Surabaya Kota → Malang. Estimasi penjemputan sesuai dengan waktu yang dipilih."
+        },
+        "Malang → SBY Utara / SBY Barat / Perak": {
+          reguler: 180000,
+          drop: 550000,
+          type: "departure_dual_column",
+          schedule: {
+            departure: [
+              { time: "01:00", range: "01:00 - 01:30" },
+              { time: "03:00", range: "03:00 - 03:30" },
+              { time: "05:00", range: "05:00 - 05:30" },
+              { time: "07:00", range: "07:00 - 07:30" },
+              { time: "09:00", range: "09:00 - 09:30" },
+              { time: "11:00", range: "11:00 - 11:30" },
+              { time: "13:00", range: "13:00 - 13:30" },
+              { time: "15:00", range: "15:00 - 15:30" }
+            ]
+          },
+          info: "Jadwal keberangkatan dari Malang ke Perak. Estimasi perjalanan 2-3 jam."
+        },
+        "SBY Utara / SBY Barat / Perak → Malang": {
+          reguler: 180000,
+          drop: 550000,
+          type: "arrival_dual_column",
+          schedule: {
+            pickup: [
+              { time: "06:00", range: "06:00 - 08:00" },
+              { time: "08:00", range: "08:00 - 10:00" },
+              { time: "10:00", range: "10:00 - 12:00" },
+              { time: "12:00", range: "12:00 - 14:00" },
+              { time: "14:00", range: "14:00 - 16:00" },
+              { time: "16:00", range: "16:00 - 18:00" },
+              { time: "18:00", range: "18:00 - 20:00" },
+              { time: "20:00", range: "20:00 - 22:00" }
+            ]
+          },
+          info: "Perak → Malang. Estimasi penjemputan sesuai dengan waktu yang dipilih."
+        },
+        "Batu → Juanda": {
+          reguler: 170000,
+          drop: 550000,
+          schedule: [
+            { time: "01.00", domestic: "05.00 / 06.00", international: "06.00 / 07.00" },
+            { time: "03.00", domestic: "06.00 / 07.00 / 08.00", international: "08.00 / 09.00" },
+            { time: "05.00", domestic: "08.30 / 09.00 / 10.00", international: "09.30 / 10.00 / 11.00" },
+            { time: "07.00", domestic: "10.30 / 11.00 / 12.00", international: "11.30 / 12.00 / 13.00" },
+            { time: "09.00", domestic: "12.30 / 13.00 / 14.00", international: "13.30 / 14.00 / 15.00" },
+            { time: "11.00", domestic: "14.30 / 15.00 / 16.00", international: "15.30 / 16.00 / 17.00" },
+            { time: "13.00", domestic: "16.30 / 17.00 / 18.00", international: "17.30 / 18.00 / 19.00" },
+            { time: "15.00", domestic: "18.30 -", international: "19.30 -" }
+          ],
+          type: "departure_juanda_table",
+          info: "Jadwal keberangkatan dari Batu ke Juanda. Estimasi perjalanan 2-3 jam tergantung kondisi lalu lintas."
+        },
+        "Juanda → Batu": {
+          reguler: 170000,
+          drop: 550000,
+          schedule: [
+            { landing: "06.00 - 07.00", departure: "07.00 - 08.00" },
+            { landing: "07.00 - 08.00", departure: "08.00 - 09.00" },
+            { landing: "08.00 - 09.00", departure: "09.00 - 10.00" },
+            { landing: "09.00 - 10.00", departure: "10.00 - 11.00" },
+            { landing: "10.00 - 11.00", departure: "11.00 - 12.00" },
+            { landing: "11.00 - 12.00", departure: "12.00 - 13.00" },
+            { landing: "12.00 - 13.00", departure: "13.00 - 14.00" },
+            { landing: "13.00 - 14.00", departure: "14.00 - 15.00" },
+            { landing: "14.00 - 15.00", departure: "15.00 - 16.00" },
+            { landing: "15.00 - 16.00", departure: "16.00 - 17.00" },
+            { landing: "16.00 - 17.00", departure: "17.00 - 18.00" },
+            { landing: "17.00 - 18.00", departure: "18.00 - 19.00" },
+            { landing: "18.00 - 19.00", departure: "19.00 - 20.00" },
+            { landing: "19.00 - 20.00", departure: "20.00 - 21.00" },
+            { landing: "20.00 - 21.00", departure: "21.00 - 22.00" },
+            { landing: "21.00 - 22.00", departure: "22.00 - 23.00" }
+          ],
+          type: "juanda_format",
+          info: "Jam Landing dan Estimasi Keberangkatan dari Juanda ke Batu. Perjalanan sekitar 2-3 jam."
+        },
+        "Batu → SBY Kota": {
+          reguler: 180000,
+          drop: 550000,
+          type: "departure_dual_column",
+          schedule: {
+            departure: [
+              { time: "01:00", range: "01:00 - 01:30" },
+              { time: "03:00", range: "03:00 - 03:30" },
+              { time: "05:00", range: "05:00 - 05:30" },
+              { time: "07:00", range: "07:00 - 07:30" },
+              { time: "09:00", range: "09:00 - 09:30" },
+              { time: "11:00", range: "11:00 - 11:30" },
+              { time: "13:00", range: "13:00 - 13:30" },
+              { time: "15:00", range: "15:00 - 15:30" }
+            ]
+          },
+          info: "Jadwal keberangkatan dari Batu ke Surabaya Kota. Estimasi perjalanan 2-3 jam."
+        },
+        "SBY Kota → Batu": {
+          reguler: 180000,
+          drop: 550000,
+          type: "arrival_dual_column",
+          schedule: {
+            pickup: [
+              { time: "06:00", range: "06:00 - 08:00" },
+              { time: "08:00", range: "08:00 - 10:00" },
+              { time: "10:00", range: "10:00 - 12:00" },
+              { time: "12:00", range: "12:00 - 14:00" },
+              { time: "14:00", range: "14:00 - 16:00" },
+              { time: "16:00", range: "16:00 - 18:00" },
+              { time: "18:00", range: "18:00 - 20:00" },
+              { time: "20:00", range: "20:00 - 22:00" }
+            ]
+          },
+          info: "Surabaya Kota → Batu. Estimasi penjemputan sesuai dengan waktu yang dipilih."
+        },
+        "Batu → SBY Utara / SBY Barat / Perak": {
+          reguler: 200000,
+          drop: 600000,
+          type: "departure_dual_column",
+          schedule: {
+            departure: [
+              { time: "01:00", range: "01:00 - 01:30" },
+              { time: "03:00", range: "03:00 - 03:30" },
+              { time: "05:00", range: "05:00 - 05:30" },
+              { time: "07:00", range: "07:00 - 07:30" },
+              { time: "09:00", range: "09:00 - 09:30" },
+              { time: "11:00", range: "11:00 - 11:30" },
+              { time: "13:00", range: "13:00 - 13:30" },
+              { time: "15:00", range: "15:00 - 15:30" }
+            ]
+          },
+          info: "Jadwal keberangkatan dari Batu ke Perak. Estimasi perjalanan 2-3 jam."
+        },
+        "SBY Utara / SBY Barat / Perak → Batu": {
+          reguler: 200000,
+          drop: 600000,
+          type: "arrival_dual_column",
+          schedule: {
+            pickup: [
+              { time: "06:00", range: "06:00 - 08:00" },
+              { time: "08:00", range: "08:00 - 10:00" },
+              { time: "10:00", range: "10:00 - 12:00" },
+              { time: "12:00", range: "12:00 - 14:00" },
+              { time: "14:00", range: "14:00 - 16:00" },
+              { time: "16:00", range: "16:00 - 18:00" },
+              { time: "18:00", range: "18:00 - 20:00" },
+              { time: "20:00", range: "20:00 - 22:00" }
+            ]
+          },
+          info: "Perak → Batu. Estimasi penjemputan sesuai dengan waktu yang dipilih."
+        }
+      };
 
-        function updateTicketInfo() {
-            const select = document.getElementById('route-select');
-            const resultDiv = document.getElementById('ticket-result');
-            const emptyDiv = document.getElementById('ticket-empty');
-            const selectedValue = select.value;
+      function updateTicketInfo() {
+        const select = document.getElementById('route-select');
+        const resultDiv = document.getElementById('ticket-result');
+        const emptyDiv = document.getElementById('ticket-empty');
+        const selectedValue = select.value;
 
-            if (!selectedValue) {
-                resultDiv.classList.add('hidden');
-                emptyDiv.classList.remove('hidden');
-                return;
-            }
+        if (!selectedValue) {
+          resultDiv.classList.add('hidden');
+          emptyDiv.classList.remove('hidden');
+          return;
+        }
 
-            const data = ticketData[selectedValue];
-            if (!data) return;
+        const data = ticketData[selectedValue];
+        if (!data) return;
 
-            // Update route info
-            const routeParts = selectedValue.split(' → ');
-            document.getElementById('origin-text').textContent = routeParts[0];
-            document.getElementById('destination-text').textContent = routeParts[1];
-            document.getElementById('route-info').textContent = data.info;
+        // Update route info
+        const routeParts = selectedValue.split(' → ');
+        document.getElementById('origin-text').textContent = routeParts[0];
+        document.getElementById('destination-text').textContent = routeParts[1];
+        document.getElementById('route-info').textContent = data.info;
 
-            // Update prices
-            document.getElementById('price-reguler').textContent = formatPrice(data.reguler);
-            document.getElementById('price-drop').textContent = formatPrice(data.drop);
+        // Update prices
+        document.getElementById('price-reguler').textContent = formatPrice(data.reguler);
+        document.getElementById('price-drop').textContent = formatPrice(data.drop);
 
-            // Update schedule
-            const scheduleList = document.getElementById('schedule-list');
-            scheduleList.innerHTML = '';
+        // Update schedule
+        const scheduleList = document.getElementById('schedule-list');
+        scheduleList.innerHTML = '';
 
-            // Determine schedule subtitle
-            const isFromMalangBatu = selectedValue.startsWith('Malang') || selectedValue.startsWith('Batu');
-            const isToJuanda = selectedValue.includes('Juanda');
-            const scheduleSubtitle = document.getElementById('schedule-subtitle');
-            
-            if (isFromMalangBatu) {
-                scheduleSubtitle.textContent = "Jadwal Keberangkatan";
-            } else {
-                scheduleSubtitle.textContent = "Durasi Keberangkatan";
-            }
+        // Determine schedule subtitle
+        const isFromMalangBatu = selectedValue.startsWith('Malang') || selectedValue.startsWith('Batu');
+        const isToJuanda = selectedValue.includes('Juanda');
+        const scheduleSubtitle = document.getElementById('schedule-subtitle');
 
-            // Render based on type
-            if (data.type === 'departure_juanda_table') {
-                scheduleList.innerHTML = `
+        if (isToJuanda) {
+          scheduleSubtitle.textContent = isFromMalangBatu ? "Keberangkatan dari kota ke Bandara Juanda" : "Penjemputan dari Bandara Juanda";
+        } else {
+          scheduleSubtitle.textContent = isFromMalangBatu ? "Jam Keberangkatan" : "Durasi Penjemputan";
+        }
+
+        // Render based on type
+        if (data.type === 'departure_juanda_table') {
+          scheduleList.innerHTML = `
                     <div class="overflow-hidden rounded-xl border border-gray-200 shadow-inner">
                         <table class="schedule-table">
                             <thead>
                                 <tr>
-                                    <th class="rounded-t-xl">Waktu Berangkat</th>
+                                    <th class="rounded-tl-xl">Waktu Berangkat</th>
+                                    <th>Domestik</th>
+                                    <th class="rounded-tr-xl">Internasional</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${data.schedule.map((item, index) => `
                                     <tr class="${index === data.schedule.length - 1 ? 'rounded-b-xl' : ''}">
-                                        <td class="departure-time font-bold text-center">${item.time}</td>
+                                        <td class="departure-time font-bold">${item.time}</td>
+                                        <td class="domestic-time">${item.domestic}</td>
+                                        <td class="international-time">${item.international}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
                         </table>
                     </div>
+                    
+                    <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm">
+                        <div class="flex items-center bg-blue-50 px-4 py-3 rounded-lg shadow-sm">
+                            <div class="w-4 h-4 rounded-full bg-blue-500 mr-3"></div>
+                            <div>
+                                <span class="font-semibold text-gray-700">Waktu Keberangkatan Travel</span>
+                                <span class="block text-xs text-gray-500">Dari kota ke bandara</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center bg-green-50 px-4 py-3 rounded-lg shadow-sm">
+                            <div class="w-4 h-4 rounded-full bg-green-500 mr-3"></div>
+                            <div>
+                                <span class="font-semibold text-gray-700">Saran Jam Pesawat Domestik</span>
+                                <span class="block text-xs text-gray-500">Penerbangan dalam negeri</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center bg-red-50 px-4 py-3 rounded-lg shadow-sm">
+                            <div class="w-4 h-4 rounded-full bg-red-500 mr-3"></div>
+                            <div>
+                                <span class="font-semibold text-gray-700">Saran Jam Pesawat Internasional</span>
+                                <span class="block text-xs text-gray-500">Penerbangan luar negeri</span>
+                            </div>
+                        </div>
+                    </div>
                 `;
-            } else if (data.type === 'departure_dual_column') {
-                scheduleList.innerHTML = `
+        } else if (data.type === 'departure_dual_column') {
+          scheduleList.innerHTML = `
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         ${data.schedule.departure.map(item => `
                             <div class="schedule-card">
@@ -1641,8 +1705,8 @@
                         `).join('')}
                     </div>
                 `;
-            } else if (data.type === 'arrival_dual_column') {
-                scheduleList.innerHTML = `
+        } else if (data.type === 'arrival_dual_column') {
+          scheduleList.innerHTML = `
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         ${data.schedule.pickup.map(item => `
                             <div class="schedule-card">
@@ -1663,59 +1727,78 @@
                         `).join('')}
                     </div>
                 `;
-            } else if (data.type === 'juanda_format') {
-                scheduleList.innerHTML = `
-                    <div class="overflow-hidden rounded-xl border border-gray-200 shadow-inner">
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th class="rounded-t-xl">Waktu Berangkat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${data.schedule.map((item, index) => `
-                                    <tr class="${index === data.schedule.length - 1 ? 'rounded-b-xl' : ''}">
-                                        <td class="departure-time font-bold text-center">${item.landing}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
+        } else if (data.type === 'juanda_format') {
+          const destination = selectedValue.includes('Malang') ? 'Malang' : 'Batu';
+          scheduleList.innerHTML = `
+                    <div class="landing-container">
+                        <div class="mb-6 text-center">
+                            <h5 class="font-bold text-xl text-gray-800">Jam Landing Pesawat</h5>
+                            <p class="text-gray-600 text-sm mt-1">Estimasi keberangkatan menuju ${destination}</p>
+                        </div>
+                        
+                        <div class="landing-grid">
+                            ${data.schedule.map(item => `
+                                <div class="landing-row">
+                                    <div class="landing-col-header">Jam Landing</div>
+                                    <div class="landing-col-header">Est. Keberangkatan</div>
+                                    <div class="landing-col">${item.landing}</div>
+                                    <div class="landing-col">${item.departure}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="mt-8 flex flex-wrap items-center justify-center gap-6">
+                            <div class="flex items-center bg-blue-50 px-4 py-3 rounded-lg shadow-sm">
+                                <div class="w-4 h-4 rounded-full bg-blue-500 mr-3"></div>
+                                <div>
+                                    <span class="font-semibold text-gray-700">Jam Landing Pesawat</span>
+                                    <span class="block text-xs text-gray-500">Waktu pesawat mendarat</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center bg-green-50 px-4 py-3 rounded-lg shadow-sm">
+                                <div class="w-4 h-4 rounded-full bg-green-500 mr-3"></div>
+                                <div>
+                                    <span class="font-semibold text-gray-700">Estimasi Keberangkatan</span>
+                                    <span class="block text-xs text-gray-500">Waktu mulai perjalanan</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
-            }
-
-            // Show result
-            resultDiv.classList.remove('hidden');
-            emptyDiv.classList.add('hidden');
-
-            // Add animation
-            resultDiv.classList.add('animate-fade-in');
         }
 
-        function formatPrice(price) {
-            return 'Rp ' + price.toLocaleString('id-ID');
+        // Show result
+        resultDiv.classList.remove('hidden');
+        emptyDiv.classList.add('hidden');
+
+        // Add animation
+        resultDiv.classList.add('animate-fade-in');
+      }
+
+      function formatPrice(price) {
+        return 'Rp ' + price.toLocaleString('id-ID');
+      }
+
+      // Add animation to select on load
+      document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('route-select');
+        select.classList.add('select-pulse');
+
+        // Remove animation after 4 seconds
+        setTimeout(() => {
+          select.classList.remove('select-pulse');
+        }, 4000);
+
+        // Initialize if there's a selected value in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const route = urlParams.get('route');
+        if (route && ticketData[route]) {
+          select.value = route;
+          updateTicketInfo();
         }
-
-        // Add animation to select on load
-        document.addEventListener('DOMContentLoaded', function () {
-            const select = document.getElementById('route-select');
-            select.classList.add('select-pulse');
-            
-            // Remove animation after 4 seconds
-            setTimeout(() => {
-                select.classList.remove('select-pulse');
-            }, 4000);
-
-            // Initialize if there's a selected value in URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const route = urlParams.get('route');
-            if (route && ticketData[route]) {
-                select.value = route;
-                updateTicketInfo();
-            }
-        });
+      });
     </script>
-</section>
+  </section>
   <!-- Why Choose Us Section -->
   <section id="tentangkami" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
