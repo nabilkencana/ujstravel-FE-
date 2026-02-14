@@ -861,14 +861,6 @@
         "SBY Kota → Batu": 180000,
         "Batu → SBY Utara / SBY Barat / Perak": 200000,
         "SBY Utara / SBY Barat / Perak → Batu": 200000,
-        "Malang (Dau) → Juanda": 160000,
-        "Juanda → Malang (Dau)": 160000,
-        "Malang (Wagir) → Juanda": 160000,
-        "Juanda → Malang (Wagir)": 160000,
-        "Malang (Kebunagung) → Juanda": 160000,
-        "Juanda → Malang (Kebunagung)": 160000,
-        "Malang (Kedungkandang) → Juanda": 160000,
-        "Juanda → Malang (Kedungkandang)": 160000,
         "type": "per_orang",
         "max_penumpang": 10
       },
@@ -922,14 +914,6 @@
         "SBY Kota → Batu": 180000,
         "Batu → SBY Utara / SBY Barat / Perak": 200000,
         "SBY Utara / SBY Barat / Perak → Batu": 200000,
-        "Malang (Dau) → Juanda": 160000,
-        "Juanda → Malang (Dau)": 160000,
-        "Malang (Wagir) → Juanda": 160000,
-        "Juanda → Malang (Wagir)": 160000,
-        "Malang (Kebunagung) → Juanda": 160000,
-        "Juanda → Malang (Kebunagung)": 160000,
-        "Malang (Kedungkandang) → Juanda": 160000,
-        "Juanda → Malang (Kedungkandang)": 160000,
         "type": "per_item",
         "max_penumpang": 1,
         "note": "Harga per paket (konfirmasi untuk ukuran besar)"
@@ -938,26 +922,18 @@
 
     // Data jadwal berdasarkan rute
     const jadwalData = {
-      "Malang → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Malang → SBY Kota": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Kota → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Malang → SBY Utara / SBY Barat / Perak": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Utara / SBY Barat / Perak → Malang": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Batu → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Batu → SBY Kota": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Kota → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Batu → SBY Utara / SBY Barat / Perak": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "SBY Utara / SBY Barat / Perak → Batu": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Malang (Dau) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Malang (Dau)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Malang (Wagir) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Malang (Wagir)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Malang (Kebunagung) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Malang (Kebunagung)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
-      "Malang (Kedungkandang) → Juanda": ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-      "Juanda → Malang (Kedungkandang)": ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]
+      "Malang → Juanda": ["01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00"],
+      "Juanda → Malang": ["06.00-07.00", "07.00-08.00", "08.00-09.00", "09.00-10.00", "10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00", "20.00-21.00"],
+      "Malang → SBY Kota": ["01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00"],
+      "SBY Kota → Malang": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00"],
+      "Malang → SBY Utara / SBY Barat / Perak": ["01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00"],
+      "SBY Utara / SBY Barat / Perak → Malang": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00"],
+      "Batu → Juanda": ["01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00"],
+      "Juanda → Batu": ["06.00-07.00", "07.00-08.00", "08.00-09.00", "09.00-10.00", "10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00", "20.00-21.00"],
+      "Batu → SBY Kota": ["01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00"],
+      "SBY Kota → Batu": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00"],
+      "Batu → SBY Utara / SBY Barat / Perak": ["01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00"],
+      "SBY Utara / SBY Barat / Perak → Batu": ["06.00-08.00", "08.00-10.00", "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00", "18.00-20.00"]
     };
 
     // Fungsi untuk menampilkan/menyembunyikan field Carter
@@ -1160,7 +1136,17 @@
     function updateJamKeberangkatanOptions() {
       const ruteSelect = document.getElementById("rutePerjalanan");
       const jamSelect = document.getElementById("jamKeberangkatan");
+      const jamLabel = document.querySelector('label[for="jamKeberangkatan"]');
       const selectedValue = ruteSelect.value;
+
+      // Update Label
+      if (jamLabel) {
+        if (selectedValue && (selectedValue.startsWith("Juanda") || selectedValue.startsWith("SBY") || selectedValue.startsWith("Perak"))) {
+          jamLabel.innerHTML = 'Durasi Penjemputan <span class="text-red-500">*</span>';
+        } else {
+          jamLabel.innerHTML = 'Jam Keberangkatan <span class="text-red-500">*</span>';
+        }
+      }
 
       // Reset opsi
       jamSelect.innerHTML = '<option value="">Pilih Jam Keberangkatan</option>';
@@ -1433,16 +1419,6 @@
             <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
             <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
           </optgroup>
-          <optgroup label="Daerah Abu-Abu (Malang Khusus)">
-            <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
-            <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
-            <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
-            <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
-            <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
-            <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
-            <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
-            <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
-          </optgroup>
         `;
       } else if (jenisLayanan === "Travel Drop" || jenisLayanan === "Carter") {
         // Carter & Travel Drop: hanya rute tertentu
@@ -1484,16 +1460,6 @@
             <option value="SBY Kota → Batu">SBY Kota → Batu</option>
             <option value="Batu → SBY Utara / SBY Barat / Perak">Batu → SBY Utara/SBY Barat/Perak</option>
             <option value="SBY Utara / SBY Barat / Perak → Batu">SBY Utara/SBY Barat/Perak → Batu</option>
-          </optgroup>
-          <optgroup label="Daerah Abu-Abu (Malang Khusus)">
-            <option value="Malang (Dau) → Juanda">Malang (Dau) → Juanda</option>
-            <option value="Juanda → Malang (Dau)">Juanda → Malang (Dau)</option>
-            <option value="Malang (Wagir) → Juanda">Malang (Wagir) → Juanda</option>
-            <option value="Juanda → Malang (Wagir)">Juanda → Malang (Wagir)</option>
-            <option value="Malang (Kebunagung) → Juanda">Malang (Kebunagung) → Juanda</option>
-            <option value="Juanda → Malang (Kebunagung)">Juanda → Malang (Kebunagung)</option>
-            <option value="Malang (Kedungkandang) → Juanda">Malang (Kedungkandang) → Juanda</option>
-            <option value="Juanda → Malang (Kedungkandang)">Juanda → Malang (Kedungkandang)</option>
           </optgroup>
         `;
       }
