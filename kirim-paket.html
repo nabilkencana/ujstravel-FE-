@@ -88,12 +88,509 @@
         .delay-300 {
             animation-delay: 0.3s;
         }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6);
+            padding: 4px;
+            border-radius: 20px;
+        }
+
+        .gradient-border img {
+            border-radius: 16px;
+        }
+
+        /* ANIMASI BARU - SMOOTH & ELEGAN */
+
+        /* Smooth hover animations */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+
+        .hover-glow {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 10px 25px -5px rgba(48, 84, 146, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Pulse animation */
+        @keyframes softPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(48, 84, 146, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(48, 84, 146, 0.1);
+            }
+        }
+
+        .animate-soft-pulse {
+            animation: softPulse 2s infinite;
+        }
+
+        /* Scale animation */
+        @keyframes softScale {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .animate-soft-scale {
+            animation: softScale 3s ease-in-out infinite;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Shimmer effect */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        /* Border pulse */
+        @keyframes borderPulse {
+
+            0%,
+            100% {
+                border-color: rgba(48, 84, 146, 0.2);
+            }
+
+            50% {
+                border-color: rgba(48, 84, 146, 0.5);
+            }
+        }
+
+        .animate-border-pulse {
+            animation: borderPulse 2s infinite;
+        }
+
+        /* Smooth page transition */
+        .page-transition {
+            animation: pageFadeIn 0.6s ease-out;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth card hover */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 30px -10px rgba(48, 84, 146, 0.2);
+        }
+
+        /* Smooth button hover */
+        .btn-hover {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-hover:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Smooth image zoom */
+        .zoom-on-hover {
+            overflow: hidden;
+        }
+
+        .zoom-on-hover img {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .zoom-on-hover:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Smooth border gradient */
+        .gradient-border-card {
+            position: relative;
+            background: white;
+            border-radius: 1rem;
+        }
+
+        .gradient-border-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #305492, #4a6fa5, #305492);
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gradient-border-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Smooth loading bar */
+        .loading-bar {
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #305492, #4a6fa5);
+            transition: width 0.5s ease;
+        }
+
+        /* Counter animation smooth */
+        .counter-number {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .counter-number:hover {
+            transform: scale(1.1);
+            color: #305492;
+        }
+
+        /* Smooth dropdown */
+        .dropdown-smooth {
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: top;
+        }
+
+        .dropdown-smooth.show {
+            opacity: 1;
+            transform: scaleY(1);
+            visibility: visible;
+        }
+
+        /* Smooth ripple effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .ripple:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        /* Smooth scroll progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #305492, #4a6fa5);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Smooth page loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #305492;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Smooth card entrance */
+        .card-entrance {
+            animation: cardEntrance 0.6s ease-out;
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Smooth text reveal */
+        .text-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-reveal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #305492;
+            transform: translateX(-100%);
+            animation: textReveal 1s ease forwards;
+        }
+
+        @keyframes textReveal {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Smooth navigation underline */
+        .nav-underline {
+            position: relative;
+        }
+
+        .nav-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #305492;
+            transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .nav-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Smooth tooltip */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            background: #305492;
+            color: white;
+            text-align: center;
+            padding: 5px 10px;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        /* Smooth badge pulse */
+        .badge-pulse {
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(48, 84, 146, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(48, 84, 146, 0);
+            }
+        }
+
+        /* Smooth progress bar */
+        .progress-smooth {
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Smooth rotate */
+        .rotate-smooth {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .rotate-smooth:hover {
+            transform: rotate(360deg);
+        }
+
+        /* Smooth slide */
+        .slide-smooth {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .slide-smooth:hover {
+            transform: translateX(5px);
+        }
+
+        /* Smooth background transition */
+        .bg-transition {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
     </style>
 </head>
 
-<body class="font-sans bg-gray-50">
+<body class="font-sans bg-gray-50 page-transition">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
     <!-- Navigation Header -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50 bg-transition">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
@@ -101,7 +598,7 @@
                     <div class="flex-shrink-0">
                         <div class="flex items-center">
                             <img src="img/logo.png" alt="Logo UJS Travel" class="w-10 h-10 object-contain" />
-                            <span class="text-xl font-bold text-travellora-dark"> TRAVEL</span>
+                            <span class="text-xl font-bold text-travellora-dark ml-2">UJS TRAVEL</span>
                         </div>
                     </div>
                 </div>
@@ -110,12 +607,12 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="index.html"
-                            class="text-travellora-gray hover:text-travellora-dark transition-colors">Beranda</a>
+                            class="text-travellora-gray hover:text-travellora-dark transition-colors nav-underline">Beranda</a>
 
                         <!-- Dropdown Layanan -->
                         <div class="relative group">
                             <button
-                                class="text-travellora-blue hover:text-travellora-dark transition-colors flex items-center focus:outline-none">
+                                class="text-travellora-blue hover:text-travellora-dark transition-colors flex items-center focus:outline-none nav-underline">
                                 Layanan
                                 <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -126,31 +623,31 @@
 
                             <!-- Dropdown Menu -->
                             <div
-                                class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100">
+                                class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-100 dropdown-smooth">
                                 <div class="py-1">
                                     <a href="reguler.html"
-                                        class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Reguler</a>
+                                        class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors slide-smooth">Reguler</a>
                                     <a href="carter-drop.html"
-                                        class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">Travel
+                                        class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors slide-smooth">Travel
                                         Drop</a>
                                     <a href="city-tour.html"
-                                        class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors">City
+                                        class="block px-4 py-2 text-sm text-travellora-gray hover:text-travellora-dark hover:bg-gray-50 transition-colors slide-smooth">City
                                         Tour</a>
                                     <a href="kirim-paket.html"
-                                        class="block px-4 py-2 text-sm text-travellora-blue font-medium hover:bg-gray-50 transition-colors">Kirim
+                                        class="block px-4 py-2 text-sm text-travellora-blue font-medium hover:bg-gray-50 transition-colors slide-smooth">Kirim
                                         Paket</a>
                                 </div>
                             </div>
                         </div>
 
                         <a href="index.html#jadwal"
-                            class="text-travellora-gray hover:text-travellora-dark transition-colors">Jadwal</a>
+                            class="text-travellora-gray hover:text-travellora-dark transition-colors nav-underline">Jadwal</a>
                         <a href="index.html#tentangkami"
-                            class="text-travellora-gray hover:text-travellora-dark transition-colors">Tentang</a>
+                            class="text-travellora-gray hover:text-travellora-dark transition-colors nav-underline">Tentang</a>
                         <a href="index.html#contact"
-                            class="text-travellora-gray hover:text-travellora-dark transition-colors">Kontak</a>
+                            class="text-travellora-gray hover:text-travellora-dark transition-colors nav-underline">Kontak</a>
                         <a href="Form.html"
-                            class="bg-travellora-blue text-white px-5 py-2.5 rounded-lg font-medium  border-2 border-travellora-blue hover:bg-white hover:text-travellora-blue hover:border-travellora-blue transition-colors duration-300">
+                            class="bg-travellora-blue text-white px-5 py-2.5 rounded-lg font-medium border-2 border-travellora-blue hover:bg-white hover:text-travellora-blue hover:border-travellora-blue transition-colors duration-300 btn-hover">
                             Pesan Sekarang</a>
                     </div>
                 </div>
@@ -226,221 +723,734 @@
     </nav>
 
     <!-- Hero Section untuk Kirim Paket -->
-    <section
-        class="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-r from-travellora-blue to-blue-700">
-        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    <section class="relative overflow-hidden bg-gradient-to-r from-travellora-blue to-blue-700">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+        </div>
 
-        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto hero-fade-in">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight hero-fade-in delay-100">
-                Layanan Kirim Paket Express
-            </h1>
-            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto hero-fade-in delay-200">
-                Pengiriman cepat & aman sampai tujuan dengan tracking via admin
-            </p>
+        <div class="relative z-10 py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left Content -->
+                    <div class="text-white hero-fade-in">
+                        <div class="mb-6">
+                            <div
+                                class="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full mb-4 animate-soft-pulse">
+                                <span class="text-sm font-semibold">LAYANAN KIRIM PAKET</span>
+                            </div>
+                            <h1
+                                class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight hero-fade-in delay-100">
+                                ANTAR PAKET
+                            </h1>
+                            <h2
+                                class="text-3xl md:text-4xl font-bold text-yellow-300 mb-6 hero-fade-in delay-200 animate-soft-scale">
+                                SUPER CEPAT
+                            </h2>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 hero-fade-in delay-300">
+                                SATU HARI SAMPAI
+                            </h3>
+                        </div>
 
-            <div class="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
-                <span class="text-white font-bold text-lg">Mulai dari</span>
-                <span class="ml-2 text-2xl font-bold text-yellow-300">Rp 50.000</span>
+                        <!-- Price Highlight -->
+                        <div class="mb-8 hero-fade-in delay-300">
+                            <div class="flex items-baseline space-x-3">
+                                <span class="text-lg text-blue-100">Mulai dari</span>
+                                <div class="pulse bg-yellow-500 text-white px-6 py-3 rounded-xl animate-float">
+                                    <div class="text-3xl md:text-4xl font-bold">Rp 50.000</div>
+                                    <div class="text-sm opacity-90">/ DOKUMEN</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-xl text-blue-100 mb-8 max-w-lg hero-fade-in delay-400">
+                            Pengiriman cepat & aman sampai tujuan dengan tracking via admin
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#tarif-paket"
+                                class="inline-flex items-center justify-center px-6 py-3 bg-white text-travellora-blue font-semibold rounded-full hover:bg-gray-100 transition-colors duration-300 btn-hover">
+                                Lihat Tarif Paket
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </a>
+                            <a href="https://wa.me/6282316290290" target="_blank"
+                                class="inline-flex items-center justify-center px-6 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors duration-300 btn-hover">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                                </svg>
+                                Kirim via WA
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Content - Flyer Image -->
+                    <div class="relative hero-fade-in delay-300">
+                        <div class="gradient-border rounded-2xl overflow-hidden shadow-2xl animate-float">
+                            <img src="/img/flayer kirim paket.jpeg" alt="UJS Travel Kirim Paket"
+                                class="w-full h-auto object-cover">
+                        </div>
+                        <!-- Badge Express -->
+                        <div
+                            class="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg rotate-12 shadow-xl animate-soft-pulse">
+                            EXPRESS
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Detail Layanan -->
-    <section class="py-16 bg-white">
+    <!-- Tarif Paket Section -->
+    <section class="py-16 bg-white" id="tarif-paket">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Content -->
-                <div class="reveal fade-left">
-                    <h2 class="text-3xl font-bold text-travellora-dark mb-6">
-                        Keunggulan Layanan Kirim Paket
-                    </h2>
+            <div class="text-center mb-12 reveal fade-bottom">
+                <div class="inline-block px-4 py-1 bg-travellora-blue/10 rounded-full mb-4">
+                    <span class="text-travellora-blue font-semibold">HARGA SPESIAL</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-travellora-dark mb-4">
+                    Tarif Kirim Paket
+                </h2>
+                <p class="text-lg text-travellora-gray max-w-2xl mx-auto">
+                    Harga terjangkau untuk pengiriman cepat Malang - Surabaya
+                </p>
+            </div>
 
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div
-                                class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-travellora-dark mb-2">Same Day / Express</h3>
-                                <p class="text-travellora-gray">Pengiriman satu hari sampai untuk rute Malang -
-                                    Surabaya.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Left Content - Tarif Cards -->
+                <div class="space-y-6 reveal fade-left">
+                    <!-- Dokumen -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 card-hover ">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-travellora-blue" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-travellora-dark">Dokumen</h3>
+                                        <p class="text-sm text-travellora-gray">F4 | Tebal max 5 cm</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-travellora-blue">Rp 50.000</div>
+                                    <p class="text-xs text-travellora-gray">dokumen tambahan +10k per 5 cm</p>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="flex items-start">
-                            <div
-                                class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-travellora-dark mb-2">Aman & Terpercaya</h3>
-                                <p class="text-travellora-gray">Paket dijamin aman sampai tujuan dengan handling yang
-                                    baik.</p>
+                    <!-- Kardus Kecil -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 card-hover ">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-travellora-dark">Kardus Kecil</h3>
+                                        <p class="text-sm text-travellora-gray">P + L + T &lt; 30 cm | Max 5 kg</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-travellora-blue">Rp 100.000</div>
+                                    <p class="text-xs text-travellora-gray">kardus ke-2 dst: 30k</p>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="flex items-start">
-                            <div
-                                class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
-                                    </path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-travellora-dark mb-2">Paket & Dokumen</h3>
-                                <p class="text-travellora-gray">Melayani pengiriman paket barang dan dokumen penting.
-                                </p>
+                    <!-- Kardus Sedang -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 card-hover ">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-travellora-dark">Kardus Sedang</h3>
+                                        <p class="text-sm text-travellora-gray">P + L + T < 30-120 cm | Max 7 kg</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-travellora-blue">Rp 120.000</div>
+                                    <p class="text-xs text-travellora-gray">kardus ke-2 dst: 50k</p>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="flex items-start">
-                            <div
-                                class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-travellora-dark mb-2">Tracking via Admin</h3>
-                                <p class="text-travellora-gray">Pantau status paket melalui admin kami via WhatsApp.</p>
+                    <!-- Kardus Besar -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 card-hover ">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-travellora-dark">Kardus Besar</h3>
+                                        <p class="text-sm text-travellora-gray">P + L + T < 120 cm | Max 10 kg</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-travellora-blue">Rp 150.000</div>
+                                    <p class="text-xs text-travellora-gray">kardus ke-2 dst: 70k</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Content -->
+                <!-- Right Content - Ketentuan & Info -->
                 <div class="bg-gray-50 rounded-2xl p-8 shadow-lg reveal fade-right">
                     <h3 class="text-2xl font-bold text-travellora-dark mb-6 text-center">
-                        Tarif Kirim Paket
+                        Ketentuan Pengiriman
                     </h3>
 
-                    <div class="space-y-4">
-                        <div class="p-4 bg-white rounded-lg border border-gray-200">
-                            <div class="font-semibold text-lg text-travellora-dark mb-2">Paket Kecil</div>
-                            <div class="text-travellora-gray mb-3">Berat ≤ 1 kg (dokumen, makanan, barang ringan)</div>
-                            <div class="text-2xl font-bold text-travellora-blue">Rp 50.000</div>
+                    <div class="space-y-6">
+                        <!-- Important Notes -->
+                        <div class="bg-white rounded-xl p-6 border-l-4 border-travellora-blue shadow-sm">
+                            <h4 class="font-semibold text-travellora-dark mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-travellora-blue" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Informasi Penting
+                            </h4>
+                            <ul class="space-y-3 text-sm text-travellora-gray">
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 text-travellora-blue mr-2 flex-shrink-0">•</span>
+                                    <span>Kategori paket mengikuti ukuran atau berat terbesar.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 text-travellora-blue mr-2 flex-shrink-0">•</span>
+                                    <span>Packing menjadi tanggung jawab pengirim.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 text-travellora-blue mr-2 flex-shrink-0">•</span>
+                                    <span>Selama kardus/pembungkus luar tidak rusak, kondisi isi paket di luar tanggung
+                                        jawab kami.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 text-travellora-blue mr-2 flex-shrink-0">•</span>
+                                    <span>Tidak menerima pengiriman barang ilegal, uang tunai, emas, elektronik, dan
+                                        barang bernilai tinggi.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 text-travellora-blue mr-2 flex-shrink-0">•</span>
+                                    <span>Pengirim wajib mencantumkan nama penerima + nomor aktif + alamat
+                                        lengkap.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 text-travellora-blue mr-2 flex-shrink-0">•</span>
+                                    <span>Paket dengan packing tidak layak berhak kami tolak demi keamanan
+                                        pengiriman.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 text-travellora-blue mr-2 flex-shrink-0">•</span>
+                                    <span>Keterlambatan dapat terjadi karena faktor di luar kendali (macet/cuaca/kondisi
+                                        jalan).</span>
+                                </li>
+                            </ul>
                         </div>
 
-                        <div class="p-4 bg-white rounded-lg border border-gray-200">
-                            <div class="font-semibold text-lg text-travellora-dark mb-2">Paket Sedang</div>
-                            <div class="text-travellora-gray mb-3">Berat 1-3 kg (pakaian, oleh-oleh, barang elektronik
-                                kecil)</div>
-                            <div class="text-2xl font-bold text-travellora-blue">Rp 75.000 - Rp 150.000</div>
+                        <!-- Estimasi Pengiriman -->
+                        <div class="bg-blue-50 rounded-xl p-6 border border-blue-200">
+                            <h4 class="font-semibold text-travellora-dark mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-travellora-blue" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Estimasi Pengiriman
+                            </h4>
+                            <p class="text-travellora-gray mb-2">
+                                <span class="font-semibold text-green-600">Same Day / Express:</span> 4-8 jam
+                            </p>
+                            <p class="text-xs text-travellora-gray">
+                                *Untuk rute Malang - Surabaya dan sekitarnya
+                            </p>
                         </div>
 
-                        <div class="p-4 bg-white rounded-lg border border-gray-200">
-                            <div class="font-semibold text-lg text-travellora-dark mb-2">Paket Besar</div>
-                            <div class="text-travellora-gray mb-3">Berat > 3 kg (barang berat, banyak quantity)</div>
-                            <div class="text-2xl font-bold text-travellora-blue">Negosiasi</div>
+                        <!-- Tracking Info -->
+                        <div class="bg-green-50 rounded-xl p-6 border border-green-200">
+                            <h4 class="font-semibold text-travellora-dark mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Tracking Paket
+                            </h4>
+                            <p class="text-travellora-gray">
+                                Pantau status paket Anda melalui admin kami via WhatsApp. Kami akan update secara
+                                berkala.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="mt-8 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                        <p class="text-sm text-blue-800">
-                            <strong>Catatan:</strong> Harga sudah termasuk pickup dan delivery door to door. Tarif
-                            berdasarkan berat dan volume paket. Untuk paket besar atau barang khusus, hubungi kami untuk
-                            penawaran harga. Estimasi pengiriman 4-8 jam untuk same day service.
-                        </p>
+                    <!-- CTA Buttons -->
+                    <div class="mt-8 grid grid-cols-1 gap-3">
+                        <a href="https://wa.me/6282316290290" target="_blank"
+                            class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 btn-hover text-center">
+                            <div class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                                </svg>
+                                Kirim Paket via WhatsApp
+                            </div>
+                        </a>
+                        <a href="Form.html"
+                            class="w-full bg-travellora-blue hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 btn-hover text-center">
+                            <div class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Isi Form Pengiriman
+                            </div>
+                        </a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="mt-6">
-                        <h4 class="font-semibold text-travellora-dark mb-3">Jenis Paket yang Dikirim:</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Dokumen
-                                Penting</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Oleh-oleh Khas
-                                Malang</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pakaian &
-                                Fashion</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Makanan &
-                                Minuman</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Barang
-                                Elektronik</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Souvenir &
-                                Hadiah</span>
-                        </div>
+    <!-- Keunggulan Layanan -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal fade-bottom">
+                <h2 class="text-3xl md:text-4xl font-bold text-travellora-dark mb-4">
+                    Keunggulan Layanan
+                </h2>
+                <p class="text-lg text-travellora-gray max-w-2xl mx-auto">
+                    Kenapa harus kirim paket dengan UJS Travel?
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Keunggulan 1 -->
+                <div class="text-center group reveal fade-bottom">
+                    <div
+                        class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 animate-soft-pulse">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold text-travellora-dark mb-3">Cepat</h3>
+                    <p class="text-travellora-gray">Same day delivery untuk rute Malang - Surabaya</p>
+                </div>
+
+                <!-- Keunggulan 2 -->
+                <div class="text-center group reveal fade-bottom">
+                    <div
+                        class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-travellora-dark mb-3">Aman</h3>
+                    <p class="text-travellora-gray">Penanganan paket dengan hati-hati dan profesional</p>
+                </div>
+
+                <!-- Keunggulan 3 -->
+                <div class="text-center group reveal fade-bottom">
+                    <div
+                        class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-travellora-dark mb-3">Door to Door</h3>
+                    <p class="text-travellora-gray">Pickup dan delivery langsung ke alamat tujuan</p>
+                </div>
+
+                <!-- Keunggulan 4 -->
+                <div class="text-center group reveal fade-bottom">
+                    <div
+                        class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-travellora-dark mb-3">Tracking</h3>
+                    <p class="text-travellora-gray">Pantau status paket via admin WhatsApp</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Proses Pengiriman Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-travellora-dark mb-12">
-                Proses Pengiriman Paket
-            </h2>
+            <div class="text-center mb-12 reveal fade-bottom">
+                <h2 class="text-3xl md:text-4xl font-bold text-travellora-dark mb-4">
+                    Proses Pengiriman Paket
+                </h2>
+                <p class="text-lg text-travellora-gray max-w-2xl mx-auto">
+                    4 langkah mudah kirim paket bersama UJS Travel
+                </p>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div
-                        class="w-16 h-16 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">1</span>
+                <!-- Step 1 -->
+                <div class="text-center reveal fade-bottom card-hover">
+                    <div class="relative">
+                        <div
+                            class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+                            <span class="text-white font-bold text-2xl">1</span>
+                        </div>
+                        <!-- Connector Line (hidden on mobile) -->
+                        <div class="hidden md:block absolute top-10 left-[60%] w-full h-0.5 bg-travellora-blue/30 -z-0">
+                        </div>
                     </div>
-                    <h3 class="font-semibold text-travellora-dark mb-2">Pesan via WhatsApp</h3>
-                    <p class="text-travellora-gray text-sm">Kirim detail paket ke nomor kami</p>
+                    <h3 class="font-bold text-travellora-dark mb-2 text-lg">Hubungi Admin</h3>
+                    <p class="text-travellora-gray text-sm">WA atau telepon untuk informasikan detail paket</p>
                 </div>
 
-                <div class="text-center">
-                    <div
-                        class="w-16 h-16 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">2</span>
+                <!-- Step 2 -->
+                <div class="text-center reveal fade-bottom card-hover">
+                    <div class="relative">
+                        <div
+                            class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-2xl">2</span>
+                        </div>
+                        <div class="hidden md:block absolute top-10 left-[60%] w-full h-0.5 bg-travellora-blue/30">
+                        </div>
                     </div>
-                    <h3 class="font-semibold text-travellora-dark mb-2">Pickup Paket</h3>
+                    <h3 class="font-bold text-travellora-dark mb-2 text-lg">Pickup Paket</h3>
                     <p class="text-travellora-gray text-sm">Kami jemput paket di alamat Anda</p>
                 </div>
 
-                <div class="text-center">
-                    <div
-                        class="w-16 h-16 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">3</span>
+                <!-- Step 3 -->
+                <div class="text-center reveal fade-bottom card-hover">
+                    <div class="relative">
+                        <div
+                            class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-2xl">3</span>
+                        </div>
+                        <div class="hidden md:block absolute top-10 left-[60%] w-full h-0.5 bg-travellora-blue/30">
+                        </div>
                     </div>
-                    <h3 class="font-semibold text-travellora-dark mb-2">Proses Pengiriman</h3>
+                    <h3 class="font-bold text-travellora-dark mb-2 text-lg">Proses Kirim</h3>
                     <p class="text-travellora-gray text-sm">Paket dikirim dengan travel reguler</p>
                 </div>
 
-                <div class="text-center">
-                    <div
-                        class="w-16 h-16 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white font-bold text-xl">4</span>
+                <!-- Step 4 -->
+                <div class="text-center reveal fade-bottom card-hover">
+                    <div class="relative">
+                        <div
+                            class="w-20 h-20 bg-travellora-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-2xl">4</span>
+                        </div>
                     </div>
-                    <h3 class="font-semibold text-travellora-dark mb-2">Paket Sampai</h3>
-                    <p class="text-travellora-gray text-sm">Paket diantar ke alamat penerima</p>
+                    <h3 class="font-bold text-travellora-dark mb-2 text-lg">Paket Sampai</h3>
+                    <p class="text-travellora-gray text-sm">Diantar ke alamat penerima & konfirmasi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section - Kirim Paket -->
+    <section class="py-16 bg-gradient-to-b from-white to-blue-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center p-2 bg-blue-100 rounded-full mb-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-travellora-dark mb-4">
+                    Pertanyaan Umum Kirim Paket
+                </h2>
+                <p class="text-lg text-travellora-gray max-w-2xl mx-auto">
+                    Temukan jawaban untuk pertanyaan yang sering diajukan tentang layanan Kirim Paket
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="group">
+                    <button onclick="toggleFAQ(1)"
+                        class="flex items-center justify-between w-full p-6 text-left bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-blue-200">
+                        <h3 class="text-lg font-semibold text-travellora-dark pr-8">
+                            Berapa lama estimasi pengiriman paket?
+                        </h3>
+                        <svg id="faq-icon-1"
+                            class="w-5 h-5 text-travellora-blue transition-transform duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-content-1"
+                        class="hidden bg-white px-6 pb-6 -mt-2 rounded-b-xl border-l border-r border-b border-gray-200">
+                        <div class="pt-4 border-t border-gray-100">
+                            <p class="text-travellora-gray">
+                                Untuk rute <strong>Malang - Surabaya dan sekitarnya</strong>, estimasi pengiriman:
+                            </p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-travellora-gray">
+                                <li><span class="font-semibold text-green-600">Same Day / Express:</span> 4-8 jam
+                                    (dikirim di hari yang sama)</li>
+                                <li><span class="font-semibold text-blue-600">Regular:</span> 1x24 jam</li>
+                            </ul>
+                            <p class="mt-3 text-sm text-travellora-gray">
+                                *Estimasi dapat berbeda tergantung kondisi lalu lintas dan cuaca.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="group">
+                    <button onclick="toggleFAQ(2)"
+                        class="flex items-center justify-between w-full p-6 text-left bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-blue-200">
+                        <h3 class="text-lg font-semibold text-travellora-dark pr-8">
+                            Apakah ada layanan pickup paket?
+                        </h3>
+                        <svg id="faq-icon-2"
+                            class="w-5 h-5 text-travellora-blue transition-transform duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-content-2"
+                        class="hidden bg-white px-6 pb-6 -mt-2 rounded-b-xl border-l border-r border-b border-gray-200">
+                        <div class="pt-4 border-t border-gray-100">
+                            <p class="text-travellora-gray">
+                                <span class="font-semibold text-green-600">Ya, tersedia!</span> Kami menyediakan layanan
+                                <strong>pickup paket</strong>
+                                dari alamat Anda (door to door service). Cukup informasikan alamat lengkap saat booking,
+                                dan driver kami akan menjemput paket sesuai jadwal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="group">
+                    <button onclick="toggleFAQ(3)"
+                        class="flex items-center justify-between w-full p-6 text-left bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-blue-200">
+                        <h3 class="text-lg font-semibold text-travellora-dark pr-8">
+                            Barang apa saja yang tidak boleh dikirim?
+                        </h3>
+                        <svg id="faq-icon-3"
+                            class="w-5 h-5 text-travellora-blue transition-transform duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-content-3"
+                        class="hidden bg-white px-6 pb-6 -mt-2 rounded-b-xl border-l border-r border-b border-gray-200">
+                        <div class="pt-4 border-t border-gray-100">
+                            <p class="text-travellora-gray mb-3">
+                                Kami <span class="font-semibold text-red-600">TIDAK menerima</span> pengiriman:
+                            </p>
+                            <ul class="list-disc list-inside space-y-1 text-travellora-gray">
+                                <li>Barang ilegal / terlarang (narkoba, senjata tajam, dll)</li>
+                                <li>Uang tunai / logam mulia / emas</li>
+                                <li>Elektronik bernilai tinggi (laptop, handphone, dll)</li>
+                                <li>Barang mudah pecah tanpa packing khusus</li>
+                                <li>Barang berbahaya (bahan kimia, gas, dll)</li>
+                                <li>Dokumen berharga asli (ijazah, sertifikat, dll) - kami sarankan via ekspedisi khusus
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="group">
+                    <button onclick="toggleFAQ(4)"
+                        class="flex items-center justify-between w-full p-6 text-left bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-blue-200">
+                        <h3 class="text-lg font-semibold text-travellora-dark pr-8">
+                            Apakah paket bisa dilacak / tracking?
+                        </h3>
+                        <svg id="faq-icon-4"
+                            class="w-5 h-5 text-travellora-blue transition-transform duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-content-4"
+                        class="hidden bg-white px-6 pb-6 -mt-2 rounded-b-xl border-l border-r border-b border-gray-200">
+                        <div class="pt-4 border-t border-gray-100">
+                            <p class="text-travellora-gray">
+                                <span class="font-semibold text-green-600">Bisa!</span> Meskipun tidak ada sistem
+                                tracking online,
+                                Anda dapat memantau status paket melalui <strong>admin kami via WhatsApp</strong>.
+                                Admin akan meng-update secara berkala:
+                            </p>
+                            <ul class="list-disc list-inside mt-3 space-y-1 text-travellora-gray">
+                                <li>Paket sudah di-pickup</li>
+                                <li>Paket dalam perjalanan</li>
+                                <li>Estimasi sampai tujuan</li>
+                                <li>Paket sudah diterima (konfirmasi)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="group">
+                    <button onclick="toggleFAQ(5)"
+                        class="flex items-center justify-between w-full p-6 text-left bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-blue-200">
+                        <h3 class="text-lg font-semibold text-travellora-dark pr-8">
+                            Bagaimana cara menghitung biaya kirim?
+                        </h3>
+                        <svg id="faq-icon-5"
+                            class="w-5 h-5 text-travellora-blue transition-transform duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="faq-content-5"
+                        class="hidden bg-white px-6 pb-6 -mt-2 rounded-b-xl border-l border-r border-b border-gray-200">
+                        <div class="pt-4 border-t border-gray-100">
+                            <p class="text-travellora-gray">
+                                Biaya pengiriman dihitung berdasarkan <strong>kategori paket</strong>:
+                            </p>
+                            <div class="mt-4 overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Kategori</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Ukuran</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Max Berat</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Harga</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm">Dokumen</td>
+                                            <td class="px-4 py-3 text-sm">F4, tebal max 5 cm</td>
+                                            <td class="px-4 py-3 text-sm">-</td>
+                                            <td class="px-4 py-3 text-sm font-semibold">Rp 50.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm">Kardus Kecil</td>
+                                            <td class="px-4 py-3 text-sm">P+L+T < 30 cm</td>
+                                            <td class="px-4 py-3 text-sm">5 kg</td>
+                                            <td class="px-4 py-3 text-sm font-semibold">Rp 100.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm">Kardus Sedang</td>
+                                            <td class="px-4 py-3 text-sm">P+L+T 30-120 cm</td>
+                                            <td class="px-4 py-3 text-sm">7 kg</td>
+                                            <td class="px-4 py-3 text-sm font-semibold">Rp 120.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm">Kardus Besar</td>
+                                            <td class="px-4 py-3 text-sm">P+L+T < 120 cm</td>
+                                            <td class="px-4 py-3 text-sm">10 kg</td>
+                                            <td class="px-4 py-3 text-sm font-semibold">Rp 150.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mt-4 text-sm text-travellora-gray">
+                                <span class="font-semibold">Catatan:</span> Kategori mengikuti ukuran atau berat
+                                terbesar.
+                                Untuk paket di luar ketentuan, hubungi kami untuk penawaran khusus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA untuk FAQ -->
+            <div class="mt-12 text-center">
+                <p class="text-lg text-travellora-gray mb-6">
+                    Masih ada pertanyaan lain tentang Kirim Paket?
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/6282316290290" target="_blank"
+                        class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 btn-hover">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                        </svg>
+                        Tanya via WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-travellora-blue">
+    <section class="py-16 bg-gradient-to-r from-travellora-blue to-blue-700">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-bold text-white mb-6">
-                Butuh Kirim Paket Cepat?
+                Siap Kirim Paket?
             </h2>
             <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
                 Kirim paket Anda sekarang dengan layanan express same day delivery
             </p>
 
-            <a href="Form.html"
-                class="inline-block bg-white text-travellora-blue font-bold py-4 px-8 rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg">
-                Kirim Paket Sekarang
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/6282316290290" target="_blank"
+                    class="inline-block bg-green-500 text-white font-bold py-4 px-8 rounded-full hover:bg-green-600 transition-colors duration-300 text-lg btn-hover">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                        </svg>
+                        Kirim via WhatsApp
+                    </div>
+                </a>
+                <a href="Form.html"
+                    class="inline-block bg-white text-travellora-blue font-bold py-4 px-8 rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg btn-hover">
+                    Isi Form Pengiriman
+                </a>
+            </div>
+
+            <p class="text-blue-200 text-sm mt-6">
+                <svg class="w-4 h-4 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Gratis pickup • Same day delivery • Tracking via WA
+            </p>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -513,32 +1523,40 @@
                         <h3 class="text-lg font-semibold mb-4 text-white">Ikuti Kami</h3>
                         <div class="flex space-x-4">
                             <a href="https://www.facebook.com/ujstravel" target="_blank"
-                                class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 hover:scale-110 transition-all duration-300">
+                                class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 hover:scale-110 transition-all duration-300 tooltip"
+                                title="Facebook">
                                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path
                                         d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                                 </svg>
+                                <span class="tooltip-text">Facebook</span>
                             </a>
                             <a href="https://www.instagram.com/ujstravel" target="_blank"
-                                class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 hover:scale-110 transition-all duration-300">
+                                class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 hover:scale-110 transition-all duration-300 tooltip"
+                                title="Instagram">
                                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path
                                         d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.225-.149-4.771-1.664-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.148-3.227 1.664-4.771 4.919-4.919 1.266-.058 1.645-.07 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                                 </svg>
+                                <span class="tooltip-text">Instagram</span>
                             </a>
                             <a href="https://wa.me/6282316290290" target="_blank"
-                                class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 hover:scale-110 transition-all duration-300">
+                                class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 hover:scale-110 transition-all duration-300 tooltip"
+                                title="WhatsApp">
                                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path
                                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                                 </svg>
+                                <span class="tooltip-text">WhatsApp</span>
                             </a>
                             <a href="https://www.tiktok.com/@ujs_tourtravel" target="_blank"
-                                class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 hover:scale-110 transition-all duration-300">
+                                class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 hover:scale-110 transition-all duration-300 tooltip"
+                                title="TikTok">
                                 <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                                     <path
                                         d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
                                 </svg>
+                                <span class="tooltip-text">TikTok</span>
                             </a>
                         </div>
                     </div>
@@ -550,7 +1568,7 @@
                     <ul class="space-y-3 text-blue-100">
                         <li>
                             <a href="reguler.html"
-                                class="hover:text-white transition-colors duration-300 flex items-center">
+                                class="hover:text-white transition-colors duration-300 flex items-center slide-smooth">
                                 <svg class="w-4 h-4 mr-2 text-green-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -562,7 +1580,7 @@
                         </li>
                         <li>
                             <a href="carter-drop.html"
-                                class="hover:text-white transition-colors duration-300 flex items-center">
+                                class="hover:text-white transition-colors duration-300 flex items-center slide-smooth">
                                 <svg class="w-4 h-4 mr-2 text-green-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -574,7 +1592,7 @@
                         </li>
                         <li>
                             <a href="city-tour.html"
-                                class="hover:text-white transition-colors duration-300 flex items-center">
+                                class="hover:text-white transition-colors duration-300 flex items-center slide-smooth">
                                 <svg class="w-4 h-4 mr-2 text-green-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -586,7 +1604,7 @@
                         </li>
                         <li>
                             <a href="kirim-paket.html"
-                                class="hover:text-white transition-colors duration-300 flex items-center">
+                                class="hover:text-white transition-colors duration-300 flex items-center slide-smooth">
                                 <svg class="w-4 h-4 mr-2 text-green-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -598,7 +1616,7 @@
                         </li>
                         <li>
                             <a href="index.html#jadwal"
-                                class="hover:text-white transition-colors duration-300 flex items-center">
+                                class="hover:text-white transition-colors duration-300 flex items-center slide-smooth">
                                 <svg class="w-4 h-4 mr-2 text-green-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -669,7 +1687,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                         <div class="text-blue-100 font-semibold mb-2">Pembayaran</div>
-                        <div class="text-blue-100 text-sm">Transfer Bank BCA </div>
+                        <div class="text-blue-100 text-sm">Transfer Bank BCA</div>
                     </div>
                     <div>
                         <div class="text-blue-100 font-semibold mb-2">Armada</div>
@@ -686,14 +1704,12 @@
     <!-- Floating WhatsApp Button - Versi Simpel -->
     <div class="fixed bottom-6 right-6 z-50">
         <a href="https://wa.me/6282316290290" target="_blank"
-            class="bg-green-500 hover:bg-green-600 text-white px-5 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center space-x-3 hover:scale-105 active:scale-95">
-
+            class="bg-green-500 hover:bg-green-600 text-white px-5 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center space-x-3 hover:scale-105 active:scale-95 btn-hover">
             <!-- WhatsApp Icon -->
             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
             </svg>
-
             <!-- Text -->
             <span class="text-base font-bold whitespace-nowrap">
                 Chat WhatsApp Online 24 Jam
@@ -702,6 +1718,26 @@
     </div>
 
     <script>
+        // Scroll Progress Bar
+        const progressBar = document.createElement('div');
+        progressBar.className = 'scroll-progress';
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        // Page Loader
+        const pageLoader = document.getElementById('page-loader');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                pageLoader.classList.add('hidden');
+            }, 500);
+        });
+
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById("mobile-menu");
             mobileMenu.classList.toggle("hidden");
@@ -720,11 +1756,60 @@
             }
         }
 
+        // FAQ Toggle Function
+        function toggleFAQ(faqNumber) {
+            const content = document.getElementById(`faq-content-${faqNumber}`);
+            const icon = document.getElementById(`faq-icon-${faqNumber}`);
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const duration = 800;
+                    let start = null;
+
+                    function animation(currentTime) {
+                        if (start === null) start = currentTime;
+                        const timeElapsed = currentTime - start;
+                        const progress = Math.min(timeElapsed / duration, 1);
+
+                        // Easing function (easeInOutCubic)
+                        const ease = progress < 0.5
+                            ? 4 * progress * progress * progress
+                            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                        window.scrollTo(0, startPosition + (distance * ease));
+
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(animation);
+                        }
+                    }
+
+                    requestAnimationFrame(animation);
+                }
+            });
+        });
+
         // Intersection Observer for Reveal Animations
         const revealCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
                 }
             });
         };
@@ -736,6 +1821,48 @@
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);
         });
+
+        // Hero animation
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroElements = document.querySelectorAll('.hero-fade-in');
+            heroElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add smooth hover effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.classList.add('card-hover');
+        });
+
+        document.querySelectorAll('a[href="Form.html"], .bg-travellora-blue, .bg-green-500').forEach(btn => {
+            btn.classList.add('btn-hover');
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.classList.add('nav-underline');
+        });
+
+        document.querySelectorAll('.tooltip').forEach(icon => {
+            const tooltip = document.createElement('span');
+            tooltip.className = 'tooltip-text';
+            tooltip.textContent = icon.getAttribute('title') || 'Social Media';
+            icon.appendChild(tooltip);
+        });
+
+        document.querySelectorAll('.badge-pulse').forEach(badge => {
+            badge.classList.add('badge-pulse');
+        });
+
+        document.querySelectorAll('li a').forEach(item => {
+            item.classList.add('slide-smooth');
+        });
+
+        document.querySelectorAll('.tooltip').forEach(icon => {
+            icon.classList.add('rotate-smooth');
+        });
+
+        document.querySelector('nav').classList.add('bg-transition');
     </script>
 </body>
 
